@@ -42,6 +42,7 @@ Methods:
         - Calling this method as indexOf(String, int) finds the first instance of the String starting at that index int
             - "July 5, 2012 1:28:19 PM".indexOf("2",9) would return 11
         - If the specified String or char value cannot be found, -1 is returned
+        - lastIndexOf() is similar to indexOf() but it starts from the back rather than the front
     - Comparisons
         - .equals(String) returns a boolean representing whether or not the Strings are identical
     - Replacements
