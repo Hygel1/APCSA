@@ -50,15 +50,57 @@ public class StringTest extends JFrame
    * converts dates in format m/d/yyyy to format dd-mm-yyyy
    */
   public String q4B(String str){
-    String rtn="";
-    if(str.indexOf("/")==1){
-      rtn+="0"+str.charAt(0)+"-";
-    }
-    else rtn+=str.substring(0, 2);
-    if(str.indexOf("/", str.indexOf("/"))==1) rtn="0"+str.charAt(str.indexOf("/")+1)+"-"+rtn;
-    else r
-    return rtn;
+    //Test if month is 1 or 2 digits
+    if(str.indexOf("/")==1) str="0"+str;
+    if(str.charAt(4)=='/') return "0"+str.charAt(3)+"-"+str.substring(0,2)+"-"+str.substring(str.length()-4,str.length());
+    else return str.substring(3,5)+"-"+str.substring(0,2)+"-"+str.substring(str.length()-4,str.length());
   }
+  /**
+   * #5a
+   * sets String last4 to the last 4 digits of ccNumber
+   */
+  public String q5A(String ccNumber){
+    return ccNumber.substring(ccNumber.length()-4,ccNumber.length());
+  }
+  /**
+   * #5b
+   * sets String last5 to the last 5 digits of ccNumber
+   */
+  public void q5B(String ccNumber){
+    String last5=ccNumber.substring(ccNumber.length()-5,ccNumber.length());
+  }
+  /**
+   * #6
+   * moves the last character of a String to the front
+   */
+  public String q6(String scroll){
+    return scroll.charAt(scroll.length()-1)+scroll.substring(0,scroll.length()-1);
+  }
+  /**
+   * #7
+   * reformats name from last, first to first last
+   */
+  public String q7(String name){
+    return name.substring(name.indexOf(",")+1,name.length())+" "+name.substring(0,name.indexOf(","));
+  }
+  /**
+   * #8
+   * takes String of 0s and 1s and reverses the value of each place
+   */
+  public String q8(String str){
+    str.replace("0","2");
+    str.replace("1","0");
+    str.replace("2","1");
+    return str;
+    }
+  /**
+   * #9
+   * determines if all characters in a String are the same without using loops
+   */
+  public boolean q9(String str){
+    return str.replace(str.charAt(0)+"","aa").length()==str.length()*2;
+  }
+
   public StringTest()
   {
     super("String test");
@@ -100,7 +142,7 @@ public class StringTest extends JFrame
     //str=""+q2A(str); for question 2a
     ///str=q3(str); for question 3
     //str=q4A(str); for question 4a
-
+    str=""+q9(str);
     
     result.setText(str);
     input.selectAll();

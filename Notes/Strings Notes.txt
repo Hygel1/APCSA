@@ -3,7 +3,7 @@ Chapter 8 - Strings
 Key Terms:
 Literal Strings
 Immutability
-Converting to and from Strings
+cancatenation = Converting to and from Strings
 Character class
 StringBuffer - Blend between strings and arrays
 
