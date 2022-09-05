@@ -1,3 +1,17 @@
+/**
+ * HONOR PLEDGE: All work here is honestly obtained and is my own.  Signed: Sean McLoughlin
+ * Date of Completion: 9/5/2022
+ * Assignment:  Ch. 8 Strings HW Pt. 1
+ * 
+ * Attribution: I worked with Andrew Albright to complete some of the book questions
+ * 
+ * General Description: Questions #1-11,13,14 in Ch. 8 of book, 7 CodingBat String1 questions
+ * 
+ * Advanced:  Book questions #8/9
+ * 
+ * Errata:  Question 5a/5b say to delcare unused and unreachable variables so I wrote them that way but included a way to return the values of the variables as well
+ *
+ */
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -13,6 +27,7 @@ public class StringTest extends JFrame
 {
   private JTextField input, result;
 
+//Start Book Problems
   /**
    * #1
    * C:\\dictionaries\\words.txt
@@ -59,8 +74,9 @@ public class StringTest extends JFrame
    * #5a
    * sets String last4 to the last 4 digits of ccNumber
    */
-  public String q5A(String ccNumber){
-    return ccNumber.substring(ccNumber.length()-4,ccNumber.length());
+  public void q5A(String ccNumber){
+    String last4=ccNumber.substring(ccNumber.length()-4,ccNumber.length());
+    // return ccNumber.substring(ccNumber.length()-5,ccNumber.length())
   }
   /**
    * #5b
@@ -68,6 +84,7 @@ public class StringTest extends JFrame
    */
   public void q5B(String ccNumber){
     String last5=ccNumber.substring(ccNumber.length()-5,ccNumber.length());
+    //return ccNumber.substring(ccNumber.length()-5,ccNumber.length())
   }
   /**
    * #6
@@ -100,6 +117,77 @@ public class StringTest extends JFrame
   public boolean q9(String str){
     return str.replace(str.charAt(0)+"","aa").length()==str.length()*2;
   }
+  /**
+   * #10
+   * removes any comments marked by multi-line notation
+   */
+  public String q10(String str){
+    if(str.indexOf("/*")!=-1 && str.indexOf("*/", str.indexOf("/*")+2)!=-1) return str.substring(0,str.indexOf("/*"))+str.substring(str.indexOf("*/")+2);
+    return str;
+  }
+  /**
+   * #11
+   * cuts out the first instance of a given substring
+   */
+  public String q11(String str,String cutOut){
+    if(str.indexOf(cutOut)!=-1) return str.substring(0,str.indexOf(cutOut))+str.substring(str.indexOf(cutOut)+cutOut.length());
+    return str;
+  }
+  /**
+   * #13a
+   * decides whether a String starts with a given prefix
+   */
+  public boolean q13a(String str, String prefix){
+    return prefix.equals(str.substring(0,prefix.length()));
+  }
+  /**
+   * #13b
+   * decides whether a String ends with a given suffix
+   */
+  public boolean q13b(String str, String suffix){
+    return suffix.equals(str.substring(str.length()-suffix.length(),str.length()));
+  }
+  /**
+   * #14
+   * removes HTML tags from a string
+   */
+  public String q14(String str){
+    //checks if there is a '<' at index 0 and if there is a '>' in any other index (implicitly after the '<'), then compares the last values (space for closing tag) to a reformatted version of the original tag. If this all comes back true, it returns what is between the tags
+    if(str.charAt(0)=='<'&&str.indexOf(">")!=-1&&str.substring(str.length()-str.indexOf(">")-2).equals("</"+str.substring(1,str.indexOf(">")+1))) return str.substring(str.indexOf(">")+1,str.length()-str.indexOf(">")-2);
+    return str;
+  }
+
+// End book problems, start CodingBat problems:
+
+//1. returns the name in format "Hello name!""
+public String helloName(String name){
+  return "Hello "+name+"!";
+}
+//2. puts two strings together in the order abba
+public String makeAbba(String a, String b) {
+  return a+b+b+a;
+}
+//3. surrounds word with tag formatted as html tag
+public String makeTags(String tag, String word) {
+  return "<"+tag+">"+word+"</"+tag+">";
+}
+//4. places word in the middle of out
+public String makeOutWord(String out, String word) {
+  return out.substring(0,out.length()/2)+word+out.substring(out.length()/2);
+}
+//5. returns 3 copies of the last 2 chars of str
+public String extraEnd(String str) {
+  return str.substring(str.length()-2)+str.substring(str.length()-2)+str.substring(str.length()-2);
+}
+//6. returns the first 2 chars of str, returns the whole string if there are not 2 chars
+public String firstTwo(String str) {
+  if(str.length()>=2) return str.substring(0,2);
+  return str;
+}
+//7. returns the first half of a string
+public String firstHalf(String str) {
+  return str.substring(0,str.length()/2);
+}
 
   public StringTest()
   {
@@ -136,13 +224,7 @@ public class StringTest extends JFrame
   {
     String str = input.getText();
 
-    // ... insert code to process str or call a method here
-    // str = _______________________________ ;
-    //str=""+hasTwoStars(str); for question 2b
-    //str=""+q2A(str); for question 2a
-    ///str=q3(str); for question 3
-    //str=q4A(str); for question 4a
-    str=""+q9(str);
+    str=q14(str); //Changeable test function
     
     result.setText(str);
     input.selectAll();
