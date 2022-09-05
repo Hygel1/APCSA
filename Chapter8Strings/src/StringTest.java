@@ -11,6 +11,8 @@
  * 
  * Errata:  Question 5a/5b say to delcare unused and unreachable variables so I wrote them that way but included a way to return the values of the variables as well
  *
+ * I have previously completed most of CodingBat in my Marist account and haven't been able to find a way to reset my progress so I made a new account using a personal email, 
+ * which means that the progress won't show up in my connected account's progress tab but I have my own progress graphs to show when I did them
  */
 import java.awt.Color;
 import java.awt.Container;
