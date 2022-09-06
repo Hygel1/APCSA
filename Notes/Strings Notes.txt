@@ -48,6 +48,7 @@ Methods:
     - Replacements
         - trim() returns a String having removed whitespace from either end of the original String
         - replace(oldCh, newCh) replaces every occurence of oldCh with newCh in the String
+            - pairs with replaceFirst(), which only replaces the first occurence of oldCh with newCh
         - toUpperCase() returns a new String in all upper case
         - toLowerCase() returns a new string in all lower case
     - Concatenation:

@@ -132,8 +132,12 @@ public class StringTest extends JFrame
    * cuts out the first instance of a given substring
    */
   public String q11(String str,String cutOut){
+    /*
     if(str.indexOf(cutOut)!=-1) return str.substring(0,str.indexOf(cutOut))+str.substring(str.indexOf(cutOut)+cutOut.length());
     return str;
+    */
+    return str.replaceFirst(cutOut, "");
+    
   }
   /**
    * #13a
