@@ -39,10 +39,10 @@ public class StringTestPart2 {
 	 * @return true, if only digits appear within str; false otherwise
 	 */
 	public static boolean hasOnlyDigits(String str) {
-
+		try{Integer.parseInt(str);}
+		catch(NumberFormatException e){ return false;}
 		return true;
 	}
-
 	/**
 	 * Ch08 #18a
 	 * Palindromes are spelled the same backwards and forwards.
@@ -50,8 +50,11 @@ public class StringTestPart2 {
 	 * @return true, if word is a Palindrome; false otherwise
 	 */
 	public static boolean isPalindrome(String word) {
-
-		return true;
+		String back="";
+		for(int i=0;i<word.length()/2;i++){
+			back+=word.charAt(word.length()-1-i);
+		}
+		return back.equals(word.substring(0,word.length()/2));
 	}
 
 	/**
@@ -60,7 +63,13 @@ public class StringTestPart2 {
 	 * @return true, if isbn is valid according to the guidelines
 	 */
 	public static boolean isValidISBN(String isbn) {
-		return false;
+		int hold=0;
+		try{for(int i=0;i<isbn.length()-1;i+=2){
+			hold=hold+Integer.parseInt(""+isbn.charAt(i))+Integer.parseInt(""+isbn.charAt(i+1))*3;
+		}
+		return hold%Integer.parseInt(""+isbn.charAt(isbn.length()-1))==0;
+	}
+	catch(NumberFormatException e){return false;}
 	}
 
 	/**
@@ -103,7 +112,7 @@ public class StringTestPart2 {
 		System.out.println();
 		System.out.print("Enter a string: ");
 		input = keyboard.nextLine();
-
+		System.out.println(isValidISBN(input));
 		//System.out.println("Looking for the char 'E' in phrase 'War Eagles Forever!'" + indexOf('W', 0));
 		
 		//System.out.println("Is " + str + "a palindrome?" + isPalindrome(str));
