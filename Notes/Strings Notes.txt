@@ -61,3 +61,18 @@ Methods:
     - Character Methods
         - isLetter(), isLetterOrDigit()
         Character.digit(ch, radix) and Character.forDigit() can be used to count beyond base 10 
+
+StringBuffer()
+    - Blend between Strings and arrays
+        - Holds characters like a String but is mutable and contains a set number of values similar to an array
+    - If created without a specified number of values, the default is 16
+    - capacity(int) returns the available space for new values
+    - setLength() sets the StringBuffer to be a specified length but will add null values into newly created spaces (if larger than original)
+        - ensureCapacity(int) will ensure that the StringBuffer is at least as long as the given value
+            - If the StringBuffer is alredy at least as long as the given value, nothing changes; If it is shorter, the StringBuffer is lengthened
+        - trimToSize() will eliminate all null values by reducing the size of the StringBuffer
+    - append(value) adds the given value to the end of the StringBuffer and increases the size if necessary
+        - insert(int position, value) adds the given value to the StringBuffer at the position given(lengthening if necessary)
+            - This pushes the value already at the given position back such that whatever occcurs at the position would then occur after the inserted value
+
+     

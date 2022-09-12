@@ -28,7 +28,7 @@ public class StringTestPart2 {
 	 */
 	public static String str = "War Eagles forever!";
 	
-	public static int indexOf(char ch, int fromPos) {
+	public static int indexOf(String target, int fromPos) {
 		
 		return -1;
 	}
@@ -61,15 +61,15 @@ public class StringTestPart2 {
 	 * Ch08 #20  pg. 233 JMAP
 	 * @param isbn
 	 * @return true, if isbn is valid according to the guidelines
-	 * establish hold variable to hold total, add two consecutive numbers together and multiply by 3 and add that value to hold, then return whether or not the end value of hold is a factor of the last value using mod
-	 * All numbers have to be found using parseInt because the isbn is gathered as a String
+	 * establish a hold variable, add every digit to the hold variable and multiply every other digit by 3 (using parseInt()),
+	 * then decide whether or not the end value is divisible by 10
 	 */
 	public static boolean isValidISBN(String isbn) {
 		int hold=0;
 		try{for(int i=0;i<isbn.length()-1;i+=2){
 			hold=hold+Integer.parseInt(""+isbn.charAt(i))+Integer.parseInt(""+isbn.charAt(i+1))*3;
 		}
-		return hold%Integer.parseInt(""+isbn.charAt(isbn.length()-1))==0;
+		return hold%10==0;//Integer.parseInt(""+isbn.charAt(isbn.length()-1))==0;
 	}
 	catch(NumberFormatException e){return false;}
 	}
@@ -78,11 +78,20 @@ public class StringTestPart2 {
 	 * Ch08 #22  Shuffle rearranges all of the characters in
 	 * word in random order. The method uses the StringBuffer
 	 * class to assist in this process and Math.random().
-	 * @param word
-	 * @return
+	 * 
+	 * swaps the last untouched character in the StringBuffer and a random character, loops until the entire StringBuffer is randomized
 	 */
 	public static String shuffle(String word) {
-		return "";
+		StringBuffer str=new StringBuffer(word);
+		char hold;
+		int rand;
+		for(int n=str.length();n>1;n--){
+			rand=(int)(Math.random()*n);
+			hold=str.charAt(rand);
+			str.setCharAt(rand, str.charAt(n-1));
+			str.setCharAt(n-1,hold);
+		}
+		return str.toString();
 	}
 
 
@@ -98,7 +107,13 @@ public class StringTestPart2 {
 	 * @return an int representing the number of times target was found
 	 */
 	public static int numOccurrences(String str, String target) {
-		return 0;
+		int spot=str.indexOf(target);
+		int count=0;
+		while(spot!=-1){
+			spot=indexOf(target, spot+target.length());
+			count++;
+		}
+		return count;
 	}
 	
 
@@ -114,7 +129,7 @@ public class StringTestPart2 {
 		System.out.println();
 		System.out.print("Enter a string: ");
 		input = keyboard.nextLine();
-		System.out.println(isValidISBN(input));
+		System.out.println(shuffle(input));
 		//System.out.println("Looking for the char 'E' in phrase 'War Eagles Forever!'" + indexOf('W', 0));
 		
 		//System.out.println("Is " + str + "a palindrome?" + isPalindrome(str));
