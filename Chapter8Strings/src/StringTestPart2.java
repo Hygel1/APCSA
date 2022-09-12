@@ -61,6 +61,8 @@ public class StringTestPart2 {
 	 * Ch08 #20  pg. 233 JMAP
 	 * @param isbn
 	 * @return true, if isbn is valid according to the guidelines
+	 * establish hold variable to hold total, add two consecutive numbers together and multiply by 3 and add that value to hold, then return whether or not the end value of hold is a factor of the last value using mod
+	 * All numbers have to be found using parseInt because the isbn is gathered as a String
 	 */
 	public static boolean isValidISBN(String isbn) {
 		int hold=0;
