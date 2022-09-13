@@ -115,7 +115,14 @@ public class StringTestPart2 {
 		}
 		return count;
 	}
-	
+	public static String scrambleWord(String word){
+		int place=word.indexOf("A");
+		while(place!=-1&&place!=word.length()-1){
+			word=word.substring(0,place)+word.charAt(place+1)+"A"+word.substring(place+2);
+			place=word.indexOf("A",place);
+			}
+		return word;
+		}
 
 	
 
@@ -129,7 +136,7 @@ public class StringTestPart2 {
 		System.out.println();
 		System.out.print("Enter a string: ");
 		input = keyboard.nextLine();
-		System.out.println(shuffle(input));
+		System.out.println(scrambleWord(input));
 		//System.out.println("Looking for the char 'E' in phrase 'War Eagles Forever!'" + indexOf('W', 0));
 		
 		//System.out.println("Is " + str + "a palindrome?" + isPalindrome(str));

@@ -4,11 +4,11 @@ public class APClassroomPractice{
         System.out.println(scrambleWord("CRAD"));
     }
 public static String scrambleWord(String word){
-    for(int i=0;i<word.length()-2;i++){
-        if(word.indexOf("A",i)!=-1){
-            word=word.substring(0,word.indexOf("A"))+word.charAt(word.indexOf("A")+1)+"A"+word.substring(word.indexOf("A")+1);
+    int place=word.indexOf("A");
+    while(place!=-1&&place!=word.length()-1){
+        word=word.substring(0,place)+word.charAt(place+1)+"A"+word.substring(place+2);
+        place=word.indexOf("A",place);
         }
-    }
     return word;
     }
 }
