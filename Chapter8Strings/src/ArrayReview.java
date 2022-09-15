@@ -106,6 +106,21 @@ public class ArrayReview {
 			rtn[rtn.length-i-1]=arr[maxIndex];
 		}
 	}
+	public static void filter(int[] arr, int val){
+		val=Math.abs(val);
+		for(int i=0;i<arr.length;i++){
+			if(Math.abs(arr[i])>val) arr[i]=0;
+		}
+	}
+	public static int match(int[] arr, int[] compare){
+		for(int i=0;i<Math.abs(arr.length-compare.length);i++){
+			if(arr.length>=compare.length&&arr[i]==compare[0]){
+				for(int n=0;n<compare.length;n++){
+					if(compare.)
+				}
+			}
+		}
+	}
 	public static void main(String[] args) {
 		int [] numbers = new int[] {3,9,2,7,1,3,9,12,20,2,4};
 		/*
