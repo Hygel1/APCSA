@@ -116,10 +116,11 @@ public class ArrayReview {
 		for(int i=0;i<Math.abs(arr.length-compare.length);i++){
 			if(arr.length>=compare.length&&arr[i]==compare[0]){
 				for(int n=0;n<compare.length;n++){
-					if(compare.)
+					//if(compare.)
 				}
 			}
 		}
+		return 0;
 	}
 	public static void main(String[] args) {
 		int [] numbers = new int[] {3,9,2,7,1,3,9,12,20,2,4};
