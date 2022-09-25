@@ -5,27 +5,17 @@
  */
 
 /**
- * HONOR PLEDGE: Write it here.  Signed:  Reinald Yoder
- * @author yoderr
- * Date of Completion:  eg. 9/12/2014
- * Assignment:  egs. Ch3 Ex #15, 17
- * 					Lab Ch9.9 SnackBar pgs. 241+
- * 					Greenfoot LittleCrab Game Project
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  
+ * Assignment: 
  * 
- * Attribution: Include group members or helpers that assisted you in completing your work. (Required)
- * 				Include URLs for helpful web site sources used.  (Required)
- * 				Include Textbook chapters and page numbers you used.  (Optional for personal organization.)
+ * Attribution: 
  * 
- * General Description:   Include purpose of the code, special uses of this code,  list of accomplished features.
+ * General Description: 
  * 
+ * Advanced: 
  * 
- * Advanced:  What features or approaches did you introduce that were not part of the required assignment?
- * 				(List by method and describe your goals and successful features. A bullet point list is sufficient.)
- * 
- * Errata:  What required components from the rubric or lab are NOT implemented?
- * 			What is not yet correctly implemented in this file?  
- * 				(List by method and describe the errors you are encountering as you have tested your code.)
- *
+ * Errata: 
  */
 public class CommentTemplate {
 	//Define Fields or instance variables.  Comment as helpful to clarify purpose or role of each.
