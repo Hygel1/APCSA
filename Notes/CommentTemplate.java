@@ -1,10 +1,5 @@
 /**
- * This file serves as template for all commenting required in all assignments 
- * turned in during Java and APCS and other programming electives.  For an example,
- * consider Rectangle.java as it is posted on the course website.
- */
-
-/**
+ * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
  * Date of Completion:  
  * Assignment: 
