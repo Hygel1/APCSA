@@ -3,31 +3,102 @@ import java.util.Arrays;
 
 /**
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
- * Date of Completion:  9/xx/2022
+ * Date of Completion:  9/25/2022
  * Assignment:  Array Algorithms Project
  * 
  * Attribution: 
  * 
  * General Description:  
  * 
- * 
- * Advanced:  
+ * Advanced:  multiple versions of sort and split, alphabetical method (none of these are formally tested but have previouslly worked)
  * 
  * Errata: 
  *
  */
 public class ArrayReview {
 	public static void testMethod(){
-		//fillRandom() not testable
-		//findSmallest() tests
-		if(findSmallest(new int[] {1, 2, 3, 4, 5, 6})!=1) System.out.println("error: findSmallest test 1");
-		if(findSmallest(new int[] {0,10,10,0,25, -1})!=-1) System.out.println("error: findSmallest test 2");
-		if(findSmallest(new int[] {0})!=0) System.out.println("error: findSmallest test 3");
-		if(findSmallest(new int[] {12, 12, 12, 12, 12, 12, 12, 12, 12})!=12) System.out.println("error: findSmallest test 4");
-		if(findSmallest(new int[]{0,0,0})!=0) System.out.println("error: findSmallest test 5");
-		System.out.println("findSmallest tested");
+		//fillRandom tests
+		int[] fillRand=new int[7]; fillRandom(fillRand);
+		System.out.println("fillRandom() 1: "+Arrays.toString(fillRand));
+		fillRandom(fillRand);
+		System.out.println("fillRandom() 2: "+Arrays.toString(fillRand)+"\n");
+
+		//findSmallest tests
+		int[] fs1={1, 2, 3, 4, 5, 6, 7, 8 ,9};
+		System.out.println("findSmallest() 1: "+Arrays.toString(fs1)+" returns "+findSmallest(fs1));
+		int[] fs2={0, 10, 10, 5, 25, -1};
+		System.out.println("findSmallest() 2: "+Arrays.toString(fs2)+" returns "+findSmallest(fs2)+"\n");
+
 		//fillInOrder() tests
-		
+		int[] fio1=new int[7]; fillInOrder(fio1, 2);
+		System.out.println("fillInOrder() 1: new int[7], 2 "+Arrays.toString(fio1));
+		int[] fio2=new int[3]; fillInOrder(fio2, 10);
+		System.out.println("fillInOrder() 2: new int[3], 10 "+Arrays.toString(fio2)+"\n");
+
+		//arrayToString() tests
+		System.out.println("arrayToString() 1: "+Arrays.toString(fio2)+" returns "+arrayToString(fio2));
+		System.out.println("arrayToStirng() 2: "+Arrays.toString(fio1)+" returns "+arrayToString(fio1)+"\n");
+
+		//sum() tests
+		System.out.println("sum() 1: "+Arrays.toString(fio1)+" returns "+sum(fio1));
+		System.out.println("sum() 2: "+Arrays.toString(fio2)+" returns "+sum(fio2)+"\n");
+
+		//find() tests
+		int[] find1={23, 4, 5, 6, 12, 4};
+		System.out.println("find() 1: "+Arrays.toString(find1)+", 5 returns "+find(find1, 5));
+		System.out.println("find() 2: "+Arrays.toString(find1)+", 4 returns "+find(find1, 4)+"\n");
+
+		//max() tests
+		System.out.println("max() 1: "+Arrays.toString(find1)+" returns "+max(find1));
+		System.out.println("max() 2: "+Arrays.toString(fio1)+" returns "+max(fio1)+"\n");
+
+		//coundOdds() tests
+		System.out.println("countOdds() 1: "+Arrays.toString(fio1)+" returns "+countOdds(fio1));
+		System.out.println("countOdds() 2: "+Arrays.toString(find1)+" returns "+countOdds(find1)+"\n");
+
+		//shift() tests
+		System.out.print("shift() 1: "+Arrays.toString(find1)+" returns "); shift(find1); System.out.println(Arrays.toString(find1));
+		System.out.print("shift() 2: "+Arrays.toString(fio1)+" returns "); shift(fio1); System.out.println(Arrays.toString(fio1)+"\n");
+
+		//Overloaded shift() tests
+		System.out.print("shift() overload 1: "+Arrays.toString(find1)+", 2 returns "); shift(find1, 2); System.out.println(Arrays.toString(find1));
+		System.out.print("shift() overload 2: "+Arrays.toString(fio1)+", 5 returns "); shift(fio1, 5); System.out.println(Arrays.toString(fio1)+"\n");
+
+		//isIncreasing() tests
+		int[] ii1={1, 2, 3, 4, 5, 6, 7};
+		int[] ii2={1, 2, 3, 5, 4, 6, 7};
+		System.out.println("isIncreasing() 1: "+Arrays.toString(ii1)+" returns "+isIncreasing(ii1));
+		System.out.println("isIncreasing() 2: "+Arrays.toString(ii2)+" returns "+isIncreasing(ii2)+"\n");
+
+		//swap() tests
+		System.out.print("swap() 1: "+Arrays.toString(ii1)+", 0, 2 returns "); swap(ii1,0,2); System.out.println(Arrays.toString(ii1));
+		System.out.print("swap() 2: "+Arrays.toString(ii2)+", 3, 4 returns "); swap(ii2,3,4); System.out.println(Arrays.toString(ii2)+"\n");
+
+		//split() tests
+		System.out.print("split() 1: "+Arrays.toString(ii1)+" returns "); splitAgain(ii1); System.out.println(Arrays.toString(ii1));
+		System.out.print("split() 2: "+Arrays.toString(find1)+" returns "); splitAgain(find1); System.out.println(Arrays.toString(find1)+"\n");
+
+		//sort() tests
+		System.out.print("sort() 1: "+Arrays.toString(find1)+" returns "); sortOther(find1); System.out.println(Arrays.toString(find1));
+		System.out.print("sort() 2: "+Arrays.toString(ii1)+" returns "); sortOther(ii1); System.out.println(Arrays.toString(ii1)+"\n");
+
+		//filter() tests
+		fillRandom(ii1);
+		fillRandom(ii2);
+		System.out.print("filter() 1: "+Arrays.toString(ii1)+", 3 returns "); filter(ii1,3); System.out.println(Arrays.toString(ii1));
+		System.out.print("filter() 2: "+Arrays.toString(ii2)+", 5 returns "); filter(ii2, 5); System.out.println(Arrays.toString(ii2)+"\n");
+
+		//match() tests
+		int[] match11={1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int[] match12={3,4};
+		System.out.println("match() 1: "+Arrays.toString(match11)+", "+Arrays.toString(match12)+" returns "+match(match11, match12));
+		int[] match21={9,0,1,2,3};
+		int[] match22={3};
+		System.out.println("match() 2: "+Arrays.toString(match21)+", "+Arrays.toString(match22)+" returns "+match(match21, match22)+"\n");
+
+		//remove() test
+		System.out.println("remove() 1: "+Arrays.toString(match21)+", 1 returns "+Arrays.toString(remove(match21, 1)));
+		System.out.println("remove() 2: "+Arrays.toString(ii1)+", 3 returns "+Arrays.toString(remove(ii1,3)));
 	}
 	/**
 	 * fills a given int array with random ints in each index
@@ -54,6 +125,7 @@ public class ArrayReview {
 	 * fills each element of a given array with the corresponsding index added to the given value
 	 * @param arr
 	 * @param x
+	 * @return 
 	 */
 	public static void fillInOrder(int[] arr, int x){
 		for(int i=0;i<arr.length;i++){
@@ -259,8 +331,8 @@ public class ArrayReview {
 	 */
 	public static int match(int[] arr, int[] compare){
 		if(arr.length>=compare.length){
-			for(int i=0;i<arr.length-compare.length;i++){
-				if(arr.length>=compare.length&&arr[i]==compare[0]){
+			for(int i=0;i<arr.length-compare.length+1;i++){
+				if(arr[i]==compare[0]){
 					for(int n=0;n<compare.length;n++){
 						if(compare[n]!=arr[n+i]) break;
 						else if(n==compare.length-1) return i;
@@ -286,27 +358,27 @@ public class ArrayReview {
 		}
 		return arr;
 	}
+	/**
+	 * removes a given value from an array and returns a trimmed version of the array
+	 * @param arr
+	 * @param num
+	 * @return
+	 */
+	public static int[] remove(int[] arr, int num){
+		int len=0;
+		for(int i=0;i<arr.length;i++){
+			if(arr[i]==num) len++;
+		}
+		int[] rtn=new int[arr.length-len];
+		for(int i=0, n=0;i<arr.length;i++){
+			if(arr[i]!=num){
+				rtn[n]=arr[i];
+				n++;
+			}
+		}
+		return rtn;
+	}
 	public static void main(String[] args) {
-		/**
-		 * Still to do:
-		 * Fill in test method
-		 */
-		int [] numbers = new int[] {3,9,2,7,1,3,9,12,20,2,4};
-		int [] numbers2 = new int[] {3,9,2,7,1,3,9,12,20,2,4};
-		String[] sentences = new String[] {"a", "c", "d", "e", "t", "e", "q"};
-		/*
-		System.out.println(Arrays.toString(alphabetical(new String[] {"swap", "swa", "swb", "sqak"})));
-		System.out.println(match(numbers, new int[] {2, 7, 1, 3}));
-		shift(numbers,2);
-		System.out.println(Arrays.toString(numbers));
-		shift(numbers);
-		System.out.println(Arrays.toString(numbers));
-		System.out.println(arrayToString(numbers));
-		
-		System.out.println("My list is: " + Arrays.toString(numbers));
-		System.out.println("Smallest is: " + findSmallest(numbers));
-		//void method called on its own line
-		fillRandom(numbers); 
-		*/
+		testMethod();
 	}
 }
