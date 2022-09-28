@@ -157,6 +157,21 @@ public boolean scoresIncreasing(int[] scores){
         }
         return rtn;
       }
-                                    
+      /**
+       * return the score given to a studet comparing answers to a key
+       * @param key
+       * @param answers
+       * @return
+       */
+      public int scoreUp(String[] key, String[] answers) {
+        int score=0;
+        for(int i=0;i<key.length;i++){
+          if(answers[i].equals("?"));
+          else if(key[i].equals(answers[i])) score+=4;
+          else score--;
+        }
+        return score;
+      }
+                       
 
 }
