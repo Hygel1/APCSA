@@ -45,7 +45,7 @@ public class Trail
 
   /** Determines if this trail is rated difficult. A trail is rated by counting the number of changes in
    * elevation that are at least 30 meters (up or down) between two consecutive markers. A trail
-   * with 3 or more such changes is rated difficult.
+     * with 3 or more such changes is rated difficult.
    * @return true if the trail is rated difficult; false otherwise.
    */
   public boolean isDifficult()
