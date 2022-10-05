@@ -1,0 +1,19 @@
+public class LifeGrid{
+    public LifeGrid(int i, int j){
+        
+        public static void main(String[] args){
+
+        }
+        public int getCell(int i, int j){
+
+        }
+        public void setCell(int i, int j, int k){
+
+        }
+        public void evolve(){
+
+        }
+        
+    
+    }
+}
