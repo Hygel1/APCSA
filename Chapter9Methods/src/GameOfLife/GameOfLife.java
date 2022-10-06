@@ -5,8 +5,8 @@ import javax.swing.*;
 /*
  * Write a description of class GameOfLife here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sean McLoughlin
+ * @version (date)
  */
 public class GameOfLife extends JFrame implements ActionListener
 

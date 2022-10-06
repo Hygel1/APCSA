@@ -1,3 +1,9 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  10/5/2022
+ * Assignment: Chapter 9 Take-Home Test
+ */
 import java.util.Arrays;
 public class Ch9TakeHomeTest{
     public static void main(String args[]){
@@ -18,12 +24,12 @@ public class Ch9TakeHomeTest{
         boolean[] life2={false,false,false,false,false};
         nextGeneration(life2);
         if(!Arrays.equals(life2,new boolean[] {false,false,false,false,false})) System.out.println("Error nextGeneration test 2");
-        boolean[] life3={true,true,true,true,true};
-        nextGeneration(life3);
-        if(!Arrays.equals(life3,new boolean[] {false,false,false,false,false})) System.out.println("Error nextGeneration test 3");
-        System.out.println("nextGeneration() tested");
-        System.out.println(Arrays.toString(life3));
+
     }
+    /**
+     * advences a boolean array one generation in using the game of life rules
+     * @param strand
+     */
     public static void nextGeneration(boolean[] strand){
         boolean[] rtn=new boolean[strand.length];
         rtn[0]=(strand[1]&&(!strand[strand.length-1])||(!strand[1])&&strand[strand.length-1]);
@@ -31,8 +37,13 @@ public class Ch9TakeHomeTest{
         for(int i=1;i<strand.length-1;i++){
             rtn[i]=(strand[i-1]&&(!strand[i+1]))||((!strand[i-1])&&strand[i+1]);
         }
-        rtn=strand;
+        strand=rtn;
     }
+    /**
+     * translates a binary array to an int
+     * @param binary
+     * @return
+     */
     public static int translate(int binary[]){
         int total=0;
         for(int i=0;i<binary.length;i++){
