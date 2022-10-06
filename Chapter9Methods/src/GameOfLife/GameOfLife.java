@@ -8,9 +8,7 @@ import javax.swing.*;
  * @author Sean McLoughlin
  * @version (date)
  */
-public class GameOfLife extends JFrame implements ActionListener
-
-{
+public class GameOfLife extends JFrame implements ActionListener{
     private LifeCanvas display;
     private LifeControls controls;
     private Timer t;
