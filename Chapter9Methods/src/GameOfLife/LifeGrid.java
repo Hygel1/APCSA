@@ -25,7 +25,7 @@ public class LifeGrid{
         public void evolve(){
             int[][] rtn=new int[gridOfLife.length][gridOfLife[0].length]; //temporary array for changing during method
             for(int i=0;i<gridOfLife.length;i++){
-                for(int n=0;n<gridOfLife[0].length;i++){
+                for(int n=0;n<gridOfLife[i].length;i++){
                     int cN=checkNeighbors(i,n);
                     boolean cS=false; if(gridOfLife[i][n]==ALIVE) cS=true;
                     if(cS&&(cN<2||cN>3)) rtn[i][n]=DEAD;
