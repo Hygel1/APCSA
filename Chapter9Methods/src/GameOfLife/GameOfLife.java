@@ -1,12 +1,22 @@
-
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  10/03/2022
+ * Assignment: Conway's Game of Life
+ * 
+ * Attribution: 
+ * 
+ * General Description: Takes user input to make a grid of "organisms" and evolves the array of organisms according to the rules of Conway's game of life
+ * 
+ * Advanced: rounded array allows for edges of the screen to check opposing sides of the array
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 /*
- * Write a description of class GameOfLife here.
- * 
+ * Takes input from user-filled cells in a grid, then evolves the grid according to the rules of Conway's game of life
  * @author Sean McLoughlin
- * @version (date)
+ * @version 10/13/2022
  */
 public class GameOfLife extends JFrame implements ActionListener{
     private LifeCanvas display;
@@ -20,6 +30,7 @@ public class GameOfLife extends JFrame implements ActionListener{
         display = new LifeCanvas(this);
         display.setBackground(Color.green);
         controls = new LifeControls(this);
+
         
         Container c = getContentPane();
         c.add(display, BorderLayout.CENTER);
@@ -74,9 +85,9 @@ public class GameOfLife extends JFrame implements ActionListener{
     {
       GameOfLife window = new GameOfLife();
       window.setTitle("Game of Life 1.0");
-      window.setBounds(100, 100, 600, 400);
+      window.setBounds(0,0, 515, 610);
       window.setDefaultCloseOperation(EXIT_ON_CLOSE);
-      window.setResizable(false);
+      window.setResizable(true);
       window.setVisible(true);
     }
     

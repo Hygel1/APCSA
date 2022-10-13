@@ -2,10 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 /**
- * Write a description of class LifeControls here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Defines ways for the user to interact with the built gui window
+
  */
 public class LifeControls extends JPanel
     implements KeyListener

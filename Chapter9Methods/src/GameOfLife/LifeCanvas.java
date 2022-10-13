@@ -2,10 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 /**
- * Write a description of class LifeCanvas here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Builds ways for the program to interact with the user with the window and builds functions for the gui window
  */
 public class LifeCanvas extends JPanel
     implements MouseListener, MouseMotionListener
