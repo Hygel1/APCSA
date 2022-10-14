@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch className",
+            "request": "launch",
+            "mainClass": "abstraction.className",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch className$newClass",
+            "request": "launch",
+            "mainClass": "abstraction.className$newClass",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch theBaby",
+            "request": "launch",
+            "mainClass": "abstraction.theBaby",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch Ch9TakeHomeTest",
             "request": "launch",
             "mainClass": "Ch9TakeHomeTest",

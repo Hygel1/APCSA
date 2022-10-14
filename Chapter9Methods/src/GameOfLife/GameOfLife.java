@@ -18,12 +18,14 @@ import javax.swing.*;
  * @author Sean McLoughlin
  * @version 10/13/2022
  */
+
 public class GameOfLife extends JFrame implements ActionListener{
     private LifeCanvas display;
     private LifeControls controls;
     private Timer t;
     private int timeStep;
     private boolean isRunning;
+    private int roundNum=0;
     
     public GameOfLife() {
     	isRunning = false;
@@ -31,7 +33,6 @@ public class GameOfLife extends JFrame implements ActionListener{
         display.setBackground(Color.green);
         controls = new LifeControls(this);
 
-        
         Container c = getContentPane();
         c.add(display, BorderLayout.CENTER);
         c.add(controls, BorderLayout.SOUTH);
@@ -48,10 +49,10 @@ public class GameOfLife extends JFrame implements ActionListener{
         t.restart();
     }
     
-    public void next()
-    {
+    public void next(){
         display.next();
         repaint();
+        roundNum++;
     }
     
     public void stop()
