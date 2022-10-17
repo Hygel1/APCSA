@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch GameOfLife",
+            "request": "launch",
+            "mainClass": "GameOfLife",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch className",
             "request": "launch",
             "mainClass": "abstraction.className",
