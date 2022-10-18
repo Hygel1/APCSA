@@ -52,7 +52,6 @@ public class LifeCanvas extends JPanel
       }
       repaint();
    }
-   
    public void mouseEntered(MouseEvent e)
    {
       textArea.setText("I'm in!!");
