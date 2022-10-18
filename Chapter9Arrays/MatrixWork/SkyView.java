@@ -23,14 +23,16 @@ public class SkyView
     for(int i=0;i<numRows;i++){
       if(i%2==0){
       for(int n=0;n<numCols;n++){
-        view[i][n]=scanned[i*numRows+n];
-        //hold++;
+        //view[i][n]=scanned[i*numRows+n];
+        view[i][n]=scanned[hold];
+        hold++;
       }
     }
     else{
       for(int n=numCols-1;n>=0;n--){
-        view[i][n]=scanned[i*numRows+(numCols-n-1)];
-        //hold++;
+        //view[i][n]=scanned[i*numRows+(numCols-n-1)];
+        view[i][n]=scanned[hold];
+        hold++;
       }
     }
     }
