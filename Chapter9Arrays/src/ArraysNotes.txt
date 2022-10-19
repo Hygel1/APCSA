@@ -14,3 +14,9 @@ Two Dimensional Arrays
 - if m is a 2D Array, m[k] is the 1D Array at row k
     - m.length is the number of rows, m[k].length is the length of the Array on row k
 - 2D Arrays can be easily traversed using nested loops
+- martices
+    - when adding matrices, the dimensions must be the same
+    - When multiplying matrices, the first matrix's # of cols but me equal to the second matrix's # of rows
+        - The resulting matrix's dimensions is equal to the other two dimensions
+        - (2x2)*(2*12) is valid and results in a (2x12), (3x2)*(3x2) is invalid
+        - multiplication is done by multiplying each row's values to their corresponding values in the second matrix's column then adding the products together

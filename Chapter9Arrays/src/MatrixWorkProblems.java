@@ -1,12 +1,72 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 10/19/2022
+ * Assignment: Matrix Work Teamwork
+ * 
+ * Attribution: 
+ * 
+ * General Description: problems #13-20 in Ch. 9 of textbook
+ * 
+ * Advanced: 
+ * 
+ * Errata: 
+ */
 import java.util.Arrays;
 public class MatrixWorkProblems {
 public static void main(String args[]){
-    Color[][] box=new Color[3][3];
-    fillCheckerboard(box);
-    printCheckerboard(box);
+    int[][] m1={
+        {1,2},
+        {3,4}};
+    int[][] m2={
+        {1,2,3},
+        {4,5,6}};
+        printArray(matrixMultiplication(m1, m2));
+
 }
 private static void testMethod(){
     
+}
+private static void printArray(int[][] m){
+    for(int[] i:m){
+        for(int n:i){
+            System.out.print(n+" ");
+        }
+        System.out.println();
+    }
+}
+private static int[][] addMatrices(int[][] m1, int[][] m2){
+    int[][] rtn=new int[m1.length][m1[0].length];
+    if(isSquare(m1)&&isSquare(m2)){
+        for(int i=0;i<m1.length;i++){
+            for(int n=0;n<m1[0].length;n++){
+                rtn[i][n]=m1[i][n]+m2[i][n];
+            }
+        }
+    }
+    return rtn;
+}
+private static int[][] matrixMultiplication(int[][] m1, int[][] m2){
+    int[][] rtn=new int[m1.length][m2[0].length]; //hold array to be returned
+    if(isSquare(m1)&&isSquare(m2)){ //if arrays are able ot be matrices (all rows are the same length)
+        for(int i=0;i<rtn.length;i++){ //traverse the array
+            for(int n=0;n<rtn[0].length;n++){ //traverse the array
+                int hold=0; //reset the value for the next index of the returned array
+                for(int q=0;q<m1.length;q++){ //go across m1 and down m2 using the same variable
+                    hold+=m1[i][q]*m2[q][n]; //Add to the value to be used in the returned array
+                }
+                rtn[i][n]=hold; //set the rtn value to the found value
+            }
+        }
+    }
+    return rtn;
+}
+public static boolean isSquare(int[][] m){
+    int length=m[0].length;
+    for(int i=0;i<m.length;i++){
+        if(m[i].length!=length) return false;
+    }
+    return true;
 }
 //returns if the given index is on either diagonal of a square array
 private static boolean q13(int[][] arr, int i, int j){
