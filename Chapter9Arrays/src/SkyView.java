@@ -32,7 +32,7 @@ public class SkyView
     for(int i=0;i<numRows;i++){
       if(i%2==0){
       for(int n=0;n<numCols;n++){
-]        view[i][n]=scanned[hold];
+        view[i][n]=scanned[hold];
         hold++;
       }
     }

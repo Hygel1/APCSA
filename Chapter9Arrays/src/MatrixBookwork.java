@@ -12,22 +12,54 @@
  * 
  * Errata: 
  */
-import java.util.Arrays;
-public class MatrixWorkProblems {
+public class MatrixBookwork {
 public static void main(String args[]){
-    int[][] m1={
-        {1,2},
-        {3,4}};
-    int[][] m2={
-        {1,2,3},
-        {4,5,6}};
-        printArray(matrixMultiplication(m1, m2));
-
+    testMethod();
 }
 private static void testMethod(){
+    //matrixMultiplication() tests
+    if(matrixMultiplication(new int[][] {{1,2},{3,4}}, new int[][] {{1,2,3},{4,5,6}})!=new int[][] {{9,12,15},{19,26,33}}) System.out.println("Error: martixMultiplication() test 1");
+    if(matrixMultiplication(new int[][] {{1,2},{3,4}}, new int[][] {{1,2,3},{4,5,6},{7,8,9}})!=null) System.out.println("Error matrixMultiplication() Test 2");
+    if(matrixMultiplication(new int[][] {{0,0,0},{0,0,0}}, new int[][] {{3,4,5},{6,7,8},{1,2,3}})!=new int[][] {{0,0,0},{0,0,0},{0,0,0}}) System.out.println("Error matrixMultiplication() test 3");
+    //addMatrices() Tests
+    if(addMatrices(new int[][] {{1,1},{1,1}}, new int[][] {{1,1},{1,1}})!=new int[][] {{2,2},{2,2}}) System.out.println("Error addMatrices() Test 1");
+    if(addMatrices(new int[][] {{1,2,3},{1,2,3}}, new int[][]{{1,2,3},{1,2,3}})!=null) System.out.println("Error addMatrices() test 2");
+    if(addMatrices(new int[][] {{2,2,2},{2,2,2},{2,2,2}}, new int[][] {{3,3,3},{3,3,3},{3,3,3}})!=new int[][] {{5,5,5},{5,5,5},{5,5,5}});
+    //onDiagonal() tests
+    if(!onDiagonal(new int[10][10], 0, 0)) System.out.println("Error onDiagonal() test 1");
+    if(onDiagonal(new int[10][10],1,2)) System.out.println("Error onDiagonal() test 2");
+    if(!onDiagonal(new int[12][12],5,6)) System.out.println("Error onDiagonal() test 3");
+    //positiveMax() tests
+    if(positiveMax(new double[][] {{1,2,3,4,5,6,7,8,9},{-1,-1,-1,-1,-1}})!=9) System.out.println("Error positiveMax() test 1");
+    if(positiveMax(new double[][] {{-1,-2,-3}, {-1,-4,-5}})!=0) System.out.println("Error positiveMax() test 2");
+    if(positiveMax(new double[][] {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}})!=0) System.out.println("Error positiveMax test 3");
+    //fillCheckerboard() tests
+    Color on=new Color(true);
+    Color off=new Color(false);
+    Color[][] checkers1=new Color[5][5]; fillCheckerboard(checkers1);
+    if(checkers1!=new Color[][] {{on, off, on, off, on},{off, on, off, on, off},{on, off, on, off, on},{off, on, off, on, off},{on, off, on, off, on}}) System.out.println("Error fillCheckerboard() test 1");
+    Color[][] checkers2=new Color[1][5]; fillCheckerboard(checkers2);
+    if(checkers2!=new Color[][] {{on, off, on, off, on}}) System.out.println("Error fillCheckerboard() test 1");
+    //covers() tests 
+    if(!covers(new double[][] {{1,2,3,4,5},{3,3,3,3,3}}, new double[][] {{2,3,4,5,6},{3,3,4,3,3}})) System.out.println("Error covers() test 1");
+    if(covers(new double[][] {{1,2,3,4,5},{1,2,3,4,5}},new double[][] {{1,2,3,4,5},{1,2,3,4,5}})) System.out.println("Error covers() test 2");
+    if(!covers(new double[][] {{1,2,3,4}}, new double[][] {{5,5,5,5}})) System.out.println("Error covers() test 3");
+    //isMagicSquare() tests
+    if(!isMagicSquare(new int[][] {{8,1,6},{3,5,7},{4,9,2}})) System.out.println("Error isMagicSquare() test 1");
+    if(isMagicSquare(new int[][] {{1,2,3},{4,5,6},{7,8,9}})) System.out.println("Error isMagicSquare() test 2");
+    //areAdjacent() Tests
     
+    //isSnake() tests
+    
+    //average() tests
+    
+    //sumVals() tests
+    
+    //sum2D() tests
+
 }
 private static void printArray(int[][] m){
+    if(m==null) return;
     for(int[] i:m){
         for(int n:i){
             System.out.print(n+" ");
@@ -36,6 +68,7 @@ private static void printArray(int[][] m){
     }
 }
 private static int[][] addMatrices(int[][] m1, int[][] m2){
+    if(m1.length!=m2.length||m1[0].length!=m2[0].length) return null;
     int[][] rtn=new int[m1.length][m1[0].length];
     if(isSquare(m1)&&isSquare(m2)){
         for(int i=0;i<m1.length;i++){
@@ -46,9 +79,10 @@ private static int[][] addMatrices(int[][] m1, int[][] m2){
     }
     return rtn;
 }
+//Multiplies two matrices together and returns the product
 private static int[][] matrixMultiplication(int[][] m1, int[][] m2){
     int[][] rtn=new int[m1.length][m2[0].length]; //hold array to be returned
-    if(isSquare(m1)&&isSquare(m2)){ //if arrays are able ot be matrices (all rows are the same length)
+    if(!isSquare(m1)||!isSquare(m2)||!(m1[0].length==m2.length)) return null; //if arrays are able ot be matrices (all rows are the same length)
         for(int i=0;i<rtn.length;i++){ //traverse the array
             for(int n=0;n<rtn[0].length;n++){ //traverse the array
                 int hold=0; //reset the value for the next index of the returned array
@@ -58,7 +92,6 @@ private static int[][] matrixMultiplication(int[][] m1, int[][] m2){
                 rtn[i][n]=hold; //set the rtn value to the found value
             }
         }
-    }
     return rtn;
 }
 public static boolean isSquare(int[][] m){
@@ -69,7 +102,7 @@ public static boolean isSquare(int[][] m){
     return true;
 }
 //returns if the given index is on either diagonal of a square array
-private static boolean q13(int[][] arr, int i, int j){
+private static boolean onDiagonal(int[][] arr, int i, int j){
     return i==j||arr.length-1==i+j;
 }
 //returns the highest positive number in the array, if no positive numbers, returns 0
@@ -121,13 +154,13 @@ private static void printCheckerboard(Color[][] board){
 private static boolean covers(double[][] m1, double[][] m2){
     int hold=0;
     for(int i=0;i<m1.length;i++){
-        for(int n=0;n<m1[i].length;i++){
+        for(int n=0;n<m1[i].length;n++){
             if(m1[i][n]>m2[i][n]) hold++;
         }
     }
     return hold>((double)m1.length*m2.length/2)+.5;
 }
-//returns true if each value of the arary is different ranging from 1-the number of elements and the sum of each row/col/diagonal is equal
+//returns true if each value of the array is different ranging from 1-the number of elements and the sum of each row/col/diagonal is equal
 private static boolean isMagicSquare(int m[][]){
     if(m.length==m[1].length){
         int num=0;
