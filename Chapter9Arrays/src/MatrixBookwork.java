@@ -1,3 +1,4 @@
+import java.util.Arrays;
 /**
  * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
@@ -15,49 +16,102 @@
 public class MatrixBookwork {
 public static void main(String args[]){
     testMethod();
+    //printTriangle(pascalTriangle(5));
 }
 private static void testMethod(){
     //matrixMultiplication() tests
-    if(matrixMultiplication(new int[][] {{1,2},{3,4}}, new int[][] {{1,2,3},{4,5,6}})!=new int[][] {{9,12,15},{19,26,33}}) System.out.println("Error: martixMultiplication() test 1");
-    if(matrixMultiplication(new int[][] {{1,2},{3,4}}, new int[][] {{1,2,3},{4,5,6},{7,8,9}})!=null) System.out.println("Error matrixMultiplication() Test 2");
-    if(matrixMultiplication(new int[][] {{0,0,0},{0,0,0}}, new int[][] {{3,4,5},{6,7,8},{1,2,3}})!=new int[][] {{0,0,0},{0,0,0},{0,0,0}}) System.out.println("Error matrixMultiplication() test 3");
+    System.out.println("Testing matrixMultiplication()...");
+    printArray(matrixMultiplication(new int[][] {{1,2},{3,4}}, new int[][] {{1,2,3},{4,5,6}}));System.out.println("Should be:");printArray(new int[][] {{9,12,15},{19,26,33}});System.out.println();
+    printArray(matrixMultiplication(new int[][] {{1,2},{3,4}}, new int[][] {{1,2,3},{4,5,6},{7,8,9}}));System.out.println("Should be: null");System.out.println();
+    printArray(matrixMultiplication(new int[][] {{0,0,0},{0,0,0}}, new int[][] {{3,4,5},{6,7,8},{1,2,3}}));System.out.println("Should be: ");printArray(new int[][] {{0,0,0},{0,0,0}});System.out.println();
+    
     //addMatrices() Tests
-    if(addMatrices(new int[][] {{1,1},{1,1}}, new int[][] {{1,1},{1,1}})!=new int[][] {{2,2},{2,2}}) System.out.println("Error addMatrices() Test 1");
-    if(addMatrices(new int[][] {{1,2,3},{1,2,3}}, new int[][]{{1,2,3},{1,2,3}})!=null) System.out.println("Error addMatrices() test 2");
-    if(addMatrices(new int[][] {{2,2,2},{2,2,2},{2,2,2}}, new int[][] {{3,3,3},{3,3,3},{3,3,3}})!=new int[][] {{5,5,5},{5,5,5},{5,5,5}});
-    //onDiagonal() tests
-    if(!onDiagonal(new int[10][10], 0, 0)) System.out.println("Error onDiagonal() test 1");
-    if(onDiagonal(new int[10][10],1,2)) System.out.println("Error onDiagonal() test 2");
-    if(!onDiagonal(new int[12][12],5,6)) System.out.println("Error onDiagonal() test 3");
+    System.out.println("\nTesting addMatrices()...");
+    printArray(addMatrices(new int[][] {{1,1},{1,1}}, new int[][] {{1,1},{1,1}}));System.out.println("Should be: ");printArray(new int[][] {{2,2},{2,2}});System.out.println();
+    printArray(addMatrices(new int[][] {{1,2,3},{1,2,3}}, new int[][]{{1,2,3},{1,2,3}}));System.out.println("Should be:");printArray(new int[][] {{2,4,6},{2,4,6}});System.out.println();
+    printArray(addMatrices(new int[][] {{2,2,2},{2,2,2},{2,2,2}}, new int[][] {{3,3,3},{3,3,3},{3,3,3}}));System.out.println("Should be:");printArray(new int[][] {{5,5,5},{5,5,5},{5,5,5}});System.out.println();//onDiagonal() tests
+    
+    //onDiagonal () Tests
+    System.out.println("\nTesting onDiagonal...");
+    System.out.println(onDiagonal(new int[10][10], 0, 0)+" should be "+true);
+    //if(onDiagonal(new int[10][10], 0, 0)==false) System.out.println("Error onDiagonal() test 1");
+    System.out.println(onDiagonal(new int[10][10],1,2)+" should be "+false);
+    //if(onDiagonal(new int[10][10],1,2)==true) System.out.println("Error onDiagonal() test 2");
+    System.out.println(onDiagonal(new int[12][12],5,6)+" should be "+true);
+    //if(onDiagonal(new int[12][12],5,6)==false) System.out.println("Error onDiagonal() test 3");
+    
     //positiveMax() tests
     if(positiveMax(new double[][] {{1,2,3,4,5,6,7,8,9},{-1,-1,-1,-1,-1}})!=9) System.out.println("Error positiveMax() test 1");
     if(positiveMax(new double[][] {{-1,-2,-3}, {-1,-4,-5}})!=0) System.out.println("Error positiveMax() test 2");
     if(positiveMax(new double[][] {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}})!=0) System.out.println("Error positiveMax test 3");
+    System.out.println("positiveMax() tested");
+    
     //fillCheckerboard() tests
+    System.out.println("\nTesting fillCheckerboard()...");
     Color on=new Color(true);
     Color off=new Color(false);
     Color[][] checkers1=new Color[5][5]; fillCheckerboard(checkers1);
-    if(checkers1!=new Color[][] {{on, off, on, off, on},{off, on, off, on, off},{on, off, on, off, on},{off, on, off, on, off},{on, off, on, off, on}}) System.out.println("Error fillCheckerboard() test 1");
+    printCheckerboard(checkers1);
+    printCheckerboard(new Color[][]{{on, off, on, off, on},{off, on, off, on, off},{on, off, on, off, on},{off, on, off, on, off},{on, off, on, off, on}});System.out.println();
     Color[][] checkers2=new Color[1][5]; fillCheckerboard(checkers2);
-    if(checkers2!=new Color[][] {{on, off, on, off, on}}) System.out.println("Error fillCheckerboard() test 1");
+    printCheckerboard(checkers2);System.out.println("\nShould be:");
+    printCheckerboard(new Color[][] {{on,off,on,off,on}});
+    
     //covers() tests 
-    if(!covers(new double[][] {{1,2,3,4,5},{3,3,3,3,3}}, new double[][] {{2,3,4,5,6},{3,3,4,3,3}})) System.out.println("Error covers() test 1");
-    if(covers(new double[][] {{1,2,3,4,5},{1,2,3,4,5}},new double[][] {{1,2,3,4,5},{1,2,3,4,5}})) System.out.println("Error covers() test 2");
-    if(!covers(new double[][] {{1,2,3,4}}, new double[][] {{5,5,5,5}})) System.out.println("Error covers() test 3");
+    System.out.println("\nTesting covers()...");
+    System.out.println(covers(new double[][] {{1,2,3,4,5},{3,3,3,3,3}}, new double[][] {{2,3,4,5,6},{3,3,4,3,3}})+" should be "+true);
+    //if(covers(new double[][] {{1,2,3,4,5},{3,3,3,3,3}}, new double[][] {{2,3,4,5,6},{3,3,4,3,3}})==false) System.out.println("Error covers() test 1");
+    System.out.println(covers(new double[][] {{1,2,3,4,5},{1,2,3,4,5}},new double[][] {{1,2,3,4,5},{1,2,3,4,5}})+" should be "+false);
+    //if(covers(new double[][] {{1,2,3,4,5},{1,2,3,4,5}},new double[][] {{1,2,3,4,5},{1,2,3,4,5}})==true) System.out.println("Error covers() test 2");
+    System.out.println(covers(new double[][] {{1,2,3,4}}, new double[][] {{5,5,5,5}})+" should be "+true);
+    //if(covers(new double[][] {{1,2,3,4}}, new double[][] {{5,5,5,5}})==false) System.out.println("Error covers() test 3");
+    
     //isMagicSquare() tests
-    if(!isMagicSquare(new int[][] {{8,1,6},{3,5,7},{4,9,2}})) System.out.println("Error isMagicSquare() test 1");
-    if(isMagicSquare(new int[][] {{1,2,3},{4,5,6},{7,8,9}})) System.out.println("Error isMagicSquare() test 2");
+    System.out.println("\nTesting isMagicSquare*()...");
+    System.out.println(isMagicSquare(new int[][] {{8,1,6},{3,5,7},{4,9,2}})+" should be "+true);
+    //if(isMagicSquare(new int[][] {{8,1,6},{3,5,7},{4,9,2}})==false) System.out.println("Error isMagicSquare() test 1");
+    System.out.println(isMagicSquare(new int[][] {{1,2,3},{4,5,6},{7,8,9}})+" should be "+false);
+    //if(isMagicSquare(new int[][] {{1,2,3},{4,5,6},{7,8,9}})==true) System.out.println("Error isMagicSquare() test 2");
+    
     //areAdjacent() Tests
+    System.out.println("\nTesting areAdjacent()...");
+    System.out.println(areAdjacent(new Location(1,2),new Location(2,12))+" should be "+true);
+    System.out.println(areAdjacent(new Location(1,1),new Location(3,3))+" should be "+false);
     
     //isSnake() tests
+    System.out.println("\nTesting isSnake()...");
     
     //average() tests
+    System.out.println("\nTesting average()");
+    System.out.println(average(new int[]{1,2,1,2})+" should be "+1.5);
+    System.out.println(average(new int[]{0,0,0,0,0,0,0,0})+" should be "+0);
     
     //sumVals() tests
+    System.out.println("\nTesting sumVals()...");
+    System.out.println(sumVals(new int[]{1,1,1,1,1})+" should be "+5);
+    System.out.println(sumVals(new int[]{3,6,1,6})+" should be "+16);
     
-    //sum2D() tests
-
+    //sum2d() tests
+    System.out.println("\nTesting sum2d()...");
+    System.out.println(Arrays.toString(sum2d(new int[][]{{1,1,1},{1}}))+" should be "+Arrays.toString(new int[]{3,1}));
+    System.out.println(Arrays.toString(sum2d(new int[][] {{2,2,2,2,2,2},{1,1,1,1,1,1},{4,4,4,44}}))+" should be "+Arrays.toString(new int[]{12,6,56}));
 }
+//array to string used for testing
+private static String ats(double[][] arr){
+    String rtn="";
+    for(double elt[]:arr){
+        for(double num:elt) rtn+=num;
+    }
+    return rtn;
+}
+private static String ats(Color[][] arr){
+    String rtn="";
+    for(Color elt[]:arr){
+        for(Color num:elt) rtn+=num;
+    }
+    return rtn;
+}
+//Ability to print an array used for testing
 private static void printArray(int[][] m){
     if(m==null) return;
     for(int[] i:m){
@@ -94,9 +148,10 @@ private static int[][] matrixMultiplication(int[][] m1, int[][] m2){
         }
     return rtn;
 }
+//returns is an array is rectangular - named "wrong"
 public static boolean isSquare(int[][] m){
     int length=m[0].length;
-    for(int i=0;i<m.length;i++){
+    for(int i=1;i<m.length;i++){
         if(m[i].length!=length) return false;
     }
     return true;
@@ -155,10 +210,10 @@ private static boolean covers(double[][] m1, double[][] m2){
     int hold=0;
     for(int i=0;i<m1.length;i++){
         for(int n=0;n<m1[i].length;n++){
-            if(m1[i][n]>m2[i][n]) hold++;
+            if((int)m1[i][n]>(int)m2[i][n]) hold++;
         }
     }
-    return hold>((double)m1.length*m2.length/2)+.5;
+    return hold>(m1.length*m1[0].length/2);
 }
 //returns true if each value of the array is different ranging from 1-the number of elements and the sum of each row/col/diagonal is equal
 private static boolean isMagicSquare(int m[][]){
@@ -179,8 +234,8 @@ private static boolean isMagicSquare(int m[][]){
             current2=0;
         }
         for(int i=0;i<m.length;i++){
-            current=m[i][i];
-            current2=m[m.length-1-i][m.length-1-i];
+            current+=m[i][i];
+            current2+=m[m.length-1-i][m.length-1-i]; 
         }
         if(current!=num||current2!=num) return false;
         return true;
@@ -203,7 +258,7 @@ public static class Location{
     }
 }
 //returns true if two Location values are next to each other in either their column or row
-private boolean areAdjacent(Location loc1, Location loc2){
+private static boolean areAdjacent(Location loc1, Location loc2){
     return Math.abs(loc1.getRow()-loc2.getRow())<2||Math.abs(loc1.getCol()-loc2.getCol())<2;
 }
 //returns true if the bordering numbers count up to a certain number and all other numbers not included in this sequance are 0
@@ -237,7 +292,7 @@ private boolean isSnake(int[][] m){
     return size==zeroes+num; //values not included in the snake pattern that aren't zeroes would decrease the compared value, making size larger and forcing this to false
 }
 //returns the average value of elements in the array
-private double average(int[] scores){
+private static double average(int[] scores){
     int hold=0;
     for(int i:scores){
         hold+=scores[i];
@@ -245,15 +300,15 @@ private double average(int[] scores){
     return (double)hold/scores.length;
 }
 //returns the sum of the elements in the array
-private int sumVals(int[] nums){
+private static int sumVals(int[] nums){
     int hold=0;
     for(int i:nums){
-        hold+=nums[i];
+        hold+=i;
     }
     return hold;
 }
 //returns the summ of elements in a 2d array using sumVals()
-private int[] sum2d(int[][] nums){
+private static int[] sum2d(int[][] nums){
     int[] sums=new int[nums.length];
     int hold=0;
     for(int[] i:nums){
@@ -262,4 +317,45 @@ private int[] sum2d(int[][] nums){
     }
     return sums;
 }
+//returns an array with every substring of the passed string
+private static String[] allSubstrings(String str){
+    String[] rtn=new String[str.length()*(str.length()+1)/2];
+    int ind=0;
+    for(int i=0;i<str.length();i++){
+        for(int n=0;n<str.length()-i;n++,ind++){
+            rtn[ind]=str.substring(n,n+i+1);
+        }
+    }
+    return rtn;
+}
+//returns a 2d array with each row containing an array of every possible substring of each element of the passed array
+public static String[][] allSubstrings2(String[] words){
+    String[][] rtn=new String[words.length][];
+    for(int i=0;i<words.length;i++){
+        rtn[i]=allSubstrings(words[i]);
+    }
+    return rtn;
+}
+//creates pascal's triangle with n+1 rows
+private static int[][] pascalTriangle(int n){
+    int[][] triangle=new int[n+1][];
+    for(int i=0;i<n+1;i++){
+        triangle[i]=new int[i+1];
+        for(int k=0;k<i+1;k++){
+            if(k==0||k==triangle[i].length-1) triangle[i][k]=1;
+            else{
+                triangle[i][k]=triangle[i-1][k-1]+triangle[i-1][k];
+            }
+        }
+    }
+    return triangle;
+}
+//method used to print pascal's triangle in triangle form
+private static void printTriangle(int[][] tri){
+    for(int i=0;i<tri.length;i++){
+        for(int n=tri.length-i;n>0;n--) System.out.print(" ");
+        for(int n:tri[i]) System.out.print(n+" ");
+        System.out.println();
+    }
+} 
 }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MatrixBookwork",
+            "request": "launch",
+            "mainClass": "MatrixBookwork",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch MatrixWorkProblems",
             "request": "launch",
             "mainClass": "MatrixWorkProblems",

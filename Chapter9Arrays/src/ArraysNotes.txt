@@ -20,3 +20,6 @@ Two Dimensional Arrays
         - The resulting matrix's dimensions is equal to the other two dimensions
         - (2x2)*(2*12) is valid and results in a (2x12), (3x2)*(3x2) is invalid
         - multiplication is done by multiplying each row's values to their corresponding values in the second matrix's column then adding the products together
+- for each loop is called via for(dataType name: arrayName){}
+    - creates a copy of each element in the array and allows you to see each one in order
+    - cannot change the element that you're looking at but if the element is an object, its methods can be called to modify parts of the element
