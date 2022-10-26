@@ -59,11 +59,11 @@ private static void testMethod(){
     
     //covers() tests 
     System.out.println("\nTesting covers()...");
-    System.out.println(covers(new double[][] {{1,2,3,4,5},{3,3,3,3,3}}, new double[][] {{2,3,4,5,6},{3,3,4,3,3}})+" should be "+true);
+    System.out.println(covers(new double[][] {{2,3,4,5,6},{3,3,4,3,3}},new double[][] {{1,2,3,4,5},{3,3,3,3,3}})+" should be "+true);
     //if(covers(new double[][] {{1,2,3,4,5},{3,3,3,3,3}}, new double[][] {{2,3,4,5,6},{3,3,4,3,3}})==false) System.out.println("Error covers() test 1");
     System.out.println(covers(new double[][] {{1,2,3,4,5},{1,2,3,4,5}},new double[][] {{1,2,3,4,5},{1,2,3,4,5}})+" should be "+false);
     //if(covers(new double[][] {{1,2,3,4,5},{1,2,3,4,5}},new double[][] {{1,2,3,4,5},{1,2,3,4,5}})==true) System.out.println("Error covers() test 2");
-    System.out.println(covers(new double[][] {{1,2,3,4}}, new double[][] {{5,5,5,5}})+" should be "+true);
+    System.out.println(covers( new double[][] {{5,5,5,5}},new double[][] {{1,2,3,4}})+" should be "+true);
     //if(covers(new double[][] {{1,2,3,4}}, new double[][] {{5,5,5,5}})==false) System.out.println("Error covers() test 3");
     
     //isMagicSquare() tests
@@ -80,7 +80,9 @@ private static void testMethod(){
     
     //isSnake() tests
     System.out.println("\nTesting isSnake()...");
-    
+    System.out.println(isSnake(new int[][] {{0,2,3,0,0},{0,1,4,0,0},{0,0,5,0,0},{0,7,6,0,0},{0,8,0,0,0}})+" should be "+true);
+    System.out.println(isSnake(new int[][] {{0,1,3,0,0},{0,1,4,0,0},{0,0,5,0,0},{0,7,6,0,0},{0,8,0,0,0}})+" should be "+false);
+
     //average() tests
     System.out.println("\nTesting average()");
     System.out.println(average(new int[]{1,2,1,2})+" should be "+1.5);
@@ -96,24 +98,11 @@ private static void testMethod(){
     System.out.println(Arrays.toString(sum2d(new int[][]{{1,1,1},{1}}))+" should be "+Arrays.toString(new int[]{3,1}));
     System.out.println(Arrays.toString(sum2d(new int[][] {{2,2,2,2,2,2},{1,1,1,1,1,1},{4,4,4,44}}))+" should be "+Arrays.toString(new int[]{12,6,56}));
 }
-//array to string used for testing
-private static String ats(double[][] arr){
-    String rtn="";
-    for(double elt[]:arr){
-        for(double num:elt) rtn+=num;
-    }
-    return rtn;
-}
-private static String ats(Color[][] arr){
-    String rtn="";
-    for(Color elt[]:arr){
-        for(Color num:elt) rtn+=num;
-    }
-    return rtn;
-}
 //Ability to print an array used for testing
 private static void printArray(int[][] m){
-    if(m==null) return;
+    if(m==null){
+        System.out.println("null"); return;
+    };
     for(int[] i:m){
         for(int n:i){
             System.out.print(n+" ");
@@ -121,6 +110,7 @@ private static void printArray(int[][] m){
         System.out.println();
     }
 }
+//Adds two matrices together using mathematic rules
 private static int[][] addMatrices(int[][] m1, int[][] m2){
     if(m1.length!=m2.length||m1[0].length!=m2[0].length) return null;
     int[][] rtn=new int[m1.length][m1[0].length];
@@ -148,7 +138,7 @@ private static int[][] matrixMultiplication(int[][] m1, int[][] m2){
         }
     return rtn;
 }
-//returns is an array is rectangular - named "wrong"
+//returns is an array is rectangular - named wrong
 public static boolean isSquare(int[][] m){
     int length=m[0].length;
     for(int i=1;i<m.length;i++){
@@ -181,7 +171,7 @@ private static class Color{
         return rtn+"";
     }
 }
-//Fills a 2d array of Color to create an alternating pattern
+//Fills a 2d array of Color to create an alternating checkerboard pattern
 private static void fillCheckerboard(Color[][] board){
     for(int i=0;i<board.length;i++){
         for(int n=0;n<board[i].length;n++){
@@ -209,10 +199,10 @@ private static void printCheckerboard(Color[][] board){
 private static boolean covers(double[][] m1, double[][] m2){
     int hold=0;
     for(int i=0;i<m1.length;i++){
-        for(int n=0;n<m1[i].length;n++){
-            if((int)m1[i][n]>(int)m2[i][n]) hold++;
-        }
+        for(int n=0;n<m1[0].length;n++){
+             if(m1[i][n]>m2[i][n]) hold++;
     }
+}
     return hold>(m1.length*m1[0].length/2);
 }
 //returns true if each value of the array is different ranging from 1-the number of elements and the sum of each row/col/diagonal is equal
@@ -221,24 +211,24 @@ private static boolean isMagicSquare(int m[][]){
         int num=0;
         int current=0;
         int current2=0;
-        for(int i=0;i<m.length;i++){
+        for(int i=0;i<m.length;i++){ //find first row's sum to compare to
             num+=m[0][i];
         }
-        for(int i=0;i<m.length;i++){
-            for(int n=0;n<m.length;n++){
+        for(int i=0;i<m.length;i++){ 
+            for(int n=0;n<m.length;n++){ //add up all rows/cols
                 current+=m[i][n];
                 current2+=m[n][i];
             }
-            if(current!=num||current2!=num) return false;
-            current=0;
+            if(current!=num||current2!=num) return false; //if completed sums don't work, return false
+            current=0; //reset sums
             current2=0;
         }
-        for(int i=0;i<m.length;i++){
+        for(int i=0;i<m.length;i++){ //check diagonals
             current+=m[i][i];
             current2+=m[m.length-1-i][m.length-1-i]; 
         }
         if(current!=num||current2!=num) return false;
-        return true;
+        return true; //have to check that every number is included
     }
     return false;
 }
@@ -259,10 +249,12 @@ public static class Location{
 }
 //returns true if two Location values are next to each other in either their column or row
 private static boolean areAdjacent(Location loc1, Location loc2){
-    return Math.abs(loc1.getRow()-loc2.getRow())<2||Math.abs(loc1.getCol()-loc2.getCol())<2;
+    int r1=loc1.getRow(); int c1=loc1.getCol();
+    int r2=loc2.getRow(); int c2=loc2.getCol();
+    return c1==c2&&Math.abs(r1-r2)<2||r1==r2&&Math.abs(c1-c2)<2;
 }
 //returns true if the bordering numbers count up to a certain number and all other numbers not included in this sequance are 0
-private boolean isSnake(int[][] m){
+private static boolean isSnake(int[][] m){
     int zeroes=0; //numbner of zeros in the array
     int num=0; //highest number found in the snake pattern
     boolean found=false;
@@ -271,16 +263,23 @@ private boolean isSnake(int[][] m){
         size+=m[i].length; //square array is not guaranteed so we need to find the number of values in the aray with a loop
     }
     for(int i=0;i<m.length;i++){ //looop through the whole array
+        int r1=i; //sets row 1
         for(int n=0;n<m[i].length;n++){
+            int c1=n; //sets column 1
             if(m[i][n]==0) zeroes++; //count the number of zeros in the array
             else if(!found&&m[i][n]==num+1){
-                num++; //sets the num value to track the snake pattern with
+                num++; //sets the num value to track the snake pattern with, starts with 1
                 found=true; //after finding the first 1's index, the snake pattern follower can no longer be restarted
                 int iLim=i; int nLim=n; //Allows for the for loops to be changed when a new value is found
                 for(int q=i-1;q<iLim+2;q++){ //searches the "box" surrounding the index of the found value (similar to gameOfLife)
+                    //int r2=q; //sets row 2
                     for(int a=n-1;a<nLim+2;a++){
-                        if(q>-1&&q<m.length&&a>-1&&a<m[q].length&&m[q][a]==num+1){
+                        //int c2=a; //sets column 2
+                        if(q>-1&&q<m.length&&a>-1&&a<m[q].length&&m[q][a]==num+1&& //number exists in surrounding box
+                           (c1==a&&Math.abs(r1-q)<2||r1==q&&Math.abs(c1-a)<2)) //locations are adjacent
+                        {
                             iLim=q;nLim=a; //resets all parts of the for loop to begin considering the values around the found value
+                            c1=a;r1=q;
                             q--;a--;num++; //q and a are reduced to restart at the top left of the found value; num is increased to look for the next number
                         }
                     }
