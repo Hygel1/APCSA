@@ -1,3 +1,13 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  10/18/2022
+ * Assignment: Skyview Project
+ * 
+ * Attribution: Grace Boerner was my partner in class
+ * 
+ * General Description: rearranges a 1d array into a 2d array according to the snake formatl and rows/cols parameters
+ */
 public class SkyView
 {
   /** A rectangular array that holds the data representing a rectangular area of the sky. */
@@ -15,7 +25,6 @@ public class SkyView
    *                 scanned have been copied to view and are ordered as
    *                 in the original rectangular area of sky.
    */
-  //private double[][] view;
   public SkyView(int numRows, int numCols, double[] scanned)
   {
     view=new double[numRows][numCols];
@@ -23,14 +32,12 @@ public class SkyView
     for(int i=0;i<numRows;i++){
       if(i%2==0){
       for(int n=0;n<numCols;n++){
-        //view[i][n]=scanned[i*numRows+n];
         view[i][n]=scanned[hold];
         hold++;
       }
     }
     else{
       for(int n=numCols-1;n>=0;n--){
-        //view[i][n]=scanned[i*numRows+(numCols-n-1)];
         view[i][n]=scanned[hold];
         hold++;
       }
