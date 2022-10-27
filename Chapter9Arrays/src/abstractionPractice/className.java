@@ -1,6 +1,8 @@
-package abstraction;
-
+package abstractionPractice;
 public class className {
+    protected static int myNumber(){
+        return 1;
+    }
     enum Months{ //enum=group of finalized values grouped together
         JANUARY,FEBRUARY,MARCH,APRIL
     };
@@ -16,7 +18,7 @@ public class className {
     public void myClass(){
         theClass();
     }
-    class newClass{  //nested class allows for privatized information
+    static class newClass{  //nested class allows for privatized information
         /*
         public void main(String[] args){ //main is realisticaly never used because rnning the file results in running the outermost classes
             /**

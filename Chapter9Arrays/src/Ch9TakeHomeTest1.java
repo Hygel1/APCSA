@@ -5,7 +5,7 @@
  * Assignment: Chapter 9 Take-Home Test
  */
 import java.util.Arrays;
-public class Ch9TakeHomeTest{
+public class Ch9TakeHomeTest1{
     public static void main(String args[]){
         test();
     }

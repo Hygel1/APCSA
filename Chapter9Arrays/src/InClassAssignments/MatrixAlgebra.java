@@ -1,3 +1,4 @@
+package InClassAssignments;
 public class MatrixAlgebra{
     public static void main(String args[]){
         testMethod();

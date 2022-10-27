@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestImage",
+            "request": "launch",
+            "mainClass": "InClassAssignments.GrayImageAssignment.TestImage",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch MatrixBookwork",
             "request": "launch",
             "mainClass": "MatrixBookwork",

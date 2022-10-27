@@ -1,3 +1,4 @@
+package InClassAssignments;
 import java.util.Arrays;
 
 public class Trail

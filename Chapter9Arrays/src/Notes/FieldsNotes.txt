@@ -1,0 +1,2 @@
+- static means that values are the same in every instance of a class
+    - this should not be the default, it's just commonly used to use methods in main
