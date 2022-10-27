@@ -20,6 +20,13 @@
         },
         {
             "type": "java",
+            "name": "Launch RunningFile",
+            "request": "launch",
+            "mainClass": "OtherThings.src.RunningFile",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
             "name": "Launch MatrixWorkProblems",
             "request": "launch",
             "mainClass": "MatrixWorkProblems",
