@@ -1,4 +1,4 @@
-
+package Tests;
 import java.util.Arrays;
 
 public class SudokuTester {
