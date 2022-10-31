@@ -41,7 +41,7 @@ public class GrayImage
   public void processImage(){
     for(int i=0;i<pixelValues.length-2;i++){
       for(int n=0;n<pixelValues[i].length-2;n++){
-        pixelValues[i][n]=Math.max(0,pixelValues[i][n]-pixelValues[i+2][n+2]);
+        pixelValues[i][n]=Math.max(BLACK,pixelValues[i][n]-pixelValues[i+2][n+2]);
       }
     }
   }

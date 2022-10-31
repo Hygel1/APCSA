@@ -1,3 +1,4 @@
+package Tests;
 /**
  * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
