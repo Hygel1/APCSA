@@ -91,14 +91,14 @@ public class SudokuGrid {
 				int rT=r;
 				int cT=c;
 				num++;
-				if(r-1==-1) r=rtn.length-1; else rT--;
-				if(c+1==n) c=0; else cT++;
+				if(r-1==-1) rT=rtn.length-1; else rT--;
+				if(c+1==n) cT=0; else cT++;
 				if(rtn[rT][cT]==0){
 					r=rT;c=cT;
 					rtn[r][c]=num;
 				}
 				else{
-					do{if(r+1>n-1) r=0; else r++;} while(rtn[r][c]!=0);
+					if(r+1>n-1) r=0; else r++;
 					rtn[r][c]=num;
 				}				
 			}

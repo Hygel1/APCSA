@@ -2,7 +2,7 @@
 import java.util.Arrays;
 
 public class SudokuTester {
-    public static void main(String args[]){
+    public static void main(String[] args){
         SudokuGrid grid=new SudokuGrid();
         printGrid(grid.makeMagicSquare(3));
     } 
