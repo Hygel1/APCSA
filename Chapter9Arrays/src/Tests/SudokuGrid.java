@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class SudokuGrid {
 
 	private int[][] grid;
-	private final int EMPTY = 0;
+	//private final int EMPTY = 0;
 	
 	public SudokuGrid()
 	{
@@ -84,24 +84,24 @@ public class SudokuGrid {
 	public int[][] makeMagicSquare(int n){
 		int[][] rtn=new int[n][n];
 		if(n%2==0) return null;
-		else{
 			int num=1;
 			int r=0;int c=n/2;
-			while(num<=n*n){
-				if(rtn[r][c]==0){
+			rtn[r][c]=num;
+			while(num<n*n){
+				int rT=r;
+				int cT=c;
+				num++;
+				if(r-1==-1) r=rtn.length-1; else rT--;
+				if(c+1==n) c=0; else cT++;
+				if(rtn[rT][cT]==0){
+					r=rT;c=cT;
 					rtn[r][c]=num;
-					
 				}
 				else{
-					if(r+1==n) r=0; else r++;
+					do{if(r+1>n-1) r=0; else r++;} while(rtn[r][c]!=0);
 					rtn[r][c]=num;
-				}
-				if(r-1==-1) r=rtn.length-1; else r--;
-				if(c+1==n) c=0; else c++;
-				num++;
-				
+				}				
 			}
-		}
 		return rtn;
 	}
 	public void printGridToConsole()
