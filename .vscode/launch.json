@@ -9,6 +9,13 @@
             "name": "Launch SudokuTester",
             "request": "launch",
             "mainClass": "SudokuTester",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch SudokuTester",
+            "request": "launch",
+            "mainClass": "SudokuTester",
             "projectName": "APCSA_2f439bb4"
         },
         {
