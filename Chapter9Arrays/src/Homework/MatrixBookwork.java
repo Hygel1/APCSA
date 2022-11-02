@@ -98,6 +98,9 @@ private static void testMethod(){
     System.out.println("\nTesting sum2d()...");
     System.out.println(Arrays.toString(sum2d(new int[][]{{1,1,1},{1}}))+" should be "+Arrays.toString(new int[]{3,1}));
     System.out.println(Arrays.toString(sum2d(new int[][] {{2,2,2,2,2,2},{1,1,1,1,1,1},{4,4,4,44}}))+" should be "+Arrays.toString(new int[]{12,6,56}));
+
+    //Pascal's triangle
+    printTriangle(pascalTriangle(8));
 }
 //Ability to print an array used for testing
 private static void printArray(int[][] m){

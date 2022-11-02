@@ -7,7 +7,7 @@ public class className {
         JANUARY,FEBRUARY,MARCH,APRIL
     };
     public static void main(String[] args){
-        int x=new newClass().myNumber();
+        //int x=new newClass().myNumber();
         System.out.println(theBaby.minor.y); //references class using the class name
         System.out.println(new newClass().myNumber()); //references inner class
     }

@@ -13,8 +13,6 @@ package InClassAssignments;
  * 
  * Errata: 
  */
-import java.util.Arrays;
-
 public class codingBatAP1{
     public static void main(String[] args){
 

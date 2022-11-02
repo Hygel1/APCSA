@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class SudokuGrid {
 
 	private int[][] grid;
-	private final int EMPTY = 0;
+	//private final int EMPTY = 0;
 	
 	public SudokuGrid()
 	{

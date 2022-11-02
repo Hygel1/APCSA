@@ -25,7 +25,6 @@ public class GameOfLife extends JFrame implements ActionListener{
     private Timer t;
     private int timeStep;
     private boolean isRunning;
-    private int roundNum=0;
     
     public GameOfLife() {
     	isRunning = false;
@@ -52,7 +51,6 @@ public class GameOfLife extends JFrame implements ActionListener{
     public void next(){
         display.next();
         repaint();
-        roundNum++;
     }
     
     public void stop()

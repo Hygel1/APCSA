@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch testFunctions",
+            "request": "launch",
+            "mainClass": "testFunctions",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestFractions",
+            "request": "launch",
+            "mainClass": "Fractions.TestFractions",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch SudokuTester",
             "request": "launch",
             "mainClass": "SudokuTester",

@@ -8,7 +8,7 @@ public class LifeCanvas extends JPanel
     implements MouseListener, MouseMotionListener
     
 {
-    private GameOfLife app;
+    //private GameOfLife app;
     private TextArea textArea;
     private LifeGrid grid;
     private int cellUnderMouse;
@@ -19,7 +19,7 @@ public class LifeCanvas extends JPanel
      */
     public LifeCanvas(GameOfLife applet)
     {
-       app = applet;
+       //app = applet;
             
        grid = new LifeGrid(50,50);
        cellSize = 10;
