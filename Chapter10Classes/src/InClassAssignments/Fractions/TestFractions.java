@@ -1,5 +1,3 @@
-package Fractions;
-
 /**
  * This is a test class for the Fraction class
  * Author: Blair, Sean

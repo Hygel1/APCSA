@@ -1,2 +1,0 @@
-Name: user. Age: 1. Favorite Decimal: 1.0. Do they like Ice Cream: Yes. Favorite Letter: l
-Name: user2. Age: 2. Favorite Decimal: 2.0. Do they like Ice Cream: No. Favorite Letter: d

@@ -1,0 +1,8 @@
+Group 1:
+ - Used one file, no separate class
+ - converted a grade percentage to a letter grade for char variable
+ - used /ln to skip to next line as opposed to .nextLine() when using scanner
+Group 2:
+ - take boolean value in input stage but output it as a String such as "good job" or "not a good job"
+ - Uses nextLine() function to skip to next line when using scanner, avoids input skipping
+ - 

@@ -1,4 +1,3 @@
-package Fractions;
 /**
  * Represents a fraction with an int numerator and int denominator
  * and provides methods for adding and multiplying fractions.
