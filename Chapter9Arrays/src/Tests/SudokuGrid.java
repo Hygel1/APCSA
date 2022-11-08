@@ -81,6 +81,23 @@ public class SudokuGrid {
 	{
 		grid[row][col]=value;
 	}
+	public void printWeird(int[][] matrix){
+		for(int i=0;i<matrix.length;i++){
+			for(int n=0;n<matrix[i].length;n++){
+				int count=0, hold=matrix[i][n];
+				for(int k=0;k<matrix.length;k++){
+					if(matrix[i][k]==hold) count++;
+				}
+				if(count>2){
+					count=0;
+					for(int k=0;k<matrix[i].length;k++){
+						if(matrix[k][n]==hold) count++;
+					}
+					if(count>2) System.out.println("("+i+", "+n+") - "+matrix[i][n]);
+				}
+			}
+		}
+	}
 	public int[][] makeMagicSquare(int n){
 		int[][] rtn=new int[n][n];
 		if(n%2==0) return null;
