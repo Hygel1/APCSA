@@ -15,7 +15,7 @@ public class VendingMachine extends JPanel
                             implements ActionListener
 {
   private static final int FULL_STOCK = 5;
-  private JButton deposit25c, deposit10c, deposit5c, go, getChange;
+  private JButton deposit25c, deposit10c, deposit5c, go;
   private JTextField display;
   private Vendor vendor;
   boolean trayFull;
