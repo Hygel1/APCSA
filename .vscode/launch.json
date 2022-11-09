@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch SnackBar",
+            "request": "launch",
+            "mainClass": "SnackBar",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
             "name": "Launch Chapter10HW",
             "request": "launch",
             "mainClass": "Homework.Chapter10HW",

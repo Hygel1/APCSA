@@ -1,3 +1,16 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 11/8/2022
+ * Assignment: Team Class design - SoccerTeam #22
+ * 
+ * Attribution: I worked with Grace Boerner in class
+ * 
+ * General Description: Creates a soccer team able to play against other teams in tournaments, tracking wins, losses, and ties for each team
+ *                      and the total number of games played/goals scored by all teams together
+ * 
+ * Advanced: Plays through a round-robin tournament with 4 teams in separate tournament class
+ */
 package Homework;
 public class SoccerTeam{
     private int wins, losses, ties; //non-static because each instance of SoccerTeam has a unique value for these fields

@@ -1,3 +1,9 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 11/8/2022
+ * Assignment: Chapter 10 Classes Homework
+ */
 package Homework;
 import java.awt.Color;
 
@@ -37,7 +43,7 @@ public class Chapter10HW extends SoccerTeam{
         }
     }
 
-    //#6
+    //#6 and #22
     public class Fraction{
         private int num, den;
         public Fraction(int myNum, int myDen){
@@ -50,13 +56,45 @@ public class Chapter10HW extends SoccerTeam{
         public int getDen(){
             return den;
         }
-        public Fraction divide(Fraction other){
-            if(other.getDen()==0){
-                throw new IllegalArgumentException();
-            }
-            return new Fraction(num*=other.getDen(),den*=other.getNum());
+        public Fraction valueOf(double x){ //for #22, returns the value of a double as a fraction
+            int DFLT_DENOM=10000;
+            Fraction hold=new Fraction((int)(x*DFLT_DENOM+.5),DFLT_DENOM);
+            hold.reduce();
+            return hold;
         }
-    }
+        private void reduce(){
+            if (num == 0){
+            den = 1;
+            return;
+            }
+            if (den < 0){
+            num = -num;
+            den = -den;
+            }
+            int q = gcf(Math.abs(num), den);
+            num /= q;
+            den /= q;    
+        }
+
+        // Returns the greatest common factor of two positive integers
+        private int gcf(int n, int d){
+            if (n <= 0 || d <= 0){
+            throw new IllegalArgumentException("gcf precondition failed: " + n + ", " + d);
+            }
+            while (d != 0){
+            int temp = d;
+            d = n % d;
+            n = temp;
+            }
+            return n;
+        }
+                public Fraction divide(Fraction other){
+                    if(other.getDen()==0){
+                        throw new IllegalArgumentException();
+                    }
+                    return new Fraction(num*=other.getDen(),den*=other.getNum());
+                }
+            }
 
     //#7
     public class FConverter{
@@ -159,6 +197,23 @@ public class Chapter10HW extends SoccerTeam{
       * Integer and String are final because they are immutable and only need to be modified once (at creation)
       */
 
-      //#14
-      
-}
+      /** #14
+       * would add 4th element:
+       * new VendingMachine("Jandy Bar", new Color(255,255,255),10, coin)
+       * in the VendingMachine Array
+       */
+
+       //#19
+      public class Puzzle{
+        private static String message="Hello, World";
+        public static void hello(){ //hello() cannot be used in main without being static, which means that it and message must be made static in order to be used
+            System.out.println(message);
+            }
+            public static void main(String[] args){
+                hello();
+            }
+        }
+
+        //#22 paired with #6
+
+      }

@@ -37,7 +37,8 @@ public class SnackBar extends JFrame
     {
       new VendingMachine("Java", brandColor1, 45, coin),
       new VendingMachine("JApple", brandColor2, 50, coin),
-      new VendingMachine("Jinx", brandColor3, 35, coin)
+      new VendingMachine("Jinx", brandColor3, 35, coin),
+      new VendingMachine("Jandy Bar", new Color(255,255,255),10, coin)
     };
     this.machines = machines;
     
