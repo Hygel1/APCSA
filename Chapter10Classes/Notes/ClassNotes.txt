@@ -12,6 +12,8 @@ ArraysList Notes
                 - the ArrayList object has a toString built in, thich allows it to be printed without .toString()
             - This results in [Amy, Ben, Cat]
     - ArrayLists have size and capacity
+        - ArrayLists start with a default capacity and a size of 0
+            - there is nothing in the array (therefore size is 0) but there is an ability to add things into the list (therefore the capacity must me >0)
         - size is the amount of elements in the ArrayList
         - capacity is the maximum amount of elements that can be placed in the ArrayList
     - ArrayList has an indexOf() function that makes it easy to find things in the ArrayList
