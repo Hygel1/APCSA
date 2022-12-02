@@ -1,4 +1,4 @@
-package InClassAssignments.ArrayLists;
+package ArrayLists;
 
 public class TestList {
     public static void main(String[] args){

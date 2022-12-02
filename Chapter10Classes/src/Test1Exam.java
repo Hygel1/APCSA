@@ -207,7 +207,4 @@ public class Test1Exam {
             }
         }
     }
-    public void insertionSort(){
-        type theThype=int;
-    }
 }
