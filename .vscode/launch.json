@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestLineList",
+            "request": "launch",
+            "mainClass": "InClassAssignments.ArrayLists.Align.TestLineList",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch Shuffler",
+            "request": "launch",
+            "mainClass": "InClassAssignments.ArrayLists.Align.Shuffler",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestList",
+            "request": "launch",
+            "mainClass": "InClassAssignments.ArrayLists.TestList",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch SnackBar",
             "request": "launch",
             "mainClass": "SnackBar",

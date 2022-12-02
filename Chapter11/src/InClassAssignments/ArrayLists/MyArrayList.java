@@ -10,7 +10,7 @@
  * 
  * Advanced: 
  */
-package Chapter11.ArrayLists;
+package InClassAssignments.ArrayLists;
 
 //import javax.print.attribute.standard.NumberOfInterveningJobs;
 //import java.lang.reflect.Array;

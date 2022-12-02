@@ -17,4 +17,6 @@ ArraysList Notes
         - size is the amount of elements in the ArrayList
         - capacity is the maximum amount of elements that can be placed in the ArrayList
     - ArrayList has an indexOf() function that makes it easy to find things in the ArrayList
+    - Linked lists just put the memory where the head is and doesn't block the data together, which can save memory and keep you from allocating extra space for unused parts of an array
+    
     
