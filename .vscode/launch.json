@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Fibonacci",
+            "request": "launch",
+            "mainClass": "InClassAssignments.Chapter11Bookwork.Fibonacci",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch TestLineList",
             "request": "launch",
             "mainClass": "InClassAssignments.ArrayLists.Align.TestLineList",
