@@ -10,7 +10,7 @@ public class GenTester {
         System.out.println(gen.get());
         
     }
-    public static <T> void printArray(T[] arr){
-        for(T elem: arr) System.out.println(elem);
+    public static <Q, K> void printArray(Q[] arr){
+        for(Q elem: arr) System.out.println(elem);
     }
 }

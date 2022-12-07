@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestList",
+            "request": "launch",
+            "mainClass": "InClassAssignments.ArrayLists.TestList",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
             "name": "Launch TestLineList",
             "request": "launch",
             "mainClass": "InClassAssignments.ArrayLists.Align.TestLineList",

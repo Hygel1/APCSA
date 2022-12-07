@@ -2,21 +2,18 @@
  * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
  * Date of Completion:  
- * Assignment: 
+ * Assignment: Engineered ArrayList
  * 
- * Attribution: 
+ * General Description: Creates an array that can expand itself and insert/remove elements
  * 
- * General Description: 
- * 
- * Advanced: 
+ * Advanced: can take any object as opposed to just Strings
  */
-package Chapter11.ArrayLists;
+package InClassAssignments.ArrayLists;
 
 //import javax.print.attribute.standard.NumberOfInterveningJobs;
 //import java.lang.reflect.Array;
 
 public class MyArrayList<T> {
-    private T t;
     private int numItems=0;
     private T[] list;
     public MyArrayList(){ //constructor that creates a new version of MyArrayList with a default (10) size
@@ -57,6 +54,7 @@ public class MyArrayList<T> {
             list=doubled; //replace list array with doubled (longer array)
         }
     }
+    //appends an object to the end of the list
     public boolean add(T obj){
         doubleCheck();
         list[numItems]=obj; //the number of items is always one more than the index of the last element, therefore we can just use numItems to get the index to add to
@@ -75,6 +73,7 @@ public class MyArrayList<T> {
         if(ind<0||ind>=numItems) throw new IndexOutOfBoundsException();
         return list[ind];
     }
+    //formats the list into a String
     public String toString(){
         String rtn="";
         for(int i=0;i<numItems;i++){
@@ -84,6 +83,7 @@ public class MyArrayList<T> {
         if(rtn.length()>2) rtn=rtn.substring(0,rtn.length()-2);
         return "["+rtn+"]";
     }
+    //removes the element at a specified index and reformats the array
     public T remove(int num){
         T rtn=list[num];
         for(int i=num;i<numItems-1;i++){
@@ -92,18 +92,21 @@ public class MyArrayList<T> {
         numItems--;
         return rtn;
     }
+    //checks to see if the array has an elements
     public boolean contains(T val){
         for(int i=0;i<numItems;i++){
             if(list[i].equals(val)) return true;
         }
         return false;
     }
+    //finds the first occurence of a value in an array (-1 is returned if it doesn't exist)
     public int indexOf(T val){
         for(int i=0;i<numItems;i++){
             if(list[i].equals(val)) return i;
         }
         return -1;
     }
+    //adds an elements into the array at a specified index and reformats accordingly
     public void add(int num, T val){
         doubleCheck();
         for(int i=numItems+1;i>num;i--){
@@ -111,6 +114,12 @@ public class MyArrayList<T> {
         }
         list[num]=val;
         numItems++;
+    }
+    //used for testing
+    public void fillIn(T val){
+        for(int i=0;i<list.length;i++){
+            list[i]=val;
+        }
     }
 
 
