@@ -41,17 +41,15 @@ public class LineList {
      * @return
      */
     public String remove(int k){
-        String rtn=lines.get(k);
-        lines.remove(k);
-        return rtn;
+        return lines.remove(k);
     }
     /**
      * moves the line at index to the position of newIndex
      * */
     public void move(int index, int newIndex){
-        String hold=lines.get(index);
-        lines.remove(index);
-        lines.add(newIndex, hold);
+        String hold=lines.remove(index);
+        if(newIndex>index) lines.add(newIndex-1,hold);
+        else lines.add(newIndex, hold);
     }
     /**
      * shuffles the lines of text randomly

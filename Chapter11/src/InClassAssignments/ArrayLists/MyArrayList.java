@@ -16,7 +16,6 @@ package InClassAssignments.ArrayLists;
 //import java.lang.reflect.Array;
 
 public class MyArrayList<T> {
-    private T t;
     private int numItems=0;
     private T[] list;
     public MyArrayList(){ //constructor that creates a new version of MyArrayList with a default (10) size
