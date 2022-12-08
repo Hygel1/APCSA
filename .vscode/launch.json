@@ -9,6 +9,13 @@
             "name": "Launch ch11HW",
             "request": "launch",
             "mainClass": "InClassAssignments.Chapter11Bookwork.ch11HW",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
+            "name": "Launch ch11HW",
+            "request": "launch",
+            "mainClass": "InClassAssignments.Chapter11Bookwork.ch11HW",
             "projectName": "APCSA_88719d09"
         },
         {

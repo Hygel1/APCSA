@@ -1,7 +1,16 @@
 package InClassAssignments.Chapter11Bookwork;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 12/7/2022
+ * Assignment: Ch11 Homework
+ * 
+ * General Description: Chapter 11 Assigned Problems
+ */
 public class ch11HW {
     public static void main(String args[]){
         test();
@@ -18,9 +27,27 @@ public class ch11HW {
         System.out.println(reverse(dictionary)+" should be Zebra, Aardvark, Apple, Hi, Hello");
         //Testing removeSmallest()
         System.out.println("Testing removeSmallest()...");
-        ArrayList<Integer> nums=new ArrayList<>(Arrays.asList({2,3,4,5,1,6,7}));
-        System.out.println();
-
+        int[] numms={2,3,4,5,1,6,7};
+        ArrayList<Integer> nums=new ArrayList<Integer>(); for(int number: numms) nums.add(number);
+        removeSmallest(nums);
+        System.out.println(nums+" should be 2,3,4,5,6,7");
+        //Testing filter()
+        System.out.println("Testing filter()...");
+        Object obj1=new ArrayList<>(), obj2=new FileNotFoundException();
+        Object[] objs={obj1,obj1,obj1,obj1,obj2,obj1}; 
+        ArrayList<Object> objects=new ArrayList<>(); for(Object els:objs) objects.add(els);
+        ArrayList<Object> objects1=new ArrayList<>(); objects1.add(obj2);
+        filter(objects, objects1);
+        System.out.println(objects+" should be [] [] [] [] []");
+        //Testing removeConsecutiveDuplicates()
+        System.out.println("Testing removeConsecutiveDuplicates()...");
+        String[] strs={"one","two","two","three"};
+        ArrayList<String> rmcd=new ArrayList(Arrays.asList(strs));
+        removeConsecutiveDuplicates(rmcd);
+        System.out.println(rmcd+" should be one, two, three");
+        //Testing fib()
+        System.out.println("Testing fib()...");
+        System.out.println(fib(100).get(99)+" should be 354,224,848,179,261,915,075");
     }
     public static void print2d(ArrayList<ArrayList<String>> list){
         for(ArrayList<String> el:list){ for(String elem: el) System.out.print(elem+" ");System.out.println();}
@@ -84,7 +111,7 @@ public class ch11HW {
      */
     public static void removeSmallest(ArrayList<Integer> list){
         int small=0;
-        for(int i=1;i<list.size();i++) if(list.get(i).compareTo(list.get(0))>0) small=i;
+        for(int i=1;i<list.size();i++) if(list.get(i)<list.get(small)) small=i;
         list.remove(small);
     }
     /**
@@ -92,7 +119,7 @@ public class ch11HW {
      * cycles through list1 and list2 to find matches; if a match is found, the item is removed from list1 and the loop if broken
      */
     public static void filter(ArrayList<Object> list1, ArrayList<Object> list2){
-        for(int i=list1.size()-1;i<-1;i--){ 
+        for(int i=list1.size()-1;i>-1;i--){ 
             Object compare=list1.get(i); //used to prevent constant duplicate lookup
             for(Object el:list2) if(compare==el){
                 list1.remove(i);
@@ -105,9 +132,9 @@ public class ch11HW {
      * cycles through the list (other than the last)
      */
     public static void removeConsecutiveDuplicates(ArrayList<String> lst){
-        for(int i=lst.size()-1;i<0;i--){
+        for(int i=lst.size()-1;i>0;i--){
             if(lst.get(i).equals(lst.get(i-1))){
-                lst.remove(i);
+                lst.remove(i-1);
             }
         }
     }
