@@ -1,11 +1,19 @@
 package InClassAssignments.Chapter11Bookwork;
 import java.util.ArrayList;
+import java.math.BigInteger;
 public class ch11HW {
     public static void main(String args[]){
-        
+
+    }
+    public static void test(){
+
+    }
+    public static void print2d(ArrayList<ArrayList<Object>> list){
+        for(ArrayList<Object> el:list) for(Object elem: el) System.out.println(elem.toString()+" ");
     }
     public static final String alphabet="abcdefghijklmnopqrstuvwxyz";
     /**
+     * Question 13
      * sorts an ArrayList of Strings in individual "buckets" that contain only Strings that start with a specific letter
      * buckets are sorted in alphabetical order according to their index
      * @param words initial ArrayList of Strings to be sorted
@@ -21,4 +29,85 @@ public class ch11HW {
         }
         return rtn;
     }
+    /**
+     * Question 1
+     * a. false
+     * b. true
+     * c. false
+     * d. false
+     * e. true
+     */
+    /**
+     * Question 2
+     * a. true
+     * b. false
+     * c. false
+     * d. false
+     */
+    /**
+     * Question 3
+     * you already know the size of the array
+     * you need to save space in your program
+     */
+    /**
+     * Question 4
+     * [0,0,1,1,2,2]
+     */
+    /**
+     * Question 5
+     * cycles through the ArrayList and adds the current value to the beginning of the returned list every time, 
+     * making the first visited element the last element in the returned list
+     */
+    public static ArrayList<String> reverse(ArrayList<String> list){
+        ArrayList<String> rtn=new ArrayList<String>(list.size());
+        for(String el:list) rtn.add(0,el);
+        return rtn;
+    }
+    /**
+     * Question 6
+     * cycles through the list to find the smallest element, storing the index of the smallest so far.
+     * calls .remove() on the smallest found index
+     */
+    public static void removeSmallest(ArrayList<Integer> list){
+        int small=0;
+        for(int i=1;i<list.size();i++) if(list.get(i).compareTo(list.get(0))>0) small=i;
+        list.remove(small);
+    }
+    /**
+     * Question 7
+     * cycles through list1 and list2 to find matches; if a match is found, the item is removed from list1 and the loop if broken
+     */
+    public static void filter(ArrayList<Object> list1, ArrayList<Object> list2){
+        for(int i=list1.size()-1;i<-1;i--){ 
+            Object compare=list1.get(i); //used to prevent constant duplicate lookup
+            for(Object el:list2) if(compare==el){
+                list1.remove(i);
+                break;
+            }
+        }
+    }
+    /**
+     * Question 10
+     * cycles through the list (other than the last)
+     */
+    public static void removeConsecutiveDuplicates(ArrayList<String> lst){
+        for(int i=lst.size()-1;i<0;i--){
+            if(lst.get(i).equals(lst.get(i-1))){
+                lst.remove(i);
+            }
+        }
+    }
+    /**
+     * Question 11
+     * generates a list of the first n values in the fibonacci sequence
+     */
+    public static ArrayList<BigInteger> fib(int n){
+        ArrayList<BigInteger> rtn=new ArrayList<>();
+        if(n>0)rtn.add(new BigInteger("1"));if(n>1)rtn.add(new BigInteger("1")); //adds the first two values if necessary
+        for(int i=2;i<n;i++){
+            rtn.add((new BigInteger(rtn.get(i-2).add(rtn.get(i-1)).toString()))); //calculates the next value
+        }
+        return rtn;
+    }
+
 }
