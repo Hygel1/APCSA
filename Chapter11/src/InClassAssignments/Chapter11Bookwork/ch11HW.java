@@ -1,15 +1,29 @@
 package InClassAssignments.Chapter11Bookwork;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.math.BigInteger;
 public class ch11HW {
     public static void main(String args[]){
-
+        test();
     }
     public static void test(){
+        //test fillBuckets()
+        System.out.println("Testing fillBuckets()...");
+        String[] words = new String[] {"Hello", "Hi", "Apple", "Aardvark", "Zebra"};
+        ArrayList<String> dictionary = new ArrayList(Arrays.asList(words));
+        ArrayList<ArrayList<String>> buckets = fillBuckets(dictionary);
+        System.out.println(buckets);
+        //test reverse()
+        System.out.println("Testing reverse()...");
+        System.out.println(reverse(dictionary)+" should be Zebra, Aardvark, Apple, Hi, Hello");
+        //Testing removeSmallest()
+        System.out.println("Testing removeSmallest()...");
+        ArrayList<Integer> nums=new ArrayList<>(Arrays.asList({2,3,4,5,1,6,7}));
+        System.out.println();
 
     }
-    public static void print2d(ArrayList<ArrayList<Object>> list){
-        for(ArrayList<Object> el:list) for(Object elem: el) System.out.println(elem.toString()+" ");
+    public static void print2d(ArrayList<ArrayList<String>> list){
+        for(ArrayList<String> el:list){ for(String elem: el) System.out.print(elem+" ");System.out.println();}
     }
     public static final String alphabet="abcdefghijklmnopqrstuvwxyz";
     /**
@@ -25,7 +39,7 @@ public class ch11HW {
             rtn.add(new ArrayList<String>());
         }
         for(String word: words){ //visits every word and copies it into its "bucket"
-            rtn.get(alphabet.indexOf(word.charAt(0))).add(word); //instead of the alphabet String and using indexOf(), we could use Character.getNumericalValue(char)
+            rtn.get(alphabet.indexOf(Character.toLowerCase(word.charAt(0)))).add(word); //instead of the alphabet String and using indexOf(), we could use Character.getNumericalValue(char)
         }
         return rtn;
     }
