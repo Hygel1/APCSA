@@ -5,7 +5,6 @@ public class TestList{
         MyArrayList<String> names=new MyArrayList<>();
         MyArrayList<String> names1=new MyArrayList<>(10);
         MyArrayList<Integer> list=new MyArrayList<>(4);
-        list.fillIn(4);
     
         names.add("sean");names.add("michael");names.add("mcloughlin");
         //testing isFull
