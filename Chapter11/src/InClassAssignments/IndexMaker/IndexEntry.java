@@ -5,7 +5,11 @@ public class IndexEntry {
     public IndexEntry(String name){
         word=name.toUpperCase();
     }
-    public void add(int num){
+    public IndexEntry(String name, int line){
+        word=name.toUpperCase();
+        numList.add(line);
+    }
+    public void addLineNum(int num){
         numList.add(num);   
     }
     public String getWord(){

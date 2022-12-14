@@ -30,7 +30,7 @@ public class IndexMaker
     }
 
     BufferedReader inputFile =
-                 new BufferedReader(new FileReader(fileName), 1024);
+                 new BufferedReader(new FileReader("C:\\Users\\SeanMcLoughlin23\\Documents\\GitHub\\APCSA\\Chapter11\\"+fileName), 1024);
 
     // Create output file:
 
