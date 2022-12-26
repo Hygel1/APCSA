@@ -23,9 +23,9 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
         int end;
         while(str.length()>0){
             end=0;
-            while(end<str.length()-1&&Character.isLetter((str.charAt(end)))) end++;
+            while(end<str.length()&&Character.isLetter((str.charAt(end)))) end++;
             addWord(str.substring(0,end),line);
-            while(end<str.length()-1&&!Character.isLetter(str.charAt(end))) end++;
+            while(end<str.length()&&!Character.isLetter(str.charAt(end))) end++;
             str=str.substring(end);
         }
     }
