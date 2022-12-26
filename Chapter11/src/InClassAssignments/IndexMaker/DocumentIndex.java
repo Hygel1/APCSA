@@ -12,36 +12,30 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
      * @param line
      */
     public void addWord(String word, int line){
-        try{get(foundOrInserted(word)).addLineNum(line);} catch(NullPointerException e){System.out.println(e);}
+        get(foundOrInserted(word)).addLineNum(line);
+        //try{get(foundOrInserted(word)).addLineNum(line);} catch(NullPointerException e){System.out.println(e);}
     }
     /**
-     * adds all words to the list by finding where the word ends and calling addWord() with the found word
+     * adds all word to list, separating them using .split
      * @param str
      * @param line
      */
     public void addAllWords(String str,int line){
-        int end;
-        while(str.length()>0){
-            end=0;
-            while(end<str.length()&&Character.isLetter((str.charAt(end)))) end++;
-            addWord(str.substring(0,end),line);
-            while(end<str.length()&&!Character.isLetter(str.charAt(end))) end++;
-            str=str.substring(end);
-        }
-    }
-    public void addAllWordsSplit(String str,int line){
         for(String word: str.split("\\W+")){
             if(word.length()>0) addWord(word, line);
         }
     }
+    /**
+     * finds duplicate words in the created list. If the word being searched for is already in the list, the line number is added to the existing entry, otherwise the optimal index is returned
+     * @param word
+     * @return
+     */
     public int foundOrInserted(String word){
         //this.compareTo(other)>0 is the same as this > other
         for(int i=0;i<size();i++){
-            if(get(i).toString().equalsIgnoreCase(word)) return i;
-            else if(get(i).toString().compareToIgnoreCase(word)>0){
-                add(i,new IndexEntry(word));
-                return i;
-            }
+            String cpm2=get(i).getWord();
+            int cmp=cpm2.compareToIgnoreCase(word);
+             if(cmp>0){add(i,new IndexEntry(word)); return i;}if(cmp==0) return i;
         }
         add(new IndexEntry(word)); //add to the end
         return size()-1; //if it gets to the end without finding a solution, the word belongs at the end of the list   

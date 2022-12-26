@@ -1,4 +1,16 @@
 /**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  
+ * Assignment: Ch11 IndexMaker
+ * 
+ * Attribution: 
+ * 
+ * General Description: Prints an index to a text file in another file with a given name
+ * 
+ * Advanced: 
+ */
+/**
  * This program takes a text file, creates an index (by line numbers)
  *  for all the words in the file and writes the index
  *  into the output file.  The program takes input and output file names
@@ -30,7 +42,7 @@ public class IndexMaker
     }
 
     BufferedReader inputFile =
-                 new BufferedReader(new FileReader("C:\\Users\\SeanMcLoughlin23\\Documents\\GitHub\\APCSA\\Chapter11\\"+fileName), 1024);
+                 new BufferedReader(new FileReader(fileName), 1024);
 
     // Create output file:
 
@@ -54,7 +66,7 @@ public class IndexMaker
     while ((line = inputFile.readLine()) != null)
     {
       lineNum++;
-      index.addAllWords(line, lineNum);
+      index.addAllWords(line,lineNum);
     }
 
     // Save index:
