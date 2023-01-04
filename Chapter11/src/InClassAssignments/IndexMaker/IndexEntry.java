@@ -21,8 +21,11 @@ public class IndexEntry {
     public String getWord(){
         return word;
     }
+    public int numLines(){
+        return numList.size();
+    }
     //parses the entry as a readable String
     public String toString(){
-        return word+" "+numList;
+        return word+" "+numList.toString().substring(1,numList.toString().length()-1);
     }
 }
