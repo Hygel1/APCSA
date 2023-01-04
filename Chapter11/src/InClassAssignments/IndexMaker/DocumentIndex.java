@@ -40,4 +40,63 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
         add(new IndexEntry(word)); //add to the end
         return size()-1; //if it gets to the end without finding a solution, the word belongs at the end of the list   
     }
-}
+    /**
+     * finds the longest word in the list by running through the list and comparing to the current longest (ind)
+     * @return
+     */
+    public IndexEntry findLongestWord(){
+        int ind=0,indL=get(0).getWord().length(); //ind to hold index, indL to hold the longest length (prevents repeat operations)
+        for(int i=1;i<size();i++){
+            if(get(i).getWord().length()>indL){
+                indL=get(i).getWord().length();
+                ind=i;
+            }
+        }
+        return get(ind);
+    }
+    /**
+     * finds the shortest word in the list by running through the list and comparing to the current shortest (ind)
+     * @return
+     */
+    public IndexEntry findShortestWord(){
+        int ind=0,indL=get(0).getWord().length();
+        for(int i=1;i<size();i++){
+            if(get(i).getWord().length()<indL){
+                indL=get(i).getWord().length();
+                ind=i;
+            }
+        }
+        return get(ind);
+    }
+    /**
+     * finds the word with the most line numbers associated with it
+     * @return
+     */
+    public IndexEntry findMostCommon(){
+        int ind=0, indL=get(0).numLines();
+        for(int i=1;i<size();i++){
+            if(indL<get(i).numLines()){
+                indL=get(i).numLines();
+                ind=i;
+            }
+        }
+        return get(ind);
+        }
+        /**
+         * finds the word with the least line numbers associated with it
+         * the lowest possible number is 1 line, otherwise there should be no index -- because of this, the first instance of 1 occurence is returned if found
+         * @return
+         */
+        public IndexEntry findLeastCommon(){
+            int ind=0, indL=get(0).numLines();
+            for(int i=1;i<size();i++){
+                if(get(i).numLines()==0) return get(i);
+                if(get(i).numLines()<indL){
+                    ind=i;
+                    indL=get(i).numLines();
+                }
+            }
+            return get(ind);
+        }
+        
+    }
