@@ -17,13 +17,10 @@
  *  into the output file.  The program takes input and output file names
  *  from the command-line args or prompts the user for the file names.
  */
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import org.json.simple.JSONObject;
+import org.json.JSONObject; //external library that requries path editing
+import java.net.*;
+import java.io.*;
 
 public class IndexMaker
 {
@@ -74,8 +71,19 @@ public class IndexMaker
     keyboard.close();
     System.out.println("Done.");
   }
-  public String getDefinition(String word){
-    JSONObject obj=new JSONObject();
+  public String getDefinition(String word) throws MalformedURLException{
+    //URL url=new URL();
+    JSONObject jso;
+    String rtn="";
+    try {
+      BufferedReader urlRead=new BufferedReader(new InputStreamReader(new URL("https://api.dictionaryapi.dev/pai/v2/entries/en/"+word).openConnection().getInputStream()));
+      jso=new JSONObject(urlRead.readLine());
+      rtn=jso.getString("word");
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return rtn;
   }
 }
 

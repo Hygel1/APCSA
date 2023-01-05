@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch testFile",
+            "request": "launch",
+            "mainClass": "testFile",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
             "name": "Launch Test1Exam",
             "request": "launch",
             "mainClass": "Chapter11.src.Test1Exam",
