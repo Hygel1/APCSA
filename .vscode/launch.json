@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Oxford",
+            "request": "launch",
+            "mainClass": "Oxford",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch testtestttttest",
+            "request": "launch",
+            "mainClass": "testtestttttest",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch Test1Exam",
             "request": "launch",
             "mainClass": "Chapter11.src.Test1Exam",
