@@ -5,11 +5,14 @@
  * Date of Completion:  
  * Assignment: Ch11 IndexMaker
  * 
- * Attribution: 
+ * Attribution:
+ *  https://dictionaryapi.dev/ - api used to get info
+ *  Apache JSONArray library - used to read the JSON input as a JSONArray (note: in order to run this, you need to download the )
  * 
- * General Description: Prints an index to a text file in another file with a given name
  * 
- * Advanced: 
+ * General Description: Prints an index to a given file along with some other information about the contents of the index
+ * 
+ * Advanced: Accesses a dictionary api to get the definition of words
  */
 /**
  * This program takes a text file, creates an index (by line numbers)
@@ -23,9 +26,11 @@ import java.net.*;
 import java.io.*;
 import org.json.JSONArray;
 import org.json.JSONException;
-
+import java.util.ArrayList;
 public class IndexMaker
 {
+  // Create index:
+  private static DocumentIndex index = new DocumentIndex();
   public static void main(String[] args) throws IOException
   {
     Scanner keyboard = new Scanner(System.in);
@@ -47,8 +52,7 @@ public class IndexMaker
     }
     PrintWriter outputFile = new PrintWriter(new FileWriter(fileName));
 
-    // Create index:
-    DocumentIndex index = new DocumentIndex();
+    
 
     long time=System.currentTimeMillis();
     String line;
@@ -71,13 +75,13 @@ public class IndexMaker
     outputFile.println("Longest word: "+index.findLongestWord().getWord());
     outputFile.println("Least frequent word: "+index.findLeastCommon().getWord());
     outputFile.println("Most frequent word: "+index.findMostCommon().getWord());
-    outputFile.println("Definition of longest word: "+getDefinition(index.findLongestWord().getWord()));
-    outputFile.println("Definition of most common word: "+getDefinition(index.findMostCommon().getWord()));
+    outputFile.println("Definition of longest word("+index.findLongestWord().getWord()+"): "+getDefinition(index.findLongestWord().getWord()));
+    outputFile.println("Definition of most common word ("+index.findMostCommon().getWord()+"): "+getDefinition(index.findMostCommon().getWord()));
 
     time-=System.currentTimeMillis();
-    outputFile.print(fileContents);
+    outputFile.println(fileContents);
     time+=System.currentTimeMillis();
-
+    outputFile.print("Time:"+(double)time/60000+" minutes");
     // Finish and close objects:
     
     inputFile.close();
@@ -91,6 +95,7 @@ public class IndexMaker
    * @param word word to be found
    * @return
    */
+  private static ArrayList<String> exclusion=new ArrayList<>(1);
   public static String getDefinition(String word){
     String rtn="";
     try { //Some of these lines throw exceptions, so it is necessary to catch and deal with them accordingly
@@ -98,19 +103,37 @@ public class IndexMaker
       StringBuilder sb = new StringBuilder(); //initialize String builder to create storage of JSON
       String line; //temp variable to hold current line of JSON while building its replica
   
-      while ((line = urlRead.readLine()) != null) //While there is a line to read, read the next line and add it to the StringBuilder object
-      {
-        sb.append(line);
-      }
+      while ((line = urlRead.readLine()) != null)
+        sb.append(line); //While there is a line to read, read the next line and add it to the StringBuilder object
       JSONArray jso = new JSONArray(sb.toString()); //Convert the StringBuilder object to an actual String, then make a JSONArray with it (containg the JSONObjects with the necessary info)
       //Traverses the JSONArray to find the first and likely the most relevant definition of the word, it would be possible to find every definition but this would be a lot of excess data
       rtn=jso.getJSONObject(0).getJSONArray("meanings").getJSONObject(0).getJSONArray("definitions").getJSONObject(0).getString("definition");
       //System.out.println(jso.getJSONObject(0).getJSONArray("meanings").getJSONObject(0).getJSONArray("definitions").getJSONObject(0).getString("definition")); //Testing
     } 
-    catch (Exception e) { //for other exceptions, print the issue
-      
-      if(e.equals(new MalformedURLException())) rtn="The dictionary api is either down or not connecting";
-      else if(e.equals(new JSONException(e))||e.equals(new FileNotFoundException())) rtn="Word not found in dictionary";
+    catch (Exception e) { //return error messages if there is an error
+      if(e.getClass()==new MalformedURLException().getClass()) rtn="The dictionary api is either down or not connecting";
+      else if(e.getClass()==new FileNotFoundException().getClass()){ 
+        while(e.getClass()==new FileNotFoundException().getClass()){
+          exclusion.add(word);
+          System.out.println(index.findLongestWord(exclusion));
+          /**
+           * This while loop is pretty dumb but I was just using it for testing
+           * exclusion is meant to be a list of words not to be used and it works, but findLongestWord is meand to use it as a blacklist,
+           * which doesn't work as intended
+           * 
+           * Just need to get the blacklist and reroll working and it should be fine - necessary patch
+           * 
+           * 
+           * 
+           * 
+           * 
+           */
+          
+        }
+        //if the word cannot be found in the dictionary, exclude it from the count and find the next longest
+        rtn="Longest could not be found in dictionary; longest real word: "+rtn;
+      }
+      else if(e.getClass()==new JSONException(e.getMessage()).getClass()) rtn="Word not found in dictionary";
       else e.printStackTrace();
     }
     return rtn;

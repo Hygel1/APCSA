@@ -54,6 +54,20 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
         }
         return get(ind);
     }
+    public IndexEntry findLongestWord(ArrayList<String> exclude){
+        int ind=0,indL=get(0).getWord().length(); //ind to hold index, indL to hold the longest length (prevents repeat operations)
+        for(int i=1;i<size();i++){
+            if(exclude.contains(get(i).getWord())&&get(i).getWord().length()>indL){
+                System.out.println("found something");
+                indL=get(i).getWord().length();
+                ind=i;
+            }
+        }
+        return get(ind);
+    }
+    public boolean contains(String[] arr, String word){
+        for(String el: arr) if(word.equals(el)) return true; return false;
+    }
     /**
      * finds the shortest word in the list by running through the list and comparing to the current shortest (ind)
      * @return

@@ -1,4 +1,0 @@
-- because Fibonacci grows pretty large, we can't represent the larger values with ints
-- BigIntegers can be used to represent integers of huge value, allowing you to keep track of huge values
-    - each digit in the number is stored in its own array element
-    - arrays have to be able to grow
