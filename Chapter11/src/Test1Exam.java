@@ -1,11 +1,9 @@
 /**
  * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
- * Date of Completion: 11/29/2022
+ * Date of Completion: 12/15/2022
  * Assignment: Term 1 Exam corrections
- * 
- * Attribution: 
- * 
+ *  
  * General Description: copy of written portion of exam with corrections
  */
 import java.util.Arrays;

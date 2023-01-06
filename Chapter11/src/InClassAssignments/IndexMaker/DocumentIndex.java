@@ -13,7 +13,6 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
      */
     public void addWord(String word, int line){
         get(foundOrInserted(word)).addLineNum(line);
-        //try{get(foundOrInserted(word)).addLineNum(line);} catch(NullPointerException e){System.out.println(e);}
     }
     /**
      * adds all word to list, separating them using .split
@@ -35,7 +34,8 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
         for(int i=0;i<size();i++){
             String cpm2=get(i).getWord();
             int cmp=cpm2.compareToIgnoreCase(word);
-             if(cmp>0){add(i,new IndexEntry(word)); return i;}if(cmp==0) return i;
+             if(cmp>0){add(i,new IndexEntry(word)); return i;}
+             if(cmp==0) return i;
         }
         add(new IndexEntry(word)); //add to the end
         return size()-1; //if it gets to the end without finding a solution, the word belongs at the end of the list   

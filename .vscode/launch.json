@@ -6,16 +6,30 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Oxford",
+            "name": "Launch testFile",
             "request": "launch",
-            "mainClass": "Oxford",
+            "mainClass": "testFile",
             "projectName": "APCSA_88719d09"
         },
         {
             "type": "java",
-            "name": "Launch testtestttttest",
+            "name": "Launch dictFind",
             "request": "launch",
-            "mainClass": "testtestttttest",
+            "mainClass": "dictFind",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch OxfordSearch",
+            "request": "launch",
+            "mainClass": "OxfordSearch",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch Oxford",
+            "request": "launch",
+            "mainClass": "Oxford",
             "projectName": "APCSA_88719d09"
         },
         {
