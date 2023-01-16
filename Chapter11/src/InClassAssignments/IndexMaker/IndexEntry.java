@@ -26,6 +26,6 @@ public class IndexEntry {
     }
     //parses the entry as a readable String
     public String toString(){
-        return word+" "+numList.toString().substring(1,numList.toString().length()-1);
+        return word+" ("+numList.size()+") "+numList.toString().substring(1,numList.toString().length()-1);
     }
 }

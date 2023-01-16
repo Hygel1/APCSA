@@ -1,19 +1,3 @@
-
-/**
- * Sean McLoughlin
- * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
- * Date of Completion:  
- * Assignment: Ch11 IndexMaker
- * 
- * Attribution:
- *  https://dictionaryapi.dev/ - api used to get info
- *  Apache JSONArray library - used to read the JSON input as a JSONArray (note: in order to run this, you need to download the )
- * 
- * 
- * General Description: Prints an index to a given file along with some other information about the contents of the index
- * 
- * Advanced: Accesses a dictionary api to get the definition of words
- */
 /**
  * This program takes a text file, creates an index (by line numbers)
  *  for all the words in the file and writes the index
@@ -21,13 +5,13 @@
  *  from the command-line args or prompts the user for the file names.
  */
 import java.util.Scanner;
-import org.json.JSONObject; //external library that requries path editing
 import java.net.*;
 import java.io.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;
 public class IndexMaker
+
 {
   // Create index:
   private static DocumentIndex index = new DocumentIndex();
@@ -53,7 +37,6 @@ public class IndexMaker
     PrintWriter outputFile = new PrintWriter(new FileWriter(fileName));
 
     
-
     long time=System.currentTimeMillis();
     String line;
     int lineNum = 0;
@@ -69,25 +52,53 @@ public class IndexMaker
     
       //output required statistics/details  
     outputFile.println("File Name: "+fileName);
-    outputFile.println("Runtime: "+time);
     outputFile.println("Number of distinct words: "+index.size());
-    outputFile.println("Shortest meaningful word "+""); //define meaningful in method first
+    outputFile.println("Shortest meaningful word: "+index.findShortestWord().getWord());
     outputFile.println("Longest word: "+index.findLongestWord().getWord());
     outputFile.println("Least frequent word: "+index.findLeastCommon().getWord());
     outputFile.println("Most frequent word: "+index.findMostCommon().getWord());
-    outputFile.println("Definition of longest word("+index.findLongestWord().getWord()+"): "+getDefinition(index.findLongestWord().getWord()));
+    outputFile.println("Definition of longest word("+index.findLongestWord().getWord()+"): "+longDef());
     outputFile.println("Definition of most common word ("+index.findMostCommon().getWord()+"): "+getDefinition(index.findMostCommon().getWord()));
 
     time-=System.currentTimeMillis();
     outputFile.println(fileContents);
     time+=System.currentTimeMillis();
-    outputFile.print("Time:"+(double)time/60000+" minutes");
-    // Finish and close objects:
+    outputFile.print("Runtime for indexing:"+(double)time/60000+" minutes");
     
+    // Finish and close objects:
     inputFile.close();
     outputFile.close();
     keyboard.close();
     System.out.println("Done.");
+  }
+  
+  /**
+   * finds the definition of the longest word using getDefinition
+   * @return
+   */
+  private static ArrayList<String> exclusion=new ArrayList<>(1); //used to track undefinable words
+  /*private static String longDef(){
+    Object rtn=getDefinition(index.findLongestWord(exclusion).getWord());//Find the definition of the longest word, excluding previously established non-words (if there is no definition available, an error is returned)
+    if(rtn.getClass()==String.class) return rtn.toString(); //If the returned Object is a String, not an error, return that
+    //System.out.println(rtn.getClass().toString());  
+    /**
+       * If the word searched for is not in the dictionary, search for the longest real word
+       * in the event of several nonreal words, the method will have recursed, increasing the size of stacktrace. This can be used to determine whether or not to add the front statement to the returned value (Longest could...)
+       *
+      exclusion.add(index.findLongestWord(exclusion).getWord()); //If the returned Object is an error (not String), add it to the list and keep moving
+      //System.out.println(Arrays.toString((Thread.currentThread().getStackTrace())));
+      if(Thread.currentThread().getStackTrace().length>3) return longDef(); //if needed, recurse the method
+      else return "Longest could not be found in dictionary; definition of longest real word: "+longDef(); //if needed, recurse the method with front statement
+  } */
+  private static String longDef(){
+    Object rtn=getDefinition(index.findLongestWord(exclusion).getWord());//Find the definition of the longest word, excluding previously established non-words (if there is no definition available, an error is returned)
+    while(rtn.getClass()!=String.class){
+      exclusion.add(index.findLongestWord(exclusion).getWord());
+      rtn=getDefinition(index.findLongestWord(exclusion).getWord());
+    }
+    if(exclusion.size()>0) return "Longest could not be found in dictionary; longest real word def: "+rtn.toString();
+    return rtn.toString(); //If the returned Object is a String, not an error, return that
+
   }
   /**
    * finds the definition of the given word using Free Dictionary API, an open source dictionary api created by meetDeveloper on GitHub
@@ -95,8 +106,7 @@ public class IndexMaker
    * @param word word to be found
    * @return
    */
-  private static ArrayList<String> exclusion=new ArrayList<>(1);
-  public static String getDefinition(String word){
+  public static Object getDefinition(String word){
     String rtn="";
     try { //Some of these lines throw exceptions, so it is necessary to catch and deal with them accordingly
       BufferedReader urlRead=new BufferedReader(new InputStreamReader(new URL("https://api.dictionaryapi.dev/api/v2/entries/en/"+word).openConnection().getInputStream())); //open connection to api
@@ -111,29 +121,9 @@ public class IndexMaker
       //System.out.println(jso.getJSONObject(0).getJSONArray("meanings").getJSONObject(0).getJSONArray("definitions").getJSONObject(0).getString("definition")); //Testing
     } 
     catch (Exception e) { //return error messages if there is an error
-      if(e.getClass()==new MalformedURLException().getClass()) rtn="The dictionary api is either down or not connecting";
-      else if(e.getClass()==new FileNotFoundException().getClass()){ 
-        while(e.getClass()==new FileNotFoundException().getClass()){
-          exclusion.add(word);
-          System.out.println(index.findLongestWord(exclusion));
-          /**
-           * This while loop is pretty dumb but I was just using it for testing
-           * exclusion is meant to be a list of words not to be used and it works, but findLongestWord is meand to use it as a blacklist,
-           * which doesn't work as intended
-           * 
-           * Just need to get the blacklist and reroll working and it should be fine - necessary patch
-           * 
-           * 
-           * 
-           * 
-           * 
-           */
-          
-        }
-        //if the word cannot be found in the dictionary, exclude it from the count and find the next longest
-        rtn="Longest could not be found in dictionary; longest real word: "+rtn;
-      }
-      else if(e.getClass()==new JSONException(e.getMessage()).getClass()) rtn="Word not found in dictionary";
+      if(e.getClass()==new MalformedURLException().getClass()) return "The dictionary api is either down or not connecting";
+      else if(e.getClass()==new FileNotFoundException().getClass()) return new Exception();
+      else if(e.getClass()==new JSONException(e.getMessage()).getClass()) return "JSONException error, likely a malformed JSON response";
       else e.printStackTrace();
     }
     return rtn;

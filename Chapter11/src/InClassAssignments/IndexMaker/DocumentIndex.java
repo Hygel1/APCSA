@@ -1,5 +1,31 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  1/8/2023
+ * Assignment: Ch11 IndexMaker
+ * 
+ * Attribution:
+ *  http://blog.vogella.com/2014/10/22/accessing-the-caller-information-of-a-method-in-java-code/#:~:text=Sometimes%20it%20is%20nice%20to,method%20on%20the%20current%20thread - how to use stacktrace
+ *  https://dictionaryapi.dev/ - api used to get info
+ *  https://github.com/stleary/JSON-java - library used to interact with JSON (must be installed in classpath to run file, download is the first link in README)
+ * 
+ * General Description:
+ *  Creates and prints an index to the given file, processing it line by line.
+ *  A new word is created upon the occurence of a unique trimmed string of words, excluding anything that begins with
+ *  a nonletter character - punctuation and numbers are excluded this way. The data is stored in a StringBuilder object
+ *  and outputted to the file when the StringBuilder is fully built. The whole text only has to be passed through once but the 
+ *  index must be passed through multiple times in order to complete all tasks. The timer counts the total runtime for basic 
+ *  indexing functions (building and printing the index), excluding the time taken to process metadata because the time taken
+ *  to repeatedly reach the api would significantly increase the time.
+ * 
+ * runtime on war and peace: 2.05 Minutes
+ * runtime on odyssey: .12 minutes
+ * 
+ * Advanced: Accesses a dictionary api to get the definition of words
+ */
 import java.util.ArrayList;
 public class DocumentIndex extends ArrayList<IndexEntry> {
+    private String[] noSig={"it","the","they","he","she","them","him","his","a"};
     public DocumentIndex(){
         super(); //since DocumentIndex extends ArrayList<IndexEntry>, super() invokes an ArrayList<IndexEntry> for us
     }
@@ -12,7 +38,7 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
      * @param line
      */
     public void addWord(String word, int line){
-        get(foundOrInserted(word)).addLineNum(line);
+            if(Character.isLetter(word.charAt(0))) get(foundOrInserted(word)).addLineNum(line);
     }
     /**
      * adds all word to list, separating them using .split
@@ -54,17 +80,27 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
         }
         return get(ind);
     }
+    /**
+     * finds the longest word excluding words that are in exclude
+     * @param exclude
+     * @return
+     */
     public IndexEntry findLongestWord(ArrayList<String> exclude){
         int ind=0,indL=get(0).getWord().length(); //ind to hold index, indL to hold the longest length (prevents repeat operations)
         for(int i=1;i<size();i++){
-            if(exclude.contains(get(i).getWord())&&get(i).getWord().length()>indL){
-                System.out.println("found something");
+            if(!exclude.contains(get(i).getWord())&&get(i).getWord().length()>indL){
                 indL=get(i).getWord().length();
                 ind=i;
             }
         }
         return get(ind);
     }
+    /**
+     * returns true if word is equal to an element of arr and false otherwise
+     * @param arr
+     * @param word
+     * @return
+     */
     public boolean contains(String[] arr, String word){
         for(String el: arr) if(word.equals(el)) return true; return false;
     }
@@ -75,7 +111,7 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
     public IndexEntry findShortestWord(){
         int ind=0,indL=get(0).getWord().length();
         for(int i=1;i<size();i++){
-            if(get(i).getWord().length()<indL){
+            if(!contains(noSig,get(i).getWord())&&get(i).getWord().length()<indL){
                 indL=get(i).getWord().length();
                 ind=i;
             }
@@ -89,7 +125,7 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
     public IndexEntry findMostCommon(){
         int ind=0, indL=get(0).numLines();
         for(int i=1;i<size();i++){
-            if(indL<get(i).numLines()){
+            if(!contains(noSig,get(i).getWord())&&indL<get(i).numLines()){
                 indL=get(i).numLines();
                 ind=i;
             }
