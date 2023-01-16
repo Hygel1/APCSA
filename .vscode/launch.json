@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch RecursionPractice",
+            "request": "launch",
+            "mainClass": "RecursionPractice",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch towersOfHanoi",
+            "request": "launch",
+            "mainClass": "towersOfHanoi",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch testFile",
             "request": "launch",
             "mainClass": "testFile",
