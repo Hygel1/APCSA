@@ -1,5 +1,3 @@
-import java.nio.file.FileAlreadyExistsException;
-
 public class ch13BookWork {
     public static void main(String args[]){
         int[] nums={2,3,4,1,5,6,8,2};
@@ -7,7 +5,7 @@ public class ch13BookWork {
         System.out.println(product(4,1)+" should be 4");
 
         System.out.println(findMin(nums,5)+" should be 1");
-        System.out.println(findMin(nums,3)+" should be 2");
+        System.out.println(findMin(nums,2)+" should be 2");
         
         printTriangle(5);
         System.out.println();
@@ -20,7 +18,7 @@ public class ch13BookWork {
         System.out.println(div3(332)+" should be false");
 
         System.out.println(fib(0)+" should be 0");
-        System.out.println(fib(12)+" should be 144");
+        System.out.println(fib(13)+" should be 144");
 
         System.out.println(binomialCoefficient(3,2)+" should be 3");
         System.out.println(binomialCoefficient(4,2)+" should be 6");
@@ -33,7 +31,7 @@ public class ch13BookWork {
      */
     public static int product(int x, int num){
         if(num==0) return 0;
-        return num+product(x,num-1);
+        return x+product(x,num-1);
     }
     /**
      * 2. 15
@@ -77,10 +75,7 @@ public class ch13BookWork {
      * 8b. returns true if a number is divisible by 3 using recursion and no mathematical operators
      */
     private static boolean div3(int n){
-        int sum=n;
-        do{
-            sum=sumDigits(sum);
-        }while(sum>10);
+        if(n>9) return div3(sumDigits(n));
         return n==3||n==6||n==9;
     }
     /**
@@ -94,7 +89,7 @@ public class ch13BookWork {
     private static int fib(int n){
         if(n==0) return n;
         int one=0,two=1;
-        for(int i=0;i<n;i++){
+        for(int i=2;i<n;i++){
             int temp=two;
             two=one+two;
             one=temp;
