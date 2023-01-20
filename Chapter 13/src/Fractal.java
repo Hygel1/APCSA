@@ -15,7 +15,7 @@ public class Fractal extends JPanel
   public void paintComponent(Graphics g)
   {
     super.paintComponent(g);
-    drawTriangles(g, 100, 80, 64);
+    drawTriangles(g, 400, 600, 300);
   }
 
   /**
@@ -24,11 +24,12 @@ public class Fractal extends JPanel
    */
   public void drawTriangles(Graphics g, int x, int y, int r)
   {
-    if(r<10){
+    if(r<1){
       return;
     }
-    g.drawLine(x-r,y,x,y+r);
-    g.drawLine(x+r,y,x,y+r);
+    g.drawLine(x-r,y,x,y-r);
+    g.drawLine(x+r,y,x,y-r);
+    g.drawLine(x+r,y,x-r,y);
     drawTriangles(g,x-r/2,y,r/2);
     drawTriangles(g,x+r/2,y,r/2);
   }
@@ -36,13 +37,13 @@ public class Fractal extends JPanel
   public static void main(String[] args)
   {
     JFrame w = new JFrame("Triangles");
-    w.setBounds(300, 300, 200, 120);
+    w.setBounds(800, 800, 1000, 1000);
     w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Fractal panel = new Fractal();
     panel.setBackground(Color.WHITE);
     Container c = w.getContentPane();
     c.add(panel);
-    w.setResizable(false);
+    w.setResizable(true);
     w.setVisible(true);
   }
 }

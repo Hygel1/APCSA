@@ -133,11 +133,11 @@ public class ch13BookWork {
      * 18. recursively computes th sequence x(n+1)=1+1/[x(n)]
      */
     private static double sequence18(int n){
-        if(n>1) return 0; if(n==1) return 1;
+        if(n<1) return 0; if(n==1) return 1;
         return 1+1/sequence18(n-1);
     }
     /**
-     * 19.
+     * 19. in other file
      */
     
 }
