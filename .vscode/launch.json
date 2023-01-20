@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ch13BookWork",
+            "request": "launch",
+            "mainClass": "ch13BookWork",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch RecursionPractice",
             "request": "launch",
             "mainClass": "RecursionPractice",
