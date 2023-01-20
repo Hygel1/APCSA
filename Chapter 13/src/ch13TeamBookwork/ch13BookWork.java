@@ -1,3 +1,14 @@
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  1/20/23
+ * Assignment: chapter 13 Bookwork
+ * 
+ * Attribution: Becca Jose
+ * 
+ * General Description: chapter 13 bookwork
+ */
+package ch13TeamBookwork;
 public class ch13BookWork {
     public static void main(String args[]){
         int[] nums={2,3,4,1,5,6,8,2};

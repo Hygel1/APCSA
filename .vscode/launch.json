@@ -8,6 +8,20 @@
             "type": "java",
             "name": "Launch Fractal",
             "request": "launch",
+            "mainClass": "ch13TeamBookwork.Fractal",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch ch13BookWork",
+            "request": "launch",
+            "mainClass": "ch13TeamBookwork.ch13BookWork",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch Fractal",
+            "request": "launch",
             "mainClass": "Fractal",
             "projectName": "APCSA_88719d09"
         },
