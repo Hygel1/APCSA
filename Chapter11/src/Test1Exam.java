@@ -215,8 +215,6 @@ public class Test1Exam {
         }
         while(p1<list1.length){rtn[p1+p2]=list1[p1]; p1++;}
         while(p2<list2.length){rtn[p1+p2]=list2[p2]; p2++;}
-        //if(p1<list1.length) for(int i=p2+p1;i<list2.length;i++) rtn[p2]=list1[i];
-        //else if(p2<list2.length) for(int i=p2+p1;i<list2.length;i++) rtn[p1]=list2[i];
         return rtn;
     }
     /**
