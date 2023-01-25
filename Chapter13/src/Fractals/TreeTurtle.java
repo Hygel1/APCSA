@@ -1,6 +1,11 @@
 package Fractals;
 import java.awt.Color;
-
+import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import edu.gatech.mediaprogramming.*; //GT turtle library
 /**
  * turtle commands
@@ -17,10 +22,15 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         t.moveTo(100, 350);
         t.setColor(Color.BLACK);
         t.penDown();
-        t.turn(90);
+        t.turn(90); 
+        t.drawChip(8,300);
         //t.drawTree(9, 200);
         //t.drawKochCurve(9, 500);
         //t.drawSierpinski(8, 350);
+        
+    }
+    public TreeTurtle(){
+        
     }
     /**
      * turtle will always return to its initial state at the base of the tree just drawn
@@ -88,31 +98,43 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             turn(-120);
         }
     }
-    public static void drawPascal(int times, int number){
-        
+    public void drawChip(int iterations, double side){
+        if(iterations==0){
+            forward(side);
+            turn(-90);
+            forward(side);
+            turn(-90);
+            forward(side);
+            turn(-90);
+            forward(side);
+            turn(-90);
+        }
+        else{
+            drawChip(iterations-1,side/3);
+            turn(-90);
+            forward(2*side/3);
+            turn(90);
+            drawChip(iterations-1,side/3);
+            turn(90);
+            forward(2*side/3);
+            turn(-90);
+            forward(2*side/3);
+            drawChip(iterations-1, side/3);
+            forward(side/3);
+            turn(-90);
+            forward(2*side/3);
+            turn(-90);
+            forward(side/3);
+            turn(180);
+            drawChip(iterations-1,side/3);
+            turn(-90);
+            forward(side/3);
+            turn(-90);
+            forward(2*side/3);
+            turn(-90);
+            forward(side);
+            turn(-90);
+        }
     }
-    public static void mandelbrot(){
 
-
-    }
-    public class ComplexNumber{
-        double real,com;
-        public ComplexNumber(double real, double com){
-            this.real=real;
-            this.com=com;
-        }
-        public double getReal(){
-            return real;
-        }
-        public double getComplex(){
-            return com;
-        }
-        public ComplexNumber add(ComplexNumber n1, ComplexNumber n2){
-            return new ComplexNumber(n1.getReal()+n2.getReal(),n1.getComplex()+n2.getComplex());
-        }
-        public ComplexNumber multiply(ComplexNumber n1,ComplexNumber n2){
-            if(n1.getComplex()==0&&n2.getComplex()==0) return new ComplexNumber(n1.getReal()*n2.getReal(), 0);
-            else if(n1.getComplex()!=0&&n2.getComplex()==0)
-        }
-    }
 }
