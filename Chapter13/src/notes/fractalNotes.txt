@@ -1,0 +1,10 @@
+What is a fractal?
+    - Geometric object
+    - self-similar across scale
+        - picture inside a picture, each picture is another version of the larger picture
+    - recursive definition
+Fractal geometry
+    - blend of infinite and finite
+    - simple rules become complex images
+Coding
+    - method calls itself and ends in a base case to stop it from repeating forever

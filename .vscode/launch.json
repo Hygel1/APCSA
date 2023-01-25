@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TreeTurtle",
+            "request": "launch",
+            "mainClass": "Fractals.TreeTurtle",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch Fractal",
             "request": "launch",
             "mainClass": "ch13TeamBookwork.Fractal",
