@@ -1,0 +1,12 @@
+Algorithms should be general, compact, and abstract
+    - should be able to solve a family of problems
+    - should be as short as possible
+    - should not be language/environment specific
+    - in almost every context
+Recursion
+    - Must have a base case where there is an easily solved solution, which is written explicitly
+        - this is often able to be very short/specific, but not always
+        - base cases can be implicit
+    - Recursion must approach the base case
+    - problems get smaller as the program runs, then reclimbs the ladder, once the base case is reached
+Recursion is most useful in nested programming, where the answer of something must be searched for before it can be added

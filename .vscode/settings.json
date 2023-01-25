@@ -2,6 +2,7 @@
     "java.dependency.packagePresentation": "hierarchical",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "Chapter11/src/InClassAssignments/IndexMaker/lib/json-20220924.jar"
+        "Chapter11/src/InClassAssignments/IndexMaker/lib/json-20220924.jar",
+        "Chapter13/src/Fractals/lib/turtle.jar"
     ]
 }
