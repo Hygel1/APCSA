@@ -13,25 +13,60 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         System.out.println("yo");
         TreeTurtle t=new TreeTurtle();
         t.penUp();
-        t.moveTo(100, 550);
+        t.moveTo(100, 100);
         t.setColor(Color.BLACK);
         t.penDown();
         t.turn(90);
-        //Coastlines: II       Gaskets: II        Trees: II
+        //Coastlines: II       Gaskets: III        Trees: II
         //t.drawLumpyCoastline(3,100); //Coastline 2
         //t.drawChip(8,300); //Gasket 1
         //t.drawTree(9, 200); //Tree 1
         //t.drawTree2(8, 200); //Tree 2
         //t.drawKochCurve(5, 50); //Coastline 1
         //t.drawSierpinski(8, 350); //Gasket 2
+        //t.drawPent(3, 200); //Gasket 3
+         //t.drawRandomShape(5, 100); Gasket 4, 10th
+         t.drawDrag(10, 20);
+
         
     }
     public TreeTurtle(){
         
     }
-    public void drawOpenTree(int depth, int length){
-        if(depth==0)
+    public void drawDrag(int depth, double length){
+        if(depth==0){
+            forward(length);
+        }
+        else{
+            drawDrag(depth-1, length);
+            turn(90);
+            drawDrag(depth, length);
+        }
     }
+    /**
+     * recursively draws a series of inlaid shapes with a randomly selected number of sides, each shape is independently decided
+     * @param depth amount of times to repeat
+     * @param length length of each shape's side
+     */
+    public void drawRandomShape(int depth, double length){
+        int rand=(int)(Math.random()*7)+3;
+        if(depth==0){
+            for(int i=0;i<rand;i++){
+                forward(length);
+                turn(-360/rand);
+            }
+        }
+        else{
+            for(int i=0;i<rand;i++){
+                forward(length);
+                turn(-360/rand);
+            }
+            forward(length/4);
+            drawRandomShape(depth-1, length/2);
+            backward(length/4);
+        }
+    }
+
     /**
      * draws a lumpy looking coastline shape using fractals
      * @param iterations number of times to run, decrements with every iteration
@@ -54,6 +89,28 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             turn(-30);
             drawLumpyCoastline(iterations-1,length/2);
             
+        }
+    }
+    /**
+     * recursively draws inlaid pentagons
+     * @param depth depth to recurse, decrements with every call
+     * @param length //length of a side
+     */
+    public void drawPent(int depth, double length){
+        if(depth==0){
+            for(int i=0;i<5;i++){
+            forward(length);
+            turn(-72);
+            }
+        }
+        else{
+            for(int i=0;i<5;i++){
+                forward(length);
+                turn(-72);
+            }
+            forward(length/4);
+            drawPent(depth-1, length/2);
+            backward(length/4);
         }
     }
     /**
@@ -190,19 +247,6 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             turn(-90);
             forward(side);
             turn(-90);
-        }
-    }
-    public void drawMassTriangle(int iterations, double side){
-        if(iterations==0){
-            forward(side);
-            turn(-150);
-            forward(side/4);
-            turn(120);
-            forward(side/4);
-            turn(30);
-        }
-        else{
-            drawMassTriangle(iterations-1, side);
         }
     }
 }
