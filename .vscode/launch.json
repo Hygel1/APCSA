@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch AreaFill",
+            "request": "launch",
+            "mainClass": "FloodFill.AreaFill",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch GuitarHero",
             "request": "launch",
             "mainClass": "GuitarHero",

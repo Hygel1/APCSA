@@ -9,11 +9,12 @@ import edu.gatech.mediaprogramming.*; //GT turtle library
  */
 
 public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and imported from edu.gatech.mediaprogramming.*
+    static TreeTurtle t=new TreeTurtle();
     public static void main(String[] args){
         System.out.println("yo");
-        TreeTurtle t=new TreeTurtle();
+        
         t.penUp();
-        t.moveTo(100, 100);
+        t.moveTo(300, 100);
         t.setColor(Color.BLACK);
         t.penDown();
         t.turn(90);
@@ -26,21 +27,38 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         //t.drawSierpinski(8, 350); //Gasket 2
         //t.drawPent(3, 200); //Gasket 3
          //t.drawRandomShape(5, 100); Gasket 4, 10th
-         t.drawDrag(10, 20);
-
-        
+         t.drawSpiral(0,1000);
     }
     public TreeTurtle(){
         
     }
+    public void drawSpiral(int depth, double radius){
+        int turner=0;int y=t.getYPos();
+        if(depth==0){
+            for(int i=0;i<360;i++){
+                if(t.getYPos()==y) turner+=5;
+                forward((2*Math.PI*radius)/360);
+                turn(1+turner);
+            }
+        }
+    }
+    /**
+     * 
+     * @param depth
+     * @param length
+     */
     public void drawDrag(int depth, double length){
         if(depth==0){
             forward(length);
+            backward(length);
+            turn(-90);
         }
         else{
             drawDrag(depth-1, length);
-            turn(90);
-            drawDrag(depth, length);
+            for(int i=0;i<depth;i++){
+                turn(90);
+                forward(length);
+            }
         }
     }
     /**
