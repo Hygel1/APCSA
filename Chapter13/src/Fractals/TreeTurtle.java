@@ -39,7 +39,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param length length to draw, no length perfectly matches this value, though
      */
     public void drawBatman(int depth, double length){
-        if(depth==0){
+        if(depth==0){ //base case
             forward(length/3);
             turn(-80);
             forward(length*.8);
@@ -53,21 +53,22 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             forward(length*.9);
             turn(-70);
             forward(length/3);
+            //move forward, draw batman, move forward again to continue base
         }
         else{
-            forward(length/3);
-            turn(-80);
-            forward(length*.8);
-            turn(120);
-            forward(length/5);
-            turn(-40);
-            drawBatman(depth-1,length/3);
-            turn(-80);
-            forward(length/5);
-            turn(150);
-            forward(length*.9);
-            turn(-70);
-            drawBatman(depth-1, length);
+            forward(length/3); //start base
+            turn(-80); //prepare to rise
+            forward(length*.8); //sprout up
+            turn(120); //peak
+            forward(length/5); //drop to plateau
+            turn(-40); //prepare to fall
+            drawBatman(depth-1,length/3); //DRAW ANOTHER BATMAN
+            turn(-80); //preapare to rise
+            forward(length/5); //rise
+            turn(150); //peak
+            forward(length*.9); //back to base
+            turn(-70); //settle back to oringial angle
+            drawBatman(depth-1, length); //continue the saga
         }
     }
     /**
@@ -77,22 +78,22 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param one allows for child circles to turn in the opposite direction of their parent circle
      */
     public void drawCircles(int depth, double radius, int one, Color clr){
-        t.setColor(clr);
-        if(depth==0){
-            for(int i=0;i<360;i++){
-                forward(2*Math.PI*radius/360);
-                turn(1);
+        t.setColor(clr); //inherit color and use for next circle
+        if(depth==0){ //base case
+            for(int i=0;i<360;i++){ //repeat 360 times
+                forward(2*Math.PI*radius/360); //take a step 1/360th of the circumference
+                turn(1); //turn 1 degree
             }
         }
         else{
             Color clr1=new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-            for(int i=0;i<5;i++){
-                for(int n=0;n<72;n++){
+            for(int i=0;i<5;i++){ //each circle gets 5 moons
+                for(int n=0;n<72;n++){ //the base of each moon is evenly spread around its base
                     forward(2*Math.PI*radius/360);
-                    turn(1*one);
+                    turn(1*one); //if the oringinal was spinning one way, moon must spin in the opposite direction
                 }
-                drawCircles(depth-1, radius/3,one*-1, clr1);
-                t.setColor(clr);
+                drawCircles(depth-1, radius/3,one*-1, clr1); //draw moon -- which will get its own moons with due time :)
+                t.setColor(clr); //reset color to continue drawing base circle
             }
         }
     }
@@ -107,14 +108,15 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
                 forward(length);
                 backward(length);
                 turn(90);
+                //consider the starting point a midpoint and draw cross
             }
         }
         else{
-            for(int i=0;i<4;i++){
-                forward(length);
-                drawVicsek(depth-1, length/3);
-                backward(length);
-                turn(90);
+            for(int i=0;i<4;i++){ //4
+                forward(length); //sprout out
+                drawVicsek(depth-1, length/3); //repeat process
+                backward(length); //return to base
+                turn(90); //prepare for next time
             }
         }
     }
@@ -124,21 +126,18 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param length length of each shape's side
      */
     public void drawRandomShape(int depth, double length){
-        int rand=(int)(Math.random()*7)+3;
         if(depth==0){
-            for(int i=0;i<rand;i++){
-                forward(length);
-                turn(-360/rand);
+            int rand=(int)(Math.random()*7)+3; //decide the number of sides fopr the enw shape, 3 minimum -- lines are boring
+            for(int i=0;i<rand;i++){ //for the number of sides (and therefore angles)
+                forward(length); //move forward the length of a side
+                turn(-360/rand); //turn adequately
             }
         }
         else{
-            for(int i=0;i<rand;i++){
-                forward(length);
-                turn(-360/rand);
-            }
-            forward(length/4);
-            drawRandomShape(depth-1, length/2);
-            backward(length/4);
+            drawRandomShape(0, length); //use base case to draw shape
+            forward(length/4); //go one fourth of base length
+            drawRandomShape(depth-1, length/2); //draw new random shape
+            backward(length/4); //take a step back to enjoy what you've drawn
         }
     }
 
@@ -149,11 +148,11 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      */
     public void drawLumpyCoastline(int iterations, double length){
         if(iterations==0){
-            turn(-30);
-            forward(length/2);
-            turn(60);
-            forward(length/2);
-            turn(-30);
+            turn(-30); //turn up
+            forward(length/2); //draw
+            turn(60); //turn back down
+            forward(length/2); //draw
+            turn(-30); //flatten out
         }
         else{
             drawLumpyCoastline(iterations-1,length/2);
@@ -163,7 +162,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             drawLumpyCoastline(iterations-1,length/2);
             turn(-30);
             drawLumpyCoastline(iterations-1,length/2);
-            
+            //reaplce all lines with iterations
         }
     }
     /**
@@ -200,14 +199,14 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         else{
             forward(length);
             turn(-30);
-            int rnd=(int)(Math.random()*10);
+            int rnd=(int)(Math.random()*10); //find random angle
             drawTree2(iterations-1,length/2);
-            turn(60+rnd);
+            turn(60+rnd); //add random angle
             drawTree2(iterations-1,length/2);
-            turn(60-rnd);
+            turn(60-rnd); //reverse randomness and return to normalcy
             drawTree(iterations-1,length/2);
             turn(30);
-            backward(length);
+            backward(length); //back to base
         }
     }
     /**
@@ -217,17 +216,17 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param length split into 3 parts
      */
     public void drawKochCurve(int depth, double length){
-        if(depth==0){
+        if(depth==0){ //base case line
             forward(length);
         }
         else{
-            drawKochCurve(depth-1, length/2);
-            turn(-60);
-            drawKochCurve(depth-1, length/2);
-            turn(120);
-            drawKochCurve(depth-1, length/2);
-            turn(-60);
-            drawKochCurve(depth-1, length/2);
+            drawKochCurve(depth-1, length/2); //start with curve as baseline
+            turn(-60); //prepare to rise
+            drawKochCurve(depth-1, length/2); //rise with curve
+            turn(120); //prepare to fall
+            drawKochCurve(depth-1, length/2); //fall with curve
+            turn(-60); //flatten
+            drawKochCurve(depth-1, length/2); //finish base with curve
         }
     }
     /**
@@ -237,7 +236,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param side length of triangle's side, split in two
      */
     public void drawSierpinski(int depth, double side){
-        if(depth==0){
+        if(depth==0){ //draw basic triangle
             forward(side);
             turn(-120);
             forward(side);
@@ -246,16 +245,16 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             turn(-120);
         }
         else{
-            drawSierpinski(depth-1, side/2);
-            forward(side/2);
-            drawSierpinski(depth-1, side/2);
-            turn(-120);
-            forward(side/2);
-            turn(120);
-            drawSierpinski(depth-1, side/2);
-            turn(120);
-            forward(side/2);
-            turn(-120);
+            drawSierpinski(depth-1, side/2); //draw small triangle in bottom left
+            forward(side/2); //go halfway across base
+            drawSierpinski(depth-1, side/2); //draw triangle in bottom right
+            turn(-120); //prepare to launch
+            forward(side/2); //go to third position
+            turn(120); //turn net 0
+            drawSierpinski(depth-1, side/2); //draw top triangle
+            turn(120); //get ready to go baack to base
+            forward(side/2); //go abck to base
+            turn(-120); //net 0
         }
     }
     /**
@@ -265,7 +264,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param side
      */
     public void drawChip(int iterations, double side){
-        if(iterations==0){
+        if(iterations==0){ //draw square in base case
             forward(side);
             turn(-90);
             forward(side);
@@ -276,6 +275,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
             turn(-90);
         }
         else{
+            //draws whole chip then retraces to recurse
             drawChip(iterations-1,side/3);
             turn(-90);
             forward(2*side/3);
