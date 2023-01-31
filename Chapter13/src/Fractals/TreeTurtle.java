@@ -13,7 +13,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
     public static void main(String[] args){
         System.out.println("yo");
         t.penUp();
-        t.moveTo(300, 200);
+        t.moveTo(0, 0);
         t.setColor(Color.BLACK);
         t.penDown();
         t.turn(90);
@@ -28,10 +28,75 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         t.drawVicsek(7,100); //Tree 3
         t.drawCircles(5, 100,1); //Gasket 4, 10th
         t.drawBatman(5, 50); //Coastline 3 */
-        t.drawCircles(4, 150, 1, Color.BLACK);
+        //t.drawCircles(4, 150, 1, Color.BLACK);
+        t.drawMan(0, screen);
     }
     public TreeTurtle(){
         
+    }
+    public static class Complex{
+        double real;
+        double complex;
+        public Complex(double r,double c){
+            real=r;
+            complex=c;
+        }
+        public double getReal(){
+            return real;
+        }
+        public double getComplex(){
+            return complex;
+        }
+        public Complex multiply(Complex c){
+            real=real*c.getReal()+complex*c.getComplex();
+            complex=real*c.getComplex()+complex*c.getReal();
+            return this;
+        }
+        public Complex add(Complex c){
+            real+=c.getReal();
+            complex+=c.getComplex();
+            return this;
+        }
+        public Complex subtract(Complex c){
+            real-=c.getReal();
+            complex-=c.getComplex();
+            return this;
+        }
+        public Complex divide(Complex c){
+            real=real/c.getReal()+complex/c.getComplex();
+            complex=real/c.getComplex()+complex/c.getReal();
+            return this;
+        }
+        public boolean equals(Complex c){
+            return real==c.getReal()&&complex==c.getComplex();
+        }
+    }
+    static Complex[][] screen=new Complex[1000][1000];
+    public void drawMan(int depth, Complex[][] screen){
+        for(int y=0;y<screen.length;y++){
+            for(int x=0;x<screen[y].length;x++){
+                screen[y][x]=new Complex() //set plot points right before finding result
+                if(mandEquation(depth,new Complex(0,0),screen[y][x])){
+                    t.penDown();
+                    forward(1);
+                }
+                else{
+                    t.penUp();
+                    forward(1);
+                }
+            }
+            t.penUp();
+            turn(90);
+            forward(1);
+            turn(-90);
+            backward(screen[y].length);
+        }
+    }
+    public boolean mandEquation(int depth, Complex z, Complex c){
+        if(depth==0) return false;
+        if(z.getComplex()>2||z.getReal()>2) return true;
+        //Complex n=mandEquation(depth-1,num, c);
+        return mandEquation(depth-1,z.multiply(z).add(c), c);
     }
     /**
      * draws a weird-looking coastline figure recursively (peaks, falls, plateaus, recurses, peaks, falls, recurses); when depth=1, it kind of looks like batman
