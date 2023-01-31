@@ -3,61 +3,118 @@ import java.awt.Color;
 import edu.gatech.mediaprogramming.*; //GT turtle library
 /**
  * turtle commands
- * forward(int distance) - moves forward
- * backward(int distance) - moves backward
- * turn(int degrees)
+ * forward(double distance) - moves forward
+ * backward(double distance) - moves backward
+ * turn(double degrees)
  */
 
 public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and imported from edu.gatech.mediaprogramming.*
     static TreeTurtle t=new TreeTurtle();
     public static void main(String[] args){
         System.out.println("yo");
-        
         t.penUp();
-        t.moveTo(300, 100);
+        t.moveTo(300, 200);
         t.setColor(Color.BLACK);
         t.penDown();
         t.turn(90);
-        //Coastlines: II       Gaskets: III        Trees: II
-        //t.drawLumpyCoastline(3,100); //Coastline 2
-        //t.drawChip(8,300); //Gasket 1
-        //t.drawTree(9, 200); //Tree 1
-        //t.drawTree2(8, 200); //Tree 2
-        //t.drawKochCurve(5, 50); //Coastline 1
-        //t.drawSierpinski(8, 350); //Gasket 2
-        //t.drawPent(3, 200); //Gasket 3
-         //t.drawRandomShape(5, 100); Gasket 4, 10th
-         t.drawSpiral(0,1000);
+        /*
+        t.drawLumpyCoastline(3,100); //Coastline 2
+        t.drawChip(8,300); //Gasket 1
+        t.drawTree(9, 200); //Tree 1
+        t.drawTree2(8, 200); //Tree 2
+        t.drawKochCurve(5, 50); //Coastline 1
+        t.drawSierpinski(8, 350); //Gasket 2
+        t.drawRandomShape(5, 100); //Gasket 3
+        t.drawVicsek(7,100); //Tree 3
+        t.drawCircles(5, 100,1); //Gasket 4, 10th
+        t.drawBatman(5, 50); //Coastline 3 */
+        t.drawCircles(4, 150, 1, Color.BLACK);
     }
     public TreeTurtle(){
         
     }
-    public void drawSpiral(int depth, double radius){
-        int turner=0;int y=t.getYPos();
+    /**
+     * draws a weird-looking coastline figure recursively (peaks, falls, plateaus, recurses, peaks, falls, recurses); when depth=1, it kind of looks like batman
+     * @param depth times to recurse
+     * @param length length to draw, no length perfectly matches this value, though
+     */
+    public void drawBatman(int depth, double length){
+        if(depth==0){
+            forward(length/3);
+            turn(-80);
+            forward(length*.8);
+            turn(120);
+            forward(length/5);
+            turn(-40);
+            forward(length/5);
+            turn(-80);
+            forward(length/5);
+            turn(150);
+            forward(length*.9);
+            turn(-70);
+            forward(length/3);
+        }
+        else{
+            forward(length/3);
+            turn(-80);
+            forward(length*.8);
+            turn(120);
+            forward(length/5);
+            turn(-40);
+            drawBatman(depth-1,length/3);
+            turn(-80);
+            forward(length/5);
+            turn(150);
+            forward(length*.9);
+            turn(-70);
+            drawBatman(depth-1, length);
+        }
+    }
+    /**
+     * drawsk several circles sprouting off of one another
+     * @param depth depth to recurse
+     * @param radius radius of each curcle
+     * @param one allows for child circles to turn in the opposite direction of their parent circle
+     */
+    public void drawCircles(int depth, double radius, int one, Color clr){
+        t.setColor(clr);
         if(depth==0){
             for(int i=0;i<360;i++){
-                if(t.getYPos()==y) turner+=5;
-                forward((2*Math.PI*radius)/360);
-                turn(1+turner);
+                forward(2*Math.PI*radius/360);
+                turn(1);
+            }
+        }
+        else{
+            Color clr1=new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+            for(int i=0;i<5;i++){
+                for(int n=0;n<72;n++){
+                    forward(2*Math.PI*radius/360);
+                    turn(1*one);
+                }
+                drawCircles(depth-1, radius/3,one*-1, clr1);
+                t.setColor(clr);
             }
         }
     }
     /**
-     * 
-     * @param depth
-     * @param length
+     * draws vicksek's fractal recursively
+     * @param depth times to iterate, decrements with each call
+     * @param length length of branch to draw
      */
-    public void drawDrag(int depth, double length){
+    public void drawVicsek(int depth,double length){
         if(depth==0){
-            forward(length);
-            backward(length);
-            turn(-90);
+            for(int i=0;i<4;i++){
+                forward(length);
+                backward(length);
+                turn(90);
+            }
         }
         else{
-            drawDrag(depth-1, length);
-            for(int i=0;i<depth;i++){
-                turn(90);
+            for(int i=0;i<4;i++){
                 forward(length);
+                drawVicsek(depth-1, length/3);
+                backward(length);
+                turn(90);
             }
         }
     }
@@ -110,28 +167,6 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         }
     }
     /**
-     * recursively draws inlaid pentagons
-     * @param depth depth to recurse, decrements with every call
-     * @param length //length of a side
-     */
-    public void drawPent(int depth, double length){
-        if(depth==0){
-            for(int i=0;i<5;i++){
-            forward(length);
-            turn(-72);
-            }
-        }
-        else{
-            for(int i=0;i<5;i++){
-                forward(length);
-                turn(-72);
-            }
-            forward(length/4);
-            drawPent(depth-1, length/2);
-            backward(length/4);
-        }
-    }
-    /**
      * turtle will always return to its initial state at the base of the tree just drawn
      * tree family
      * @param depth - depth of recursion, decremented as the program runs
@@ -165,7 +200,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         else{
             forward(length);
             turn(-30);
-            int rnd=(int)Math.random()*10;
+            int rnd=(int)(Math.random()*10);
             drawTree2(iterations-1,length/2);
             turn(60+rnd);
             drawTree2(iterations-1,length/2);
