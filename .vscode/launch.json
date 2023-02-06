@@ -6,17 +6,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch MandelbrotSet",
+            "name": "Launch Benchmarks",
             "request": "launch",
-            "mainClass": "Fractals.MandelbrotSet",
-            "projectName": "APCSA_2f439bb4"
-        },
-        {
-            "type": "java",
-            "name": "Launch mandelbrot",
-            "request": "launch",
-            "mainClass": "Fractals.mandelbrot",
-            "projectName": "APCSA_2f439bb4"
+            "mainClass": "Benchmarks",
+            "projectName": "APCSA_88719d09"
         },
         {
             "type": "java",
