@@ -8,21 +8,26 @@
  *  Fine for smaller numbers of elements, but takes a long time as the number of elements increases
  *  Takes a long time rewriting existing values
  *  Not Ideal
+ *  RTC: O(n) to O(n^2)
  * Merge Sort
  *  Recursive, could take lots of memory
  *  Consistently increases time as the number of elements increases
  *  Ranks third-fastest in every test
+ *  RTC: O(n*log(n))
  * Quick Sort
  *  Fastest non-built-in method
  *  Time taken consistently increases as the number of values increases
  *  Swapping value could be an inefficiency but doesn't take bulk memory at any particular time
+ *  RTC: O(n*log(n))
  * Selection Sort
  *  Very inefficient, takes the longest for every array length
  *  Looks at every unswapped element several times, then takes a long time using swap
  *  Doesn't seem ideal for any use case
+ *  RTC: O(n^2)
  * Arrays.sort
  *  Most efficient at every length
  *  Changes the sorting method given the use case, always the more efficient method
+ * RTC: O(n*log(n))
  */
 
 import java.awt.Color;
