@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MandelbrotSet",
+            "request": "launch",
+            "mainClass": "Fractals.MandelbrotSet",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
+            "name": "Launch mandelbrot",
+            "request": "launch",
+            "mainClass": "Fractals.mandelbrot",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
             "name": "Launch AreaFill",
             "request": "launch",
             "mainClass": "FloodFill.AreaFill",

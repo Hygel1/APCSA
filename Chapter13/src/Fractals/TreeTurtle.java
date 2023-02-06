@@ -1,6 +1,6 @@
 package Fractals;
 import java.awt.Color;
-import edu.gatech.mediaprogramming.*; //GT turtle library
+import edu.gatech.mediaprogramming.*;
 /**
  * turtle commands
  * forward(double distance) - moves forward
@@ -9,11 +9,11 @@ import edu.gatech.mediaprogramming.*; //GT turtle library
  */
 
 public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and imported from edu.gatech.mediaprogramming.*
-    static TreeTurtle t=new TreeTurtle();
+        static TreeTurtle t=new TreeTurtle();
+
     public static void main(String[] args){
-        System.out.println("yo");
         t.penUp();
-        t.moveTo(0, 0);
+        t.moveTo(300, 300);
         t.setColor(Color.BLACK);
         t.penDown();
         t.turn(90);
@@ -29,74 +29,28 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         t.drawCircles(5, 100,1); //Gasket 4, 10th
         t.drawBatman(5, 50); //Coastline 3 */
         //t.drawCircles(4, 150, 1, Color.BLACK);
-        t.drawMan(0, screen);
+        //t.drawSpiral(0, 200);
+        t.drawCircles(5, 100,1,Color.MAGENTA);
     }
     public TreeTurtle(){
         
     }
-    public static class Complex{
-        double real;
-        double complex;
-        public Complex(double r,double c){
-            real=r;
-            complex=c;
-        }
-        public double getReal(){
-            return real;
-        }
-        public double getComplex(){
-            return complex;
-        }
-        public Complex multiply(Complex c){
-            real=real*c.getReal()+complex*c.getComplex();
-            complex=real*c.getComplex()+complex*c.getReal();
-            return this;
-        }
-        public Complex add(Complex c){
-            real+=c.getReal();
-            complex+=c.getComplex();
-            return this;
-        }
-        public Complex subtract(Complex c){
-            real-=c.getReal();
-            complex-=c.getComplex();
-            return this;
-        }
-        public Complex divide(Complex c){
-            real=real/c.getReal()+complex/c.getComplex();
-            complex=real/c.getComplex()+complex/c.getReal();
-            return this;
-        }
-        public boolean equals(Complex c){
-            return real==c.getReal()&&complex==c.getComplex();
-        }
-    }
-    static Complex[][] screen=new Complex[1000][1000];
-    public void drawMan(int depth, Complex[][] screen){
-        for(int y=0;y<screen.length;y++){
-            for(int x=0;x<screen[y].length;x++){
-                screen[y][x]=new Complex() //set plot points right before finding result
-                if(mandEquation(depth,new Complex(0,0),screen[y][x])){
-                    t.penDown();
+    public void drawSpiral(int depth, double length){
+        if(depth==0){
+            //for(int i=0;i<7;i++){
+                forward(length);
+                turn(30);
+                for(int n=0;n<180;n++){
+                    //forward(Math.PI*length/125);
                     forward(1);
+                    turn(1);
                 }
-                else{
-                    t.penUp();
-                    forward(1);
-                }
-            }
-            t.penUp();
-            turn(90);
-            forward(1);
-            turn(-90);
-            backward(screen[y].length);
+                //turn(30);
+                forward(length);
+                turn(90);
+                forward(100);
+            //}
         }
-    }
-    public boolean mandEquation(int depth, Complex z, Complex c){
-        if(depth==0) return false;
-        if(z.getComplex()>2||z.getReal()>2) return true;
-        //Complex n=mandEquation(depth-1,num, c);
-        return mandEquation(depth-1,z.multiply(z).add(c), c);
     }
     /**
      * draws a weird-looking coastline figure recursively (peaks, falls, plateaus, recurses, peaks, falls, recurses); when depth=1, it kind of looks like batman
@@ -137,10 +91,11 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         }
     }
     /**
-     * drawsk several circles sprouting off of one another
+     * draws several circles sprouting off of one another
      * @param depth depth to recurse
      * @param radius radius of each curcle
      * @param one allows for child circles to turn in the opposite direction of their parent circle
+     * @param clr passed color for new circle, used to help revert to old color when finishing parent circle
      */
     public void drawCircles(int depth, double radius, int one, Color clr){
         t.setColor(clr); //inherit color and use for next circle
@@ -153,11 +108,11 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         else{
             Color clr1=new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
             for(int i=0;i<5;i++){ //each circle gets 5 moons
-                for(int n=0;n<72;n++){ //the base of each moon is evenly spread around its base
+                for(int n=0;n<72;n++){ //the base of each child is evenly spread around its parent's base
                     forward(2*Math.PI*radius/360);
-                    turn(1*one); //if the oringinal was spinning one way, moon must spin in the opposite direction
+                    turn(1*one); //if the oringinal was spinning one way, child must spin in the opposite direction
                 }
-                drawCircles(depth-1, radius/3,one*-1, clr1); //draw moon -- which will get its own moons with due time :)
+                drawCircles(depth-1, radius/3,one*-1, clr1); //draw child circle
                 t.setColor(clr); //reset color to continue drawing base circle
             }
         }
@@ -191,19 +146,21 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
      * @param length length of each shape's side
      */
     public void drawRandomShape(int depth, double length){
-        if(depth==0){
-            int rand=(int)(Math.random()*7)+3; //decide the number of sides fopr the enw shape, 3 minimum -- lines are boring
-            for(int i=0;i<rand;i++){ //for the number of sides (and therefore angles)
-                forward(length); //move forward the length of a side
-                turn(-360/rand); //turn adequately
+        int rand=(int)(Math.random()*7)+3; //decide the number of sides fopr the enw shape, 2 minimum -- lines are boring and 2 counts as a circle
+            if(depth==0){
+                for(int i=0;i<rand;i++){
+                    forward(length);
+                    turn(-360/rand);
+                }
             }
-        }
-        else{
-            drawRandomShape(0, length); //use base case to draw shape
-            forward(length/4); //go one fourth of base length
-            drawRandomShape(depth-1, length/2); //draw new random shape
-            backward(length/4); //take a step back to enjoy what you've drawn
-        }
+            else{
+                for(int i=0;i<rand;i++){
+                    forward(length/4);
+                    drawRandomShape(depth-1, length/2);
+                    forward(length/4);
+                    turn(-360/rand);
+                }
+            }
     }
 
     /**
