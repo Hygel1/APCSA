@@ -7,13 +7,22 @@
  * Insertion Sort
  *  Fine for smaller numbers of elements, but takes a long time as the number of elements increases
  *  Takes a long time rewriting existing values
+ *  Not Ideal
  * Merge Sort
  *  Recursive, could take lots of memory
+ *  Consistently increases time as the number of elements increases
+ *  Ranks third-fastest in every test
  * Quick Sort
- * 
+ *  Fastest non-built-in method
+ *  Time taken consistently increases as the number of values increases
+ *  Swapping value could be an inefficiency but doesn't take bulk memory at any particular time
  * Selection Sort
- * 
+ *  Very inefficient, takes the longest for every array length
+ *  Looks at every unswapped element several times, then takes a long time using swap
+ *  Doesn't seem ideal for any use case
  * Arrays.sort
+ *  Most efficient at every length
+ *  Changes the sorting method given the use case, always the more efficient method
  */
 
 import java.awt.Color;
