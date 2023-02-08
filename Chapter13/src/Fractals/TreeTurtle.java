@@ -93,7 +93,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
     /**
      * draws several circles sprouting off of one another
      * @param depth depth to recurse
-     * @param radius radius of each curcle
+     * @param radius radius of each circle
      * @param one allows for child circles to turn in the opposite direction of their parent circle
      * @param clr passed color for new circle, used to help revert to old color when finishing parent circle
      */
@@ -107,7 +107,7 @@ public class TreeTurtle extends Turtle{ //Turtle is part of turtle.jar and impor
         }
         else{
             Color clr1=new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-            for(int i=0;i<5;i++){ //each circle gets 5 moons
+            for(int i=0;i<5;i++){ //each parent circle gets 5 child circles
                 for(int n=0;n<72;n++){ //the base of each child is evenly spread around its parent's base
                     forward(2*Math.PI*radius/360);
                     turn(1*one); //if the oringinal was spinning one way, child must spin in the opposite direction

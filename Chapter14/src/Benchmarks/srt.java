@@ -1,9 +1,13 @@
 import java.util.Arrays;
 public class srt {
-    
+    static double[] temp;
     public static void main(String[] args){
-        int[] nums={3,4,5,1,3,4,5,6,12,32,43,5445,2,123,3213,54,21,65,32,54,32,56,67,89,0,54,12,52,53};
-        quick(nums,0,nums.length-1);
+        double[] nums={3,4,5,1,3,4,5,6,12,32,43,5445,2,123,3213,54,21,65,32,54,32,56,67,89,0,54,12,52,53};
+        double[] nums1={3,4,5,1,3,4,5,6,12,32,43,5445,2,123,3213,54,21,65,32,54,32,56,67,89,0,54,12,52,53};
+        //quick(nums,0,nums.length-1);
+        Mergesort.sort(nums1);
+        System.out.println(Arrays.toString(nums1)+"\n");
+        callMerge(nums);
         System.out.println(Arrays.toString(nums));
     }
     public static void swap(int[] a,int i,int j){
@@ -11,27 +15,49 @@ public class srt {
         a[i]=a[j];
         a[j]=h;
     }
-    public void callMerge(int[] a,int s, int e){
-        int[] temp=new int[a.length];
-        merge(temp,a,s,e);
+    public static void callMerge(double[] a){
+        temp=new double[a.length];
+        mergeSort(a,0,a.length-1);
     }
-    public void merge(int[] temp, int[] a, int s, int e){
+    public static void mergeSort(double[] a, int s, int e){
         if(e-s<2){
-            int h=a[e];
-            e=Math.max(a[e],a[s]);
-            s=Math.min(h,a[s]);
-        }
-        else{
-            merge(temp,a,s,s+(e-s)/2);
-            merge(temp,a,s+(e-s)/2,e);
-            int i=s+(e-s)/2, j=s;
-            while(i<=e&&j<=s+(e-s)/2){
-                if(a[i]<a[j]){
-                    
-                }
+            if(e>s&&a[s]>a[e]){
+                double h=a[s];
+                a[s]=a[e];
+                a[e]=h;
             }
         }
-
+        else{
+            int middle=(e+s)/2;
+            mergeSort(a,s,middle);
+            mergeSort(a,middle+1,e);
+            merge(a,s,middle,e);
+            }
+        }
+    public static void merge(double[] a, int from,int middle, int to){
+        int s=from,e=middle+1,k=from;
+        while(s<=middle&&e<=to){
+            if(a[s]<a[e]){
+                temp[k]=a[s];
+                s++;
+            }
+            else{
+                temp[k]=a[e];
+                e++;
+            }
+            k++;
+        }
+        while(s<middle){
+            temp[k]=a[s];
+            k++;s++;
+        }
+        while(e<=to){
+            temp[k]=a[e];
+            k++;e++;
+        }
+        for(int i=from;i<=to;i++){
+            a[i]=temp[i];
+        }
     }
     public static void quick(int[] a ,int s, int e){
         int i=s+1, j=e, p=s;

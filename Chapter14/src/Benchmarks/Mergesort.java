@@ -33,7 +33,7 @@ public class Mergesort
 
   // Merges a[from] ... a[middle] and a[middle+1] ... a[to]
   //   into one sorted array a[from] ... a[to]
-  private static void merge(double[] a, int from, int middle, int to)
+  public static void merge(double[] a, int from, int middle, int to)
   {
     int i = from, j = middle + 1, k = from;
 
