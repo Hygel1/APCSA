@@ -6,6 +6,6 @@ public class DiplomaWithHonors extends Diploma{
         super(n,f);
     }
     public String toString(){
-        return this+"\n*** with honors ***";
+        return super.toString()+"\n*** with honors ***";
     }
 }
