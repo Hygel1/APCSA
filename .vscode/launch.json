@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "Chapter14.Ch12and14Bookwork.test",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch ch12And14Bookwork",
+            "request": "launch",
+            "mainClass": "Chapter14.Ch12and14Bookwork.ch12And14Bookwork",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch Triangle",
+            "request": "launch",
+            "mainClass": "Triangle",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch srt",
             "request": "launch",
             "mainClass": "srt",

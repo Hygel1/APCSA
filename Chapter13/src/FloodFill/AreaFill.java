@@ -72,6 +72,7 @@ public class AreaFill extends JPanel
   private void fillPool(Color[][] plane, int row, int col, Color color)
   {
     if(isValidLocation(plane, row, col)&&!plane[row][col].equals(Color.WHITE)&&!plane[row][col].equals(color)){
+      if(plane[0][0]!=Color.white);
       //Don't paint if invalid, white, or already painted
       plane[row][col]=color; //set color of current call
       fillPool(plane,row+1,col,color); //run through each of the directly bordering cells

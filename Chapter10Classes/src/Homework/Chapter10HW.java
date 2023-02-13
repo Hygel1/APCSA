@@ -204,7 +204,7 @@ public class Chapter10HW extends SoccerTeam{
        */
 
        //#19
-      public class Puzzle{
+      public static class Puzzle{
         private static String message="Hello, World";
         public static void hello(){ //hello() cannot be used in main without being static, which means that it and message must be made static in order to be used
             System.out.println(message);

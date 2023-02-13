@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public class srt {
+public class srt extends SelectionSort{
     static double[] temp;
     public static void main(String[] args){
         double[] nums={3,4,5,1,3,4,5,6,12,32,43,5445,2,123,3213,54,21,65,32,54,32,56,67,89,0,54,12,52,53};
@@ -59,7 +59,7 @@ public class srt {
             a[i]=temp[i];
         }
     }
-    public static void quick(int[] a ,int s, int e){
+    public static void quick(int[] a,int s,int e){
         int i=s+1, j=e, p=s;
         if(e-s<1) return;
         while(i<=j){
