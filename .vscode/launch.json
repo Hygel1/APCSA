@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ch12and14Bookwork",
+            "request": "launch",
+            "mainClass": "Chapter14.Ch12And14Bookwork.ch12and14Bookwork",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
+            "name": "Launch ch12and14Bookwork",
+            "request": "launch",
+            "mainClass": "Chapter14.Ch12and14Bookwork.ch12and14Bookwork",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
             "name": "Launch Chomp",
             "request": "launch",
             "mainClass": "Chapter14.ch12And14Bookwork.chomp.Chomp",

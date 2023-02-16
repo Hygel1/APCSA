@@ -1,4 +1,14 @@
-package Chapter14.ch12And14Bookwork;
+package Chapter14.Ch12And14Bookwork;
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 2/15/23
+ * Assignment: Chapter 12 and 14 Bookwork Problems
+ * 
+ * Attribution: Andrew Dollar was my partner
+ * 
+ * Everything other than chomp is done in nested classes in a single file, which is why the brackets may not line up as expected
+ */
 public class ch12and14Bookwork{
     public ch12and14Bookwork(){}
     public static void main(String[] args){
@@ -34,14 +44,30 @@ public class ch12and14Bookwork{
         //Tested: it does compile and does return true when the object implements the interface
         
         //Ch12Q15/16/17
-        //finished in other files
+        //finished in other files (chomp)
 
         //Ch14Q2
         Person person1=new Person("John", "Appleseed");
         Person person2=new Person("Abe","Appleseed");
         System.out.println(person1.compareTo(person2));
         //Ch14Q3
-
+        Fraction frac1=new Fraction(3,4);
+        Fraction frac2=new Fraction(2,4);
+        System.out.println(frac1.compareTo(frac2));
+        System.out.println(frac2.compareTo(frac1));
+        //Ch14Q4
+        QuadraticFunction q1=new QuadraticFunction(1, 1, 1);
+        QuadraticFunction q2=new QuadraticFunction(0, 0, 0);
+        QuadraticFunction q3=new QuadraticFunction(-2, -2, -2);
+        System.out.println(q1);
+        System.out.println(q2);
+        System.out.println(q3);
+        System.out.println(q3.equals(q1));
+        System.out.println(q3.equals(new QuadraticFunction(-2, -2, -2)));
+        System.out.println(q3.compareTo(q1));
+        System.out.println(q1.compareTo(q3));
+        System.out.println(new QuadraticComparator().compare(q1,q2));
+        System.out.println(new QuadraticComparator(3).compare(q1,q2));
     }
     public class Diploma {
         private String n; //name field
@@ -188,7 +214,17 @@ public class ch12and14Bookwork{
     // ********************  Public methods  ********************
     // Returns the sum of this fraction and other
     public int compareTo(Fraction frac){
-        return
+        return add(frac.multiply(-1)).isNeg(); //subtract the calling fraction fromthe passed fraction by adding a negtive version of the passed
+        //then call isNeg to get outcome number and return
+    }
+    /**
+     * helper method to avoid repeatedly calling hold Fraction and making several getters
+     * @return returns the value to be returned by compareTo() -- pos for greater, neg for less than, 0 for equal
+     */
+    private int isNeg(){
+        if(num==0) return 0; //if the numerator is 0, the fractions are equal (0)
+        if(num<0&&denom<0||num>0&&denom>0) return 1; //if the sign of the num and denom are similar, the result is positive and the calling fraction is larger
+        return -1; //all other cases are negative
     }
     public Fraction add(Fraction other)
     {
@@ -263,5 +299,65 @@ public class ch12and14Bookwork{
         }
         return n;
     }
+    }
+    public class QuadraticFunction implements Comparable<QuadraticFunction>{
+        int a,b,c;
+        public QuadraticFunction(int a,int b,int c){
+            this.a=a;this.b=b;this.c=c; //set fields
+        }
+        /**
+         * retrun value of function plugging in coefficients and x value
+         * @param x
+         * @return
+         */
+        public double valueAt(double x){
+            return a*x*x+b*x+c;
+        }
+        //getters
+        public int getA(){return a;}
+        public int getB(){return b;}
+        public int getC(){return c;}
+        /**
+         * returns true if all coefficients are equal using getters
+         * @param q
+         * @return
+         */
+        public boolean equals(QuadraticFunction q){
+            return a==q.getA()&&b==q.getB()&&c==q.getC();
+        }
+        /**
+         * if val=-1, subtract with no coefficient, if val<-1, subtract with coefficient, if val=0 remove section, if val=1, add with no coefficient, if val<1, add with coefficient
+         */
+        public String toString(){
+            String rtn="";
+            if(a==-1)rtn+="-x^2";else if(a==1)rtn+="x^2";else if(Math.abs(a)>1)rtn+=a+"x^2";
+            if(b==-1)rtn+="-x";else if(b==1)rtn+="+x";else if(b<0)rtn+=b+"x";else if(b>0) rtn+="+"+b+"x";
+            if(c>0)rtn+="+"+c;else if(c<0)rtn+=c;
+            return rtn;
+        }
+        /**
+         * compare two functions using coeffficients
+         * @param o
+         * @return
+         */
+        public int compareTo(QuadraticFunction o) {
+            if(a!=o.getA()) return a-o.getA();
+            if(b!=o.getB()) return b-o.getB();
+            return c-o.getC();
+        }
+    }
+    public class QuadraticComparator{
+        double x=0; //x defaults to 0
+        public QuadraticComparator(){}
+        public QuadraticComparator(double x){this.x=x;} //set x
+        /**
+         * returns the difference in value at x -- x1-x2
+         * @param q1
+         * @param q2
+         * @return
+         */
+        public double compare(QuadraticFunction q1, QuadraticFunction q2){
+            return q1.valueAt(x)-q2.valueAt(x);
+        }
     }
 }

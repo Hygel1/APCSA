@@ -1,4 +1,4 @@
-package Chapter14.ch12And14Bookwork.chomp;
+package Chapter14.Ch12And14Bookwork.chomp;
 
 public class Location
 {
