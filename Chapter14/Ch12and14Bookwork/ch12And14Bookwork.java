@@ -1,4 +1,7 @@
 package Chapter14.ch12And14Bookwork;
+
+import java.util.Comparator;
+
 /**
  * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
@@ -175,135 +178,110 @@ public class ch12and14Bookwork{
     }
     public class Fraction implements Comparable<Fraction>
     {
-    // ******************  Instance variables  ******************
-    private int num;
-    private int denom;
+        // ******************  Instance variables  ******************
+        private int num;
+        private int denom;
+        // *********************  Constructors  *********************
 
-    // *********************  Constructors  *********************
-
-    public Fraction()       // no-args constructor
-    {
-        num = 0;
-        denom = 1;
-    }
-
-    public Fraction(int n)
-    {
-        num = n;
-        denom = 1;
-    }
-    public Fraction(int n, int d)
-    {
-        if (d != 0)
-        {
-        num = n;
-        denom = d;
-        reduce();
-        }
-        else
-        {
-        throw new IllegalArgumentException(
-            "Fraction construction error: denominator is 0");
-        }
-    }
-    public Fraction(Fraction other)  // copy constructor
-    {
-        num = other.num;
-        denom = other.denom;
-    }
-    // ********************  Public methods  ********************
-    // Returns the sum of this fraction and other
-    public int compareTo(Fraction frac){
-        return add(frac.multiply(-1)).isNeg(); //subtract the calling fraction fromthe passed fraction by adding a negtive version of the passed
-        //then call isNeg to get outcome number and return
-    }
-    /**
-     * helper method to avoid repeatedly calling hold Fraction and making several getters
-     * @return returns the value to be returned by compareTo() -- pos for greater, neg for less than, 0 for equal
-     */
-    private int isNeg(){
-        if(num==0) return 0; //if the numerator is 0, the fractions are equal (0)
-        if(num<0&&denom<0||num>0&&denom>0) return 1; //if the sign of the num and denom are similar, the result is positive and the calling fraction is larger
-        return -1; //all other cases are negative
-    }
-    public Fraction add(Fraction other)
-    {
-        int newNum = num * other.denom + denom * other.num;
-        int newDenom = denom * other.denom;
-        return new Fraction(newNum, newDenom);
-    }
-    // Returns the sum of this fraction and m
-    public Fraction add(int m)
-    {
-        return new Fraction(num + m * denom, denom);
-    }
-    // Returns the product of this fraction and other
-    public Fraction multiply(Fraction other)
-    {
-        int newNum = num * other.num;
-        int newDenom = denom * other.denom;
-        return new Fraction(newNum, newDenom);
-    }
-    // Returns the product of this fraction and m
-    public Fraction multiply(int m)
-    {
-        return new Fraction(num * m, denom);
-    }
-    // Returns the value of this fraction as a double
-    public double getValue()
-    {
-        return (double)num / (double)denom;
-    }
-    
-    // Returns a string representation of this fraction
-    public String toString()
-    {
-        return num + "/" + denom;
-    }
-    // *******************  Private methods  ********************
-
-    // Reduces this fraction by the gcf and makes denom > 0
-    private void reduce()
-    {
-        if (num == 0)
-        {
-        denom = 1;
-        return;
+        public Fraction(){       // no-args constructor
+            num = 0;
+            denom = 1;
         }
 
-        if (denom < 0)
-        {
-        num = -num;
-        denom = -denom;
+        public Fraction(int n){
+            num = n;
+            denom = 1;
+        }
+        public Fraction(int n, int d){
+            if (d != 0){
+            num = n;
+            denom = d;
+            reduce();
+            }
+            else
+            throw new IllegalArgumentException(
+                "Fraction construction error: denominator is 0");
+        }
+        public Fraction(Fraction other){  // copy constructor
+            num = other.num;
+            denom = other.denom;
+        }
+        // ********************  Public methods  ********************
+        // Returns the sum of this fraction and other
+        public int compareTo(Fraction other){
+            return (int)(getValue()-other.getValue()); //subtract the calling fraction fromthe passed fraction by adding a negtive version of the passed
+            //then call isNeg to get outcome number and return
+        }
+        public boolean equals(Object other){
+            return other instanceof Fraction&&compareTo((Fraction)other)==0;
+        }
+        public Fraction add(Fraction other){
+            int newNum = num * other.denom + denom * other.num;
+            int newDenom = denom * other.denom;
+            return new Fraction(newNum, newDenom);
+        }
+        // Returns the sum of this fraction and m
+        public Fraction add(int m){
+            return new Fraction(num + m * denom, denom);
+        }
+        // Returns the product of this fraction and other
+        public Fraction multiply(Fraction other){
+            int newNum = num * other.num;
+            int newDenom = denom * other.denom;
+            return new Fraction(newNum, newDenom);
+        }
+        // Returns the product of this fraction and m
+        public Fraction multiply(int m){
+            return new Fraction(num * m, denom);
+        }
+        // Returns the value of this fraction as a double
+        public double getValue(){
+            return (double)num / (double)denom;
+        }
+        
+        // Returns a string representation of this fraction
+        public String toString(){
+            return num + "/" + denom;
+        }
+        // *******************  Private methods  ********************
+
+        // Reduces this fraction by the gcf and makes denom > 0
+        private void reduce(){
+            if (num == 0){
+            denom = 1;
+            return;
+            }
+
+            if (denom < 0){
+            num = -num;
+            denom = -denom;
+            }
+
+            int q = gcf(Math.abs(num), denom);
+            num /= q;
+            denom /= q;    
         }
 
-        int q = gcf(Math.abs(num), denom);
-        num /= q;
-        denom /= q;    
-    }
-
-    // Returns the greatest common factor of two positive integers
-    private int gcf(int n, int d)
-    {
-        if (n <= 0 || d <= 0)
-        {
-        throw new IllegalArgumentException(
-                    "gcf precondition failed: " + n + ", " + d);
+        // Returns the greatest common factor of two positive integers
+        private int gcf(int n, int d){
+            if (n <= 0 || d <= 0){
+            throw new IllegalArgumentException("gcf precondition failed: " + n + ", " + d);
+            }
+            while (d != 0){
+            int temp = d;
+            d = n % d;
+            n = temp;
+            }
+            return n;
         }
-
-        while (d != 0)
-        {
-        int temp = d;
-        d = n % d;
-        n = temp;
-        }
-        return n;
-    }
     }
     public class QuadraticFunction implements Comparable<QuadraticFunction>{
         int a,b,c;
+        int nums[];
         public QuadraticFunction(int a,int b,int c){
             this.a=a;this.b=b;this.c=c; //set fields
+            nums=new int[3];
+            nums[0]=a;nums[1]=b;nums[2]=c;
         }
         /**
          * retrun value of function plugging in coefficients and x value
@@ -313,27 +291,30 @@ public class ch12and14Bookwork{
         public double valueAt(double x){
             return a*x*x+b*x+c;
         }
-        //getters
-        public int getA(){return a;}
-        public int getB(){return b;}
-        public int getC(){return c;}
         /**
          * returns true if all coefficients are equal using getters
          * @param q
          * @return
          */
         public boolean equals(QuadraticFunction q){
-            return a==q.getA()&&b==q.getB()&&c==q.getC();
+            return a==q.a&&b==q.b&&c==q.c;
         }
         /**
          * if val=-1, subtract with no coefficient, if val<-1, subtract with coefficient, if val=0 remove section, if val=1, add with no coefficient, if val<1, add with coefficient
          */
         public String toString(){
-            String rtn="";
+            String[] nums1=new String[nums.length];
+            /*
             if(a==-1)rtn+="-x^2";else if(a==1)rtn+="x^2";else if(Math.abs(a)>1)rtn+=a+"x^2";
             if(b==-1)rtn+="-x";else if(b==1)rtn+="+x";else if(b<0)rtn+=b+"x";else if(b>0) rtn+="+"+b+"x";
             if(c>0)rtn+="+"+c;else if(c<0)rtn+=c;
             return rtn;
+            */
+            for(int i=0;i<nums.length;i++){
+                if(nums[i]==0) nums1[i]="";
+                else if(nums[i]==-1) nums1[i]="-";
+                else if
+            }
         }
         /**
          * compare two functions using coeffficients
@@ -341,12 +322,12 @@ public class ch12and14Bookwork{
          * @return
          */
         public int compareTo(QuadraticFunction o) {
-            if(a!=o.getA()) return a-o.getA();
-            if(b!=o.getB()) return b-o.getB();
-            return c-o.getC();
+            if(a!=o.a) return a-o.a;
+            if(b!=o.b) return b-o.b;
+            return c-o.c;
         }
     }
-    public class QuadraticComparator{
+    public class QuadraticComparator implements Comparator<QuadraticFunction>{
         double x=0; //x defaults to 0
         public QuadraticComparator(){}
         public QuadraticComparator(double x){this.x=x;} //set x
@@ -356,8 +337,8 @@ public class ch12and14Bookwork{
          * @param q2
          * @return
          */
-        public double compare(QuadraticFunction q1, QuadraticFunction q2){
-            return q1.valueAt(x)-q2.valueAt(x);
+        public int compare(QuadraticFunction q1, QuadraticFunction q2){
+            return (int)(q1.valueAt(x)-q2.valueAt(x));
         }
     }
 }
