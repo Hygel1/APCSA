@@ -1,4 +1,4 @@
-package Chapter14.Ch12And14Bookwork;
+package Chapter14.ch12And14Bookwork;
 /**
  * Sean McLoughlin
  * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
