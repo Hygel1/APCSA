@@ -313,8 +313,9 @@ public class ch12and14Bookwork{
             for(int i=0;i<nums.length;i++){
                 if(nums[i]==0) nums1[i]="";
                 else if(nums[i]==-1) nums1[i]="-";
-                else if
+                //else if
             }
+            return "";
         }
         /**
          * compare two functions using coeffficients
