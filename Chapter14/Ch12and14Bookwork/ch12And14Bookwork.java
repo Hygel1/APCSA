@@ -1,4 +1,4 @@
-package Chapter14.ch12And14Bookwork;
+package Chapter14.Ch12And14Bookwork;
 
 import java.util.Comparator;
 
@@ -303,19 +303,18 @@ public class ch12and14Bookwork{
          * if val=-1, subtract with no coefficient, if val<-1, subtract with coefficient, if val=0 remove section, if val=1, add with no coefficient, if val<1, add with coefficient
          */
         public String toString(){
-            String[] nums1=new String[nums.length];
-            /*
-            if(a==-1)rtn+="-x^2";else if(a==1)rtn+="x^2";else if(Math.abs(a)>1)rtn+=a+"x^2";
-            if(b==-1)rtn+="-x";else if(b==1)rtn+="+x";else if(b<0)rtn+=b+"x";else if(b>0) rtn+="+"+b+"x";
-            if(c>0)rtn+="+"+c;else if(c<0)rtn+=c;
-            return rtn;
-            */
+            String[] statements={"x^2","x",""};
+            String rtn="";
             for(int i=0;i<nums.length;i++){
-                if(nums[i]==0) nums1[i]="";
-                else if(nums[i]==-1) nums1[i]="-";
-                //else if
+                if(nums[i]!=0){
+                    if(nums[i]==-1) rtn+="-"+statements[i]; //if coeff=-1, just add "-"
+                    else if(nums[i]==1) rtn+=statements[i]; //remove coefficient if it's 1
+                    else rtn+=nums[i]+statements[i]; //concatenate coefficient and statement, negatives implied by integer printout
+                    try{if(nums[i+1]>0) rtn+="+";} //if the next statement requires "+" separation add "+"
+                    catch(Exception e){if(nums[i]==1)rtn+=1;} //if on the last statement and val=1, add 1
+                }
             }
-            return "";
+            return rtn;
         }
         /**
          * compare two functions using coeffficients
