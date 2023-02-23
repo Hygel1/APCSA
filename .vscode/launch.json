@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch IndexMaker",
+            "request": "launch",
+            "mainClass": "Chapter14.IndexMaker.IndexMaker",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "Launch testFile",
+            "request": "launch",
+            "mainClass": "Chapter14.IndexMaker.testFile",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch ch12and14Bookwork",
             "request": "launch",
             "mainClass": "Chapter14.Ch12And14Bookwork.ch12and14Bookwork",
