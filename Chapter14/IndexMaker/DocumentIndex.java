@@ -34,6 +34,16 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
     public DocumentIndex(int num){
         super(num);
     }
+    public DocumentIndex(DocumentIndex d){
+        super(d.size());
+        for(int i=0;i<d.size();i++){
+            add(d.get(i));
+        }
+    }
+    int style;
+    public void setStyle(int num){
+        style=num;
+    }
     /**
      * add a found word to the list of found words taking the word and its line
      * @param word
@@ -60,8 +70,8 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
     public int foundOrInserted(String word){
         //this.compareTo(other)>0 is the same as this > other
         for(int i=0;i<size();i++){
-            String cpm2=get(i).getWord();
-            int cmp=cpm2.compareToIgnoreCase(word);
+            String cpm2=get(i).getWord();int cmp;
+            cmp=cpm2.compareToIgnoreCase(word);
              if(cmp>0){add(i,new IndexEntry(word)); return i;}
              if(cmp==0) return i;
         }
@@ -149,6 +159,13 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
                 }
             }
             return get(ind);
+        }
+        public String toString(){
+            String rtn="";
+            for(int i=0;i<size();i++){
+                rtn+=get(i).getWord()+"("+get(i).numLines()+"), "; //returns each entry with its word and the number of lines it appears in
+            }
+            return rtn;
         }
         
     }

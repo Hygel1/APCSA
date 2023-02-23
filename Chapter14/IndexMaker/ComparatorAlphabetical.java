@@ -7,7 +7,7 @@ public class ComparatorAlphabetical implements Comparator<IndexEntry>{
      * @param thisBooleanMakesTheOtherVariableNegativeSoThatItCanDoCompareInOneLine
      */
     public ComparatorAlphabetical(boolean thisBooleanMakesTheOtherVariableNegativeSoThatItCanDoCompareInOneLine){
-        if(thisBooleanMakesTheOtherVariableNegativeSoThatItCanDoCompareInOneLine) t=-1;
+        if(thisBooleanMakesTheOtherVariableNegativeSoThatItCanDoCompareInOneLine) t=-1; //if true, compares in reverse
     }
     public int compare(IndexEntry o1, IndexEntry o2){
         return o1.getWord().compareTo(o2.getWord())*t;

@@ -19,7 +19,6 @@ public class IndexMaker
   private static DocumentIndex index = new DocumentIndex();
   public static void main(String[] args) throws IOException
   {
-    testNew();
     Scanner keyboard = new Scanner(System.in);
     String fileName;
 
@@ -47,6 +46,7 @@ public class IndexMaker
       lineNum++;
       index.addAllWords(line,lineNum);
     }
+    index.sort(new ComparatorFrequency());
     // Save index and print to file:
     String fileContents="";
     for (IndexEntry entry : index) fileContents+="\n"+entry;
@@ -130,14 +130,6 @@ public class IndexMaker
       else e.printStackTrace();
     }
     return rtn;
-  }
-  public static void testNew(){
-    IndexEntry t1=new IndexEntry(index.get(0).getWord());
-    System.out.println(t1.equals(index.get(0))+" should be true");
-    System.out.println(new IndexEntry("aaa").compareTo(new IndexEntry("bbb"))+" should be positive");
-    System.out.println(new ComparatorAlphabetical(false).compare(new IndexEntry("a"),new IndexEntry("b"))+" should be a positive number");
-    System.out.println(new ComparatorFrequency().compare(new IndexEntry("a"),new IndexEntry("b",12))+" should be negative");
-    System.out.println(new ComparatorFrequency().compare(new IndexEntry("a",12),new IndexEntry("b",14))+" should be positive");
   }
 }
 
