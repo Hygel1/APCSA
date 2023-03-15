@@ -3,8 +3,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 import java.awt.Color;
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 3/15/23
+ * Assignment: Term 2 Exam Corrections
+ */
 public class T2ExamCorrections {
     public static void main(String args[]){
+        T2ExamCorrections e=new T2ExamCorrections();
+        //Problem 2 Test
+        Album alb2=e.new Album("album", "artist", "genre", new ArrayList<Song>(), 12);
+        Album alb3=e.new Album(alb2);
+        System.out.println(alb2.equals(alb3));
+        //Problem 4 Test
+        Color[][] c=new Color[100][100];
+        Screen s=e.new Screen(c);
+        s.drawRectangle(10, 10, 10, 10);
         
     }
     /**
@@ -66,7 +81,7 @@ public class T2ExamCorrections {
         private final Color BLACK=Color.BLACK;
         private final Color WHITE=Color.WHITE;
         private Color[][] pixels;
-        public Screen(){}
+        public Screen(Color[][] pixels){this.pixels=pixels;}
         public int getSize(){return pixels.length;}
         public void drawRectangle(int row, int col, int height, int width){
             for(int i=row;i<row+height&&i<getSize();i++){
@@ -76,6 +91,14 @@ public class T2ExamCorrections {
             for(int i=col;i<col+width&&i<pixels[i].length;i++){
                 pixels[row][i]=BLACK;
                 if(row+height>pixels.length) pixels[row+height][i]=BLACK;
+            }
+        }
+        public void print(){
+            for(int i=0;i<pixels.length;i++){
+                for(int n=0;n<pixels[i].length;n++){
+                    if(pixels[i][n].equals(BLACK)) System.out.println(" O ");
+                    else System.out.println(" I ");
+                }
             }
         }
         public void fillRectangle(int row, int col){
