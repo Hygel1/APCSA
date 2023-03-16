@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "T2ExamCorrections",
+            "request": "launch",
+            "mainClass": "Chapter14.T2ExamCorrections",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "Launch methodTest",
             "request": "launch",
             "mainClass": "Chapter14.IndexMaker.methodTest",

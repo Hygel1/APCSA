@@ -17,9 +17,10 @@ public class T2ExamCorrections {
         Album alb3=e.new Album(alb2);
         System.out.println(alb2.equals(alb3));
         //Problem 4 Test
-        Color[][] c=new Color[100][100];
+        Color[][] c=new Color[20][20];
         Screen s=e.new Screen(c);
-        s.drawRectangle(10, 10, 10, 10);
+        s.drawRectangle(5, 5, 5, 5);
+        s.print();
         
     }
     /**
@@ -84,21 +85,22 @@ public class T2ExamCorrections {
         public Screen(Color[][] pixels){this.pixels=pixels;}
         public int getSize(){return pixels.length;}
         public void drawRectangle(int row, int col, int height, int width){
-            for(int i=row;i<row+height&&i<getSize();i++){
+            for(int i=row;i<=row+height&&i<getSize();i++){
                 pixels[i][col]=BLACK;
-                if(col+width>=pixels[0].length)pixels[i][col+width]=BLACK;
+                if(col+width<pixels[0].length)pixels[i][col+width]=BLACK;
             }
-            for(int i=col;i<col+width&&i<pixels[i].length;i++){
+            for(int i=col;i<=col+width&&i<pixels[i].length;i++){
                 pixels[row][i]=BLACK;
-                if(row+height>pixels.length) pixels[row+height][i]=BLACK;
+                if(row+height<pixels.length) pixels[row+height][i]=BLACK;
             }
         }
         public void print(){
-            for(int i=0;i<pixels.length;i++){
-                for(int n=0;n<pixels[i].length;n++){
-                    if(pixels[i][n].equals(BLACK)) System.out.println(" O ");
-                    else System.out.println(" I ");
+            for(Color[] cs:pixels){
+                for(Color c:cs){
+                    if(c==Color.BLACK) System.out.print(" O ");
+                    else System.out.print(" I ");
                 }
+                System.out.println();
             }
         }
         public void fillRectangle(int row, int col){
