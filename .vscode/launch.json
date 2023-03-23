@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SnackBar",
+            "request": "launch",
+            "mainClass": "SnackBar",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "chapter19Bookwork",
+            "request": "launch",
+            "mainClass": "Chapter19.chapter19Bookwork",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "T2ExamCorrections",
             "request": "launch",
             "mainClass": "Chapter14.T2ExamCorrections",
