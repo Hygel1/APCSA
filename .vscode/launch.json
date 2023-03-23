@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HexB",
+            "request": "launch",
+            "mainClass": "Chapter19.HexB",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
+            "name": "HexBoard",
+            "request": "launch",
+            "mainClass": "Chapter19.Hex.HexBoard",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "SnackBar",
             "request": "launch",
             "mainClass": "SnackBar",
