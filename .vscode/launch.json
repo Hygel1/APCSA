@@ -9,6 +9,13 @@
             "name": "RadixSort",
             "request": "launch",
             "mainClass": "Chapter19.RadixSort.RadixSort",
+            "projectName": "APCSA_2f439bb4"
+        },
+        {
+            "type": "java",
+            "name": "RadixSort",
+            "request": "launch",
+            "mainClass": "Chapter19.RadixSort.RadixSort",
             "projectName": "APCSA_88719d09"
         },
         {

@@ -1,26 +1,36 @@
-package Chapter19.RadixSort;
-import java.time.chrono.ThaiBuddhistChronology;
+package Chapter19;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 public class RadixSort {
-
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion:  3/29/23
+ * Assignment: Radix Sort Lab
+ * 
+ * Attribution: Cole Saunders was my partner
+ * 
+ * General Description: Sorts array of numbers using Radix sort
+ * 
+ * Advanced: Creates random files with random amounts of random numbers and sorts them when run
+ * 				Can take premade data file using other getArry() method (included) but this version is set to make random files
+ */
 	public static void main(String[] args) {
 		//Sample Test 1
 		int[] list=getArray(makeData());
 		System.out.println(Arrays.toString(sort(list,4)));
 		//Create more test cases to verify functionality  part d.
 	}
- /** Pre: number >=0; k>=0
-  *  Post: returns kth digit of number, where k=0 is the 
-  *  least significant digit, i.e. the ones' place, and k
-  *  represents the power of 10 desired.
-  */
+	/** Pre: number >=0; k>=0
+	 *  Post: returns kth digit of number, where k=0 is the 
+	*  least significant digit, i.e. the ones' place, and k
+	*  represents the power of 10 desired.
+	*/
 	private static int getDigit(int number, int powerOf10) {
 		return (number/(int)Math.pow(10,powerOf10))%10; 
 	}
@@ -64,7 +74,7 @@ public class RadixSort {
 	 */
 	public static int[] sort(int[] nums, int numDigits) {
 		for(int i=0;i<numDigits;i++)
-		nums=queuesToArray(itemsToQueues(nums, numDigits), nums.length);
+		nums=queuesToArray(itemsToQueues(nums, i), nums.length);
 		return nums;
 	}
 	public static int[] getArray(String path){
