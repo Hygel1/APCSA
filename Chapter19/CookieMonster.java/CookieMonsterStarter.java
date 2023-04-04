@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
@@ -36,9 +40,15 @@ import java.io.FileNotFoundException;
 
 public class CookieMonsterStarter
 {
-  private final int SIZE = 12; //Can be altered for different files. 
-  private int[][] cookies = new int[SIZE][SIZE];
-    
+  private static final int SIZE = 4; //Can be altered for different files. 
+  private static int[][] cookies = new int[SIZE][SIZE];
+  
+  public static boolean isValid(int x, int y){
+    return x<SIZE&&y<SIZE&&cookies[x][y]>-1;
+  }
+  public static int getPoint(int x, int y){
+    return cookies[x][y];
+  }
   /**
    *  Reads cookies from file
    */
@@ -58,15 +68,45 @@ public class CookieMonsterStarter
   {  
     return row >= 0 && row<SIZE && col>= 0 && col<SIZE && cookies[row][col]>=0;  
   }
+  public boolean aLHas(ArrayList<Point> r, Point q){
+    for(int a=0;a<r.size();a++) if(r.get(a).equals(q)) return true;
+    return false;
+  }
 
   /**
    *  Returns the largest number of cookies collected by Monster
    *  on a path from (0,0) to (SIZE-1, SIZE-1)
    */
   private int optimalPath()  
-  {  
-	  //LOTS OF CODE HERE!
-	  
+  {
+	  ArrayList<Point> explored=new ArrayList<>();
+    PriorityQueue<Route> frontier=new PriorityQueue<>(new routeComp());
+    frontier.add(new Route(new Point(0,0)));
+    explored.add(new Point(0,0));
+    PriorityQueue<Route> possible=new PriorityQueue<>(new routeComp());
+    while(frontier.size()>0){
+      while(!frontier.peek().hasNext()){
+        frontier.remove();
+      }
+      Route newRoute=new Route(frontier.peek(),frontier.peek().getNext());
+      if(newRoute.peek().p1()==SIZE-1&&newRoute.peek().p2()==SIZE-1) possible.add(newRoute);
+      else if(!aLHas(explored, frontier.peek().getNext())){
+        explored.add(frontier.peek().getNext());
+        optimize(frontier, newRoute);
+      }
+      else{
+        frontier.add(newRoute);
+      }
+      frontier.remove();
+    }
+    if(possible.size()==0) return -1;
+    return possible.peek().getCost();
+  }
+  private void optimize(PriorityQueue<Route> r, Route rte){
+    Object[] com=r.toArray();
+    for(int i=0;i<com.length;i++){
+      if(((Route)com[i]).getCost()>rte.getCost()&&((Route)com[i]).peek().p1()==rte.peek().p1()&&((Route)com[i]).peek().p2()==rte.peek().p2()) r.remove(com[i]);
+    }
   }
   
   
@@ -130,6 +170,7 @@ public class CookieMonsterStarter
       Scanner kboard = new Scanner(System.in);
       System.out.print("Enter the cookies file name: ");
       fileName = kboard.nextLine();
+      kboard.close();
      }
 
     File file = new File(fileName);
@@ -146,7 +187,12 @@ public class CookieMonsterStarter
 
     CookieMonsterStarter monster = new CookieMonsterStarter();
     monster.loadCookies(input);
-    System.out.println("Optimal path has " +
-                                  monster.optimalPath() + " cookies.\n");
+    System.out.println("Optimal path has " +monster.optimalPath() + " cookies.\n");
+  }
+  public class routeComp implements Comparator<Route>{
+    public int compare(Route o1, Route o2) {
+      return o2.getCost()-o1.getCost();
+    }
+
   }
 }

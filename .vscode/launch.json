@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CookieMonsterStarter",
+            "request": "launch",
+            "mainClass": "CookieMonsterStarter",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "RadixSort",
             "request": "launch",
             "mainClass": "Chapter19.RadixSort.RadixSort",
