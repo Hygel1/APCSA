@@ -15,17 +15,19 @@ public class Route extends Stack<Point>{
         }
         add(i);
         cost=r.cost+i.valueAt();
+        setNext();
     }
     public Route(Point i){
         explored=new ArrayList<>(); explored.add(i);
         add(i);
         cost=i.valueAt();
+        setNext();
     }
     public void setNext(){
-        if(explored.contains(new Point(peek().p1()-1, peek().p2()))&&CookieMonsterStarter.isValid(peek().p1()-1, peek().p2())) next.add(new Point(peek().p1()-1,peek().p2()));
-        if(explored.contains(new Point(peek().p1()+1, peek().p2()))&&CookieMonsterStarter.isValid(peek().p1()+1, peek().p2())) next.add(new Point(peek().p1()+1, peek().p2()));
-        if(explored.contains(new Point(peek().p1(), peek().p2()-1))&&CookieMonsterStarter.isValid(peek().p1(), peek().p2()-1)) next.add(new Point(peek().p1(), peek().p2()-1));
-        if(explored.contains(new Point(peek().p1(), peek().p2()+1))&&CookieMonsterStarter.isValid(peek().p1(), peek().p2()+1)) next.add(new Point(peek().p1(), peek().p2()+1));
+        if(CookieMonsterStarter.isValid(peek().p1()-1, peek().p2())&&!explored.contains(new Point(peek().p1()-1, peek().p2()))) next.add(new Point(peek().p1()-1,peek().p2()));
+        if(CookieMonsterStarter.isValid(peek().p1()+1, peek().p2())&&!explored.contains(new Point(peek().p1()+1, peek().p2()))) next.add(new Point(peek().p1()+1, peek().p2()));
+        if(CookieMonsterStarter.isValid(peek().p1(), peek().p2()-1)&&!explored.contains(new Point(peek().p1(), peek().p2()-1))) next.add(new Point(peek().p1(), peek().p2()-1));
+        if(CookieMonsterStarter.isValid(peek().p1(), peek().p2()+1)&&!explored.contains(new Point(peek().p1(), peek().p2()+1))) next.add(new Point(peek().p1(), peek().p2()+1));
     }
     public Point getNext(){
         return next.remove();

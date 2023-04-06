@@ -1,4 +1,3 @@
-
 public class Point {
     int[] a=new int[2];
     public Point(int p1,int p2){

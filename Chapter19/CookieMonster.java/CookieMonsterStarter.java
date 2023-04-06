@@ -40,11 +40,11 @@ import java.io.FileNotFoundException;
 
 public class CookieMonsterStarter
 {
-  private static final int SIZE = 4; //Can be altered for different files. 
+  private static final int SIZE = 12; //Can be altered for different files. 
   private static int[][] cookies = new int[SIZE][SIZE];
   
   public static boolean isValid(int x, int y){
-    return x<SIZE&&y<SIZE&&cookies[x][y]>-1;
+    return x>=0&&y>=0&&x<SIZE&&y<SIZE&&cookies[x][y]>-1;
   }
   public static int getPoint(int x, int y){
     return cookies[x][y];
@@ -53,7 +53,7 @@ public class CookieMonsterStarter
    *  Reads cookies from file
    */
   private void loadCookies(Scanner input)
-  {  
+  {
     for (int row = 0;   row < SIZE;   row++)  
       for (int col = 0;   col < SIZE;   col++)  
         cookies[row][col] = input.nextInt();  
@@ -77,39 +77,60 @@ public class CookieMonsterStarter
    *  Returns the largest number of cookies collected by Monster
    *  on a path from (0,0) to (SIZE-1, SIZE-1)
    */
-  private int optimalPath()  
-  {
-	  ArrayList<Point> explored=new ArrayList<>();
-    PriorityQueue<Route> frontier=new PriorityQueue<>(new routeComp());
-    frontier.add(new Route(new Point(0,0)));
-    explored.add(new Point(0,0));
-    PriorityQueue<Route> possible=new PriorityQueue<>(new routeComp());
-    while(frontier.size()>0){
-      while(!frontier.peek().hasNext()){
-        frontier.remove();
-      }
-      Route newRoute=new Route(frontier.peek(),frontier.peek().getNext());
-      if(newRoute.peek().p1()==SIZE-1&&newRoute.peek().p2()==SIZE-1) possible.add(newRoute);
-      else if(!aLHas(explored, frontier.peek().getNext())){
-        explored.add(frontier.peek().getNext());
-        optimize(frontier, newRoute);
-      }
-      else{
-        frontier.add(newRoute);
-      }
-      frontier.remove();
-    }
-    if(possible.size()==0) return -1;
-    return possible.peek().getCost();
-  }
-  private void optimize(PriorityQueue<Route> r, Route rte){
+  private static void optimize(PriorityQueue<Route> r, Route rte){
     Object[] com=r.toArray();
     for(int i=0;i<com.length;i++){
       if(((Route)com[i]).getCost()>rte.getCost()&&((Route)com[i]).peek().p1()==rte.peek().p1()&&((Route)com[i]).peek().p2()==rte.peek().p2()) r.remove(com[i]);
     }
+    r.add(rte);
   }
+  public static Route optimaPath(ArrayList<Point> points, Point start, Point end){
+    ArrayList<Point> explored=new ArrayList<>();
+    PriorityQueue<Route> frontier=new PriorityQueue<>();
+    frontier.add(new Route(start));
+    explored.add(start);
+    PriorityQueue<Route> possible=new PriorityQueue<>();
+    while(frontier.size()>0){
+      while(!frontier.peek().hasNext()){
+        frontier.remove();
+        if(frontier.isEmpty()) break;
+      }
+      if(frontier.isEmpty())break;
+      Point node=frontier.peek().getNext();
+      if(node.equals(end)) possible.add(frontier.remove());
+      else
+        optimize(frontier, new Route(frontier.peek(),node));
+    }
+    return possible.remove();
+  }
+
   
-  
+  public Route optPath(){
+    ArrayList<Point> points=new ArrayList<>();
+    for(int i=0;i<cookies.length;i++){
+      for(int n=0;n<cookies[i].length;n++){
+        points.add(new Point(i,n));
+      }
+    }
+    PriorityQueue<Route> frontier=new PriorityQueue<>();
+    PriorityQueue<Route> possible=new PriorityQueue<>();
+    frontier.add(new Route(points.get(0)));
+    while(frontier.size()>0){
+      while(!frontier.peek().hasNext()){
+        frontier.remove();
+        if(frontier.size()==0) break;
+      }
+      if(frontier.size()==0) break;
+       Route curr=new Route(frontier.peek(),frontier.remove().getNext()); //next possbile route being evaluated
+       if(curr.peek().p1()==SIZE-1&&curr.peek().p2()==SIZE-1){
+        possible.add(curr);
+      }
+      else
+        optimize(frontier, curr);
+      if(!frontier.peek().hasNext()) frontier.remove();
+    }
+    return possible.peek();
+  }
   
   /**  The following is something we coded together in Ch20 work:
   *		E  is an Element Type
@@ -117,24 +138,19 @@ public class CookieMonsterStarter
   *      in another class:  someotherQ= CoookieMonster.copy(someq);
   *      in this class:   		 newQ = copy(q);
   *      */
-  public static <E>  Queue<E>   copy(Queue<E> q){
-	  
+  public static<E>  Queue<E> copy(Queue<E> q){
 	  Queue<E> q2 = new LinkedList<E>();
-	  
 	  if (!q.isEmpty()){
-		  
-		   E obj = q.remove();
+       E obj = q.remove();
 		   E first = obj;
 		   q2.add(obj);
 		   q.add(obj);
-		   
 		   while (q.peek() != first) {
 			   obj = q.remove();
 			   q.add(obj);
 			   q2.add(obj);
 		   }  
 	  }
-	  
 	  return q2;
   }
   
@@ -187,12 +203,11 @@ public class CookieMonsterStarter
 
     CookieMonsterStarter monster = new CookieMonsterStarter();
     monster.loadCookies(input);
-    System.out.println("Optimal path has " +monster.optimalPath() + " cookies.\n");
+    System.out.println("Optimal path has " +monster.optPath() + " cookies.\n");
   }
   public class routeComp implements Comparator<Route>{
     public int compare(Route o1, Route o2) {
       return o2.getCost()-o1.getCost();
     }
-
   }
 }
