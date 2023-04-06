@@ -8,7 +8,19 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+/**
+ * Sean McLoughlin
+ * HONOR PLEDGE: All work here is honestly obtained and is my own. Sean McLoughlin
+ * Date of Completion: 4/5/23
+ * Assignment: Ch20 Cookie Monster
+ * 
+ * General Description: Finds the path with the most cookies from the top left to the bottom right of a 2D array
+ * 
+ * Advanced: 
+ * 
+ * Errata: There's an infinite loop at some point in the optPath method, which prevents it from removing routes and continuously adds to explored
+ *          I'll resubmit for late credit when I find where this is and fix it
+ */
 /**
  *  In this program Cookie Monster finds the optimal path from 
  *  the upper left corner (0,0) to the lower right corner
@@ -43,9 +55,6 @@ public class CookieMonsterStarter
   private static final int SIZE = 12; //Can be altered for different files. 
   private static int[][] cookies = new int[SIZE][SIZE];
   
-  public static boolean isValid(int x, int y){
-    return x>=0&&y>=0&&x<SIZE&&y<SIZE&&cookies[x][y]>-1;
-  }
   public static int getPoint(int x, int y){
     return cookies[x][y];
   }
@@ -64,7 +73,7 @@ public class CookieMonsterStarter
    *  not a barrel (-1); false otherwise.  Notice short-circuit evaluation
    *  to protect out-of-bounds errors from occuring.
    */
-  private boolean goodPoint(int row, int col)  
+  public static boolean isValid(int row, int col)  
   {  
     return row >= 0 && row<SIZE && col>= 0 && col<SIZE && cookies[row][col]>=0;  
   }
@@ -72,66 +81,72 @@ public class CookieMonsterStarter
     for(int a=0;a<r.size();a++) if(r.get(a).equals(q)) return true;
     return false;
   }
-
   /**
    *  Returns the largest number of cookies collected by Monster
    *  on a path from (0,0) to (SIZE-1, SIZE-1)
    */
-  private static void optimize(PriorityQueue<Route> r, Route rte){
+  private static void optimize(Queue<Route> r, Route rte){
     Object[] com=r.toArray();
     for(int i=0;i<com.length;i++){
-      if(((Route)com[i]).getCost()>rte.getCost()&&((Route)com[i]).peek().p1()==rte.peek().p1()&&((Route)com[i]).peek().p2()==rte.peek().p2()) r.remove(com[i]);
+      if(((Route)com[i]).getCost()<rte.getCost()&&((Route)com[i]).peek().equals(rte.peek())) r.remove((Route)com[i]);
     }
     r.add(rte);
   }
-  public static Route optimaPath(ArrayList<Point> points, Point start, Point end){
-    ArrayList<Point> explored=new ArrayList<>();
-    PriorityQueue<Route> frontier=new PriorityQueue<>();
-    frontier.add(new Route(start));
-    explored.add(start);
-    PriorityQueue<Route> possible=new PriorityQueue<>();
-    while(frontier.size()>0){
-      while(!frontier.peek().hasNext()){
-        frontier.remove();
-        if(frontier.isEmpty()) break;
-      }
-      if(frontier.isEmpty())break;
-      Point node=frontier.peek().getNext();
-      if(node.equals(end)) possible.add(frontier.remove());
-      else
-        optimize(frontier, new Route(frontier.peek(),node));
-    }
-    return possible.remove();
-  }
-
-  
+  /**
+   * find most effective path through 2d array of cookies
+   * @return
+   */
   public Route optPath(){
     ArrayList<Point> points=new ArrayList<>();
+     //reformats the 2D array into an arrayList
     for(int i=0;i<cookies.length;i++){
       for(int n=0;n<cookies[i].length;n++){
         points.add(new Point(i,n));
       }
-    }
-    PriorityQueue<Route> frontier=new PriorityQueue<>();
-    PriorityQueue<Route> possible=new PriorityQueue<>();
-    frontier.add(new Route(points.get(0)));
-    while(frontier.size()>0){
-      while(!frontier.peek().hasNext()){
+    } //should work above this
+    PriorityQueue<Route> frontier=new PriorityQueue<>(); //created paths to be explored
+    PriorityQueue<Route> possible=new PriorityQueue<>(); //possible solutions (routes that reach the ensd)
+    ArrayList<Point> explored=new ArrayList<>(); //cities that have been previously explored by any route
+    frontier.add(new Route(points.get(0))); //add start position as route to frontier
+    explored.add(points.get(0)); //add start position to list of explored points
+    while(frontier.size()>0){ //while there are paths to be explored
+      if(frontier.size()==1000){ //testing
+        boolean t=true;
+      }
+      if(explored.size()==1000){ //testing
+        boolean t=true;
+      }
+      Point node=frontier.peek().getNext(); //hold next step (point)
+      while(node==null){ //if the next step does not exist, repalce with nearest next step
         frontier.remove();
         if(frontier.size()==0) break;
+        node=frontier.peek().getNext();
       }
-      if(frontier.size()==0) break;
-       Route curr=new Route(frontier.peek(),frontier.remove().getNext()); //next possbile route being evaluated
-       if(curr.peek().p1()==SIZE-1&&curr.peek().p2()==SIZE-1){
-        possible.add(curr);
+      if(frontier.peek().notVisited(node)){ //if node hasn't been visited by the route already...
+        Route curr=new Route(frontier.peek(),node); //next possbile route being evaluated
+        if(node.p1()==SIZE-1&&node.p2()==SIZE-1){ //if node=end, add to possible solutions
+          possible.add(curr);
+        }
+        if(!explHas(explored, node)){ //if node has not been explored in a previous route, add to queue
+          explored.add(node);
+          frontier.add(curr);
+        }
+        else optimize(frontier, curr); //if node has been previously explored, remove all less efficient cases and add to route
       }
-      else
-        optimize(frontier, curr);
-      if(!frontier.peek().hasNext()) frontier.remove();
+      if(!frontier.peek().hasNext()) frontier.remove(); //if the end of the head of the queue has no more paths to explore, remove from queue
     }
-    return possible.peek();
+    return possible.peek(); //return most effective route
   }
-  
+  /**
+   * returns true if any item in the arraylist has the same points as Point p, meant to be used with explored
+   * @param l
+   * @param p
+   * @return
+   */
+  private boolean explHas(ArrayList<Point> l,Point p){
+    for(Point q:l) if(p.p1()==q.p1()&&p.p2()==q.p2()) return true;
+    return false;
+  }
   /**  The following is something we coded together in Ch20 work:
   *		E  is an Element Type
   * 	It is a Static method:  to activate it...
@@ -209,5 +224,11 @@ public class CookieMonsterStarter
     public int compare(Route o1, Route o2) {
       return o2.getCost()-o1.getCost();
     }
+  }
+  public class rtComp implements Comparator<Route>{
+    public int compare(Route o1, Route o2) {
+      return o2.getCost()-o1.getCost();
+    }
+    
   }
 }
