@@ -54,9 +54,13 @@ public class CookieMonsterStarter
 {
   private static final int SIZE = 12; //Can be altered for different files. 
   private static int[][] cookies = new int[SIZE][SIZE];
+  private static ArrayList<ArrayList<Point>> ckies=new ArrayList<>();
   
-  public static int getPoint(int x, int y){
+  public static int getPointArr(int x, int y){
     return cookies[x][y];
+  }
+  public static int getPoint(int x, int y){
+    return ckies.get(y).get(x).getValue();
   }
   /**
    *  Reads cookies from file
@@ -67,7 +71,53 @@ public class CookieMonsterStarter
       for (int col = 0;   col < SIZE;   col++)  
         cookies[row][col] = input.nextInt();  
   }  
-
+  private static int[] findVals(String str){
+    int[] rtn=new int[SIZE];
+    for(int i=0,n=0;n<12&&i>-1;i=str.indexOf(" ",i+1)){
+      int q=str.indexOf(" ",i+1);
+      if(q==-1){
+        System.out.println("pwobwem :(");
+        String s=str.substring(i);
+        rtn[n]=Integer.valueOf(str.substring(i+1));
+        break;
+      }
+      String s=str.substring(i+1,q);
+      if(s.length()>0){ 
+        rtn[n]=Integer.valueOf(s);
+        n++;
+      }
+    }
+    return rtn;
+  }
+  private static ArrayList<ArrayList<Point>> parseCookies(String path){
+    ArrayList<ArrayList<Point>> rtn=new ArrayList<>();
+    try{
+      File f=new File(path);
+      Scanner s=new Scanner(f);
+      for(int i=0;s.hasNextLine();i++){
+        rtn.add(new ArrayList<Point>());
+        int[] hold=findVals(s.nextLine());
+        for(int n=0;n<hold.length;n++){
+          rtn.get(i).add(new Point(n,i,hold[n]));
+        }
+      }
+      s.close();
+    }catch(Exception e){ e.printStackTrace();}
+    return rtn;
+  }
+  public static void setNeighbors(ArrayList<ArrayList<Point>> lst,Route rte){
+    Point node=rte.peek(); //tail of route
+    ArrayList<Point> nbr=new ArrayList<Point>(4); //list of possible neighbors, only 4 possible
+    //If the neighbor is valid, add to the list
+    if(isValidAL(lst,node.y()-1, node.x())) nbr.add(lst.get(node.y()-1).get(node.x()));
+    if(isValidAL(lst,node.y()+1, node.x())) nbr.add(lst.get(node.y()+1).get(node.x()));
+    if(isValidAL(lst,node.y(), node.x()-1)) nbr.add(lst.get(node.y()).get(node.x()-1));
+    if(isValidAL(lst,node.y(), node.x()+1)) nbr.add(lst.get(node.y()).get(node.x()+1));
+    rte.setNeighbors(nbr);
+  }
+  private static boolean isValidAL(ArrayList<ArrayList<Point>> lst, int y, int x){
+    return y>-1&&x>-1&&y<lst.size()&&x<lst.get(0).size()&&lst.get(y).get(x).getValue()>-1;
+  }
   /**
    *  Returns true if (row, col) is within the array and that position is
    *  not a barrel (-1); false otherwise.  Notice short-circuit evaluation
@@ -75,77 +125,48 @@ public class CookieMonsterStarter
    */
   public static boolean isValid(int row, int col)  
   {  
-    return row >= 0 && row<SIZE && col>= 0 && col<SIZE && cookies[row][col]>=0;  
+    return row >= 0 && row<SIZE && col>= 0 && col<SIZE && cookies[row][col]>=0;
   }
-  public boolean aLHas(ArrayList<Point> r, Point q){
-    for(int a=0;a<r.size();a++) if(r.get(a).equals(q)) return true;
-    return false;
-  }
-  /**
-   *  Returns the largest number of cookies collected by Monster
-   *  on a path from (0,0) to (SIZE-1, SIZE-1)
-   */
-  private static void optimize(Queue<Route> r, Route rte){
-    Object[] com=r.toArray();
-    for(int i=0;i<com.length;i++){
-      if(((Route)com[i]).getCost()<rte.getCost()&&((Route)com[i]).peek().equals(rte.peek())) r.remove((Route)com[i]);
-    }
-    r.add(rte);
-  }
-  /**
-   * find most effective path through 2d array of cookies
-   * @return
-   */
-  public Route optPath(){
-    ArrayList<Point> points=new ArrayList<>();
-     //reformats the 2D array into an arrayList
-    for(int i=0;i<cookies.length;i++){
-      for(int n=0;n<cookies[i].length;n++){
-        points.add(new Point(i,n));
+
+  public static Route optRoute(ArrayList<ArrayList<Point>> points){
+    RouteOrg rComp=new RouteOrg(); //comparator to be used for sorting in PriorityQueue
+    PriorityQueue<Route> possible=new PriorityQueue<>(rComp); //list of possible solutions
+    PriorityQueue<Route> frontier=new PriorityQueue<>(rComp); //list of routes to be examined
+    ArrayList<Point> visited=new ArrayList<>(); //list of points that have been visited
+    frontier.add(new Route(points.get(0).get(0)));
+    visited.add(points.get(0).get(0));
+    while(frontier.size()>0){ //while there are routes to be examined
+      Route curr=frontier.peek(); //curr=current route to be examined
+      setNeighbors(points, curr); //set the possible next steps for curr
+      Point node=curr.nextStep(); //init node for first iteration of loop
+      if(node==null){
+        System.out.println("hello");
       }
-    } //should work above this
-    PriorityQueue<Route> frontier=new PriorityQueue<>(); //created paths to be explored
-    PriorityQueue<Route> possible=new PriorityQueue<>(); //possible solutions (routes that reach the ensd)
-    ArrayList<Point> explored=new ArrayList<>(); //cities that have been previously explored by any route
-    frontier.add(new Route(points.get(0))); //add start position as route to frontier
-    explored.add(points.get(0)); //add start position to list of explored points
-    while(frontier.size()>0){ //while there are paths to be explored
-      if(frontier.size()==1000){ //testing
-        boolean t=true;
-      }
-      if(explored.size()==1000){ //testing
-        boolean t=true;
-      }
-      Point node=frontier.peek().getNext(); //hold next step (point)
-      while(node==null){ //if the next step does not exist, repalce with nearest next step
-        frontier.remove();
-        if(frontier.size()==0) break;
-        node=frontier.peek().getNext();
-      }
-      if(frontier.peek().notVisited(node)){ //if node hasn't been visited by the route already...
-        Route curr=new Route(frontier.peek(),node); //next possbile route being evaluated
-        if(node.p1()==SIZE-1&&node.p2()==SIZE-1){ //if node=end, add to possible solutions
-          possible.add(curr);
+      while(node!=null){ //nextStep() will return null if the route has been exhausted, stopping this loop
+        if(node.y()==points.size()&&node.x()==points.get(0).size()) possible.add(new Route(curr,node)); //if node is the end, add to possible routes
+        else if(visited.contains(node)) optimizeFront(new Route(curr,node),frontier); //if node has been visited, decide on more optimal route to this location
+        else{ //if node has never been seen...
+          visited.add(node); //log visit
+          frontier.add(new Route(curr,node)); //add to route queue
         }
-        if(!explHas(explored, node)){ //if node has not been explored in a previous route, add to queue
-          explored.add(node);
-          frontier.add(curr);
-        }
-        else optimize(frontier, curr); //if node has been previously explored, remove all less efficient cases and add to route
+        node=curr.nextStep(); //reset node for next iteration
       }
-      if(!frontier.peek().hasNext()) frontier.remove(); //if the end of the head of the queue has no more paths to explore, remove from queue
+      frontier.remove();//remove after route has been exhausted of steps
     }
-    return possible.peek(); //return most effective route
+    if(possible.size()==0) return null; //if there is no possible solution, return null
+    return possible.peek(); //return the most optimal route in list of possble routes
   }
-  /**
-   * returns true if any item in the arraylist has the same points as Point p, meant to be used with explored
-   * @param l
-   * @param p
-   * @return
-   */
-  private boolean explHas(ArrayList<Point> l,Point p){
-    for(Point q:l) if(p.p1()==q.p1()&&p.p2()==q.p2()) return true;
-    return false;
+  public static void optimizeFront(Route rte, PriorityQueue<Route> frontier){
+    Object[] c=frontier.toArray();
+    for(Object o:c)
+      if(((Route)o).peek().equals(rte.peek())){ //if a match has been found
+        if(((Route)o).costOf()<rte.costOf()){ //if the route being evaluated is better, replace the found route with the examined
+        frontier.remove((Route)o);
+        frontier.add(rte);
+        }
+        return; //there can only be one match, so if one has been found, return no matter what
+      }
+      frontier.add(rte); //if there was no matching tail, add rte to frontier anyway
   }
   /**  The following is something we coded together in Ch20 work:
   *		E  is an Element Type
@@ -190,45 +211,22 @@ public class CookieMonsterStarter
 
   public static void main(String args[])
   {  // Adapt this as you see fit.
-    String fileName;
+    String fileName="";
+    try{
+      Scanner s=new Scanner(System.in);
+      System.out.print("Filename: ");
+      fileName=s.nextLine();
+      s.close();
+    }catch(Exception e){e.printStackTrace();}
+    ArrayList<ArrayList<Point>> aL=parseCookies(fileName);
+    ckies=aL;
+    Route opt=optRoute(aL);
+    System.out.println(opt);
 
-    if (args.length >= 1)
-    {
-      fileName = args[0];
-    }
-    else
-    {
-      Scanner kboard = new Scanner(System.in);
-      System.out.print("Enter the cookies file name: ");
-      fileName = kboard.nextLine();
-      kboard.close();
-     }
-
-    File file = new File(fileName);
-    Scanner input = null;
-    try
-    {
-      input = new Scanner(file);
-    }
-    catch (FileNotFoundException ex)
-    {
-      System.out.println("Cannot open " + fileName);
-      System.exit(1);
-    }
-
-    CookieMonsterStarter monster = new CookieMonsterStarter();
-    monster.loadCookies(input);
-    System.out.println("Optimal path has " +monster.optPath() + " cookies.\n");
   }
-  public class routeComp implements Comparator<Route>{
+  public static class RouteOrg implements Comparator<Route>{ //comparator for routes to be used by PriorityQueue
     public int compare(Route o1, Route o2) {
-      return o2.getCost()-o1.getCost();
+      return o2.costOf()-o1.costOf();
     }
-  }
-  public class rtComp implements Comparator<Route>{
-    public int compare(Route o1, Route o2) {
-      return o2.getCost()-o1.getCost();
-    }
-    
   }
 }
