@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MovieListReader",
+            "request": "launch",
+            "mainClass": "Chapter19.MovieIndex.MovieListReader",
+            "projectName": "APCSA_88719d09"
+        },
+        {
+            "type": "java",
             "name": "CookieMonsterStarter",
             "request": "launch",
             "mainClass": "CookieMonsterStarter",
