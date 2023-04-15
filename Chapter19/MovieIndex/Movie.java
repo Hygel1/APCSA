@@ -1,8 +1,11 @@
 package Chapter19.MovieIndex;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.TreeSet;
+import java.util.Comparator;
 public class Movie implements Comparable<Movie>{
     private static LinkedList<Person> lstAllPerson=new LinkedList<>();
+    private static TreeSet<Person> lstAllActr=new TreeSet<Person>(new actorComp());
     private int date;
     private String title;
     private Person[] actors;
@@ -35,9 +38,8 @@ public class Movie implements Comparable<Movie>{
     public Movie(String str){
         date=Integer.parseInt(str.substring(0,4));
         title=str.substring(5,38).trim();
-        actors=makePeople(
-            str.substring(38,84).trim().split(", "));
-        directors=makePeople(str.substring(str.indexOf("Dir:")+4).trim().split(", "));        
+        actors=makePeople(str.substring(38,84).trim().split(", "));
+        directors=makePeople(str.substring(str.indexOf("Dir:")+4).trim().split(", "));
     }
     private static Person[] makePeople(String[] actorArr){
         ArrayList<Person> rtn=new ArrayList<>();
@@ -54,9 +56,13 @@ public class Movie implements Comparable<Movie>{
                 Person a=new Person(s);
                 rtn.add(a);
                 lstAllPerson.add(a);
+                lstAllActr.add(a);
             }
         }
         return rtn.toArray(new Person[rtn.size()]);
+    }
+    public static TreeSet<Person> getActors(){
+        return lstAllActr;
     }
     public String toString(){
         return title+" ("+date+") A: "+arrStr(actors)+" D: "+arrStr(directors)+"\n";
@@ -70,5 +76,14 @@ public class Movie implements Comparable<Movie>{
     }
     public int compareTo(Movie o) {
         return title.compareTo(o.title);
+    }
+    public Person[] getDirectors(){
+        return directors;
+    }
+    public static class actorComp implements Comparator<Person>{
+        public int compare(Person o1, Person o2) {
+            int num=o1.getName().substring(o1.getName().indexOf(" ")).compareTo(o2.getName().substring(o2.getName().indexOf(" ")));
+            return num==0?o1.getName().substring(0,o1.getName().indexOf(" ")).compareTo(o2.getName().substring(0,o2.getName().indexOf(" "))):num;
+        }
     }
 }
