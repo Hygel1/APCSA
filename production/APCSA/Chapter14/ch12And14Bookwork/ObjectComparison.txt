@@ -1,0 +1,26 @@
+- .equals() defaults from the object class
+    - every class derives from the Object class and therefore inherits .equals()
+    - .equals() can be overridden by writing another, more local version with the right header
+        - public boolean equals(Object other){}
+            - the parameter can be changed but it may be misleading when reading code
+    - Object's .equals() only compares the addresses of the two Objects, not the contents
+        - addresses can be copmared using '=='
+    - when using comparing specific objects in a method where the parameter is passed as Object, it is necessary to cast the Object parameter to the right object type
+
+    - Comparable<T> is an interface that requires the public int compareTo(T other) method
+        - when called like obj1.copmareTo(obj2):
+            - positive when obj1 is "greater than" obj2
+            - negative when obj2 is "greater than" obj1
+            - 0 when equal
+        - When implementing Comparable<T>, it's a good idea to implement a .equals() method as well to make sure that the object is truly Comparable
+            - can easily be made consistent by just returning true when .compareTo()==0 (short circuit instanceof ensure copmarability beforehand)
+    - .compare()
+        - alternate way of comparing two objects, separate object that can compare two instances of another object
+        - usually made my another programmer who needs to sort objetcs by some criteria other than what is usually used
+        - takes two parameters because the class has no real affiliation with the class being compared
+        - public class pets implements Comparator<T>{
+            public int compare(T var1, T var2){
+                return the compared value
+            }
+        }
+        - Comparator can be a parameter to define a sorting method as well where a comparator class is passed to the sorter method

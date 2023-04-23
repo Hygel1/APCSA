@@ -1,0 +1,24 @@
+Chapter 9 - Methods
+
+Key Terms:
+
+Arrays:
+- Arrays are just a set of contiguous memory
+- Individual locations in an array are called elements
+- Individual positoins are called indices
+    - Element is the value, Index is the position
+- can be referenced by naming the array, then placing the index being caled in brackets
+    - indices go from 0 to length-1 (going outside of these boundaries throws an exception)
+    - the index must just be an int value, which can be stated through an equatoin inside of the brackets
+        - this can be as complicated as you want as long as it is both in range and returns an int
+- Arrays are mutable but their length is not
+- Arrays are helpful for refering to several pieces of similar information 
+    - helps to organize and shorten code
+    - Dirent access to eny element of an array (don't have to sort through it to find information)
+- Arrays are technically objects but don't contain any methods
+    - Initially set to null when created and not defined with values
+- When creating primitive value Arrays (like ints), the default values are real
+    - When creating Arrays of objects, the default values are null
+- Arrays can be initialized without being fully constructed, leaving you with a null array without any length or elements
+- Initialize an arry using something like (int[] values;) and declare it using something like (int[] values = new int[9];)
+- Placing an item into a location in an array destroys the value that was previously in that location

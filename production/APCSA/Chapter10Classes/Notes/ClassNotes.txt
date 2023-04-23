@@ -1,0 +1,22 @@
+    - in this.method(), the java keyword "this" always refers to the active class
+ArraysList Notes
+    - Java tool with the purpose of helping us solve complicated problems
+    - list with the abilities of a normal list (programming list)
+    - There are ArrayLists and linked LinkedLists
+    - Built using ArrayList<dataType> name = new ArrayList<dataType>();
+        - eg. ArrayList<String> names = new ArrayList<String>();
+            - names.add("Ben"); - .add(String) places the given string at the end of the list, adding another spot at the end
+            - names.add("Cat");
+            - names.add(0,"Amy"); - .add(int Index, String) places the given String at the given position, shifting everything down and adding indices accordingly
+            - System.out.prinltn(names);
+                - the ArrayList object has a toString built in, thich allows it to be printed without .toString()
+            - This results in [Amy, Ben, Cat]
+    - ArrayLists have size and capacity
+        - ArrayLists start with a default capacity and a size of 0
+            - there is nothing in the array (therefore size is 0) but there is an ability to add things into the list (therefore the capacity must me >0)
+        - size is the amount of elements in the ArrayList
+        - capacity is the maximum amount of elements that can be placed in the ArrayList
+    - ArrayList has an indexOf() function that makes it easy to find things in the ArrayList
+    - Linked lists just put the memory where the head is and doesn't block the data together, which can save memory and keep you from allocating extra space for unused parts of an array
+    
+    

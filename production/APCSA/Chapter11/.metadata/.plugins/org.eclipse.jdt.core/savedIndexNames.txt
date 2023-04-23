@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+D:\Programs\GitHub Repositories\ElectronicsG11\APCSA\Chapter11\.metadata\.plugins\org.eclipse.jdt.core

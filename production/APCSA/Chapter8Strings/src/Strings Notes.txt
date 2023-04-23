@@ -1,0 +1,78 @@
+Chapter 8 - Strings
+
+Key Terms:
+Literal Strings
+Immutability
+cancatenation = Converting to and from Strings
+Character class
+StringBuffer - Blend between strings and arrays
+
+String Class:
+ - The java String API (online) gives you everything that can be done with Strings
+ - Can use cancatination (+=)
+ - Literal strings are the actual value held as the String value (defined directly by code)
+    - Cannot be an actual variable (like user input)
+ - Since strings are objects, we can use dot notation on them
+ - Literal Strings can use escape characters (such as: "\n" for newline)
+
+Immutability:
+ - Once you create a String, it cannot be changed
+ - None of the methods that exist in the String class can change the String
+    - When Strings seem to be changed, they are actually creating new Strings
+ - Strings are immutable to save memory when multiple Strings refer to the same information
+    - references cannot be changes so there is no reason to duplicate data
+ - Methods such as toUpperCase() creates a completely new String and throws away the original String
+ - Empty Strings can be created with "" or new String()
+    - Empty Strings are not the same as null Strings, whihc are effectively uninitialized
+
+Methods:
+    - length() returns the length of a given String
+        - "Flower".length() would return 6
+    - charAt(k) returns the Char value of the String at position k (starting from 0)
+        - "Flower".charAt(2) would return 'o'
+    - substring(i,j) returns the substring of chars from position i up to (but not including) j
+        - "Flower".substring(1,4) would return "low"
+        - The length of the returned substring is always (j-i)
+        - This can also be called with only one int parameter
+            - This returns from that value to the end of the String
+            - "Flower".substring(2) would return "ower"
+    - indexOf(int) returns the index of a specific char or String
+        - "July 5, 2012 1:28:19 PM".indexOf("2") would return 8
+            - returns the index of the firts instance of the value
+        - Calling this method as indexOf(String, int) finds the first instance of the String starting at that index int
+            - "July 5, 2012 1:28:19 PM".indexOf("2",9) would return 11
+        - If the specified String or char value cannot be found, -1 is returned
+        - lastIndexOf() is similar to indexOf() but it starts from the back rather than the front
+    - Comparisons
+        - .equals(String) returns a boolean representing whether or not the Strings are identical
+    - Replacements
+        - trim() returns a String having removed whitespace from either end of the original String
+        - replace(oldCh, newCh) replaces every occurence of oldCh with newCh in the String
+            - pairs with replaceFirst(), which only replaces the first occurence of oldCh with newCh
+        - toUpperCase() returns a new String in all upper case
+        - toLowerCase() returns a new string in all lower case
+    - Concatenation:
+        - Method that can be called by wither concat() or +=
+        - ex: "Flower".concat(" is pretty");
+        - ex: "Flower"+=" is pretty";
+    - toString() converts an int or other data type to a String value
+    - Integer.parseInt(int) and Double.parseDouble(double) take a String value and convert it to an int/double
+        - if there is a problem, it can throw NumberFormatException, which can be handled by try{} catch(){}
+    - Character Methods
+        - isLetter(), isLetterOrDigit()
+        Character.digit(ch, radix) and Character.forDigit() can be used to count beyond base 10 
+
+StringBuffer()
+    - Blend between Strings and arrays
+        - Holds characters like a String but is mutable and contains a set number of values similar to an array
+    - If created without a specified number of values, the default is 16
+    - capacity(int) returns the available space for new values
+    - setLength() sets the StringBuffer to be a specified length but will add null values into newly created spaces (if larger than original)
+        - ensureCapacity(int) will ensure that the StringBuffer is at least as long as the given value
+            - If the StringBuffer is alredy at least as long as the given value, nothing changes; If it is shorter, the StringBuffer is lengthened
+        - trimToSize() will eliminate all null values by reducing the size of the StringBuffer
+    - append(value) adds the given value to the end of the StringBuffer and increases the size if necessary
+        - insert(int position, value) adds the given value to the StringBuffer at the position given(lengthening if necessary)
+            - This pushes the value already at the given position back such that whatever occcurs at the position would then occur after the inserted value
+
+     

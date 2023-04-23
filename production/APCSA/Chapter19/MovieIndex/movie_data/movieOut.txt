@@ -1,0 +1,221 @@
+Compared By Movie Title
+A Streetcar Named Desire (1951) A: [Marlon Brando, Vivien Leigh] D: [Elia Kazan]
+American Graffiti (1973) A: [Richard Dreyfuss, Ron Howard, Harrison Ford] D: [George Lucas]
+Annie Hall (1977) A: [Woody Allen, Diane Keaton, Tony Roberts] D: [Woody Allen]
+Apocalypse Now (1979) A: [Martin Sheen, Marlon Brando, Robert Duvall] D: [Francis Ford Coppola]
+Bonnie And Clyde (1967) A: [Warren Beatty, Faye Dunaway, Gene Hackman] D: [Arthur Penn]
+Cabaret (1972) A: [Liza Minnelli, Joel Grey, Michael York] D: [Bob Fosse]
+Chinatown (1974) A: [Jack Nicholson, Faye Dunaway, John Huston] D: [Roman Polanski]
+E.T. - The Extra-Terrestrial (1983) A: [Dee Wallace Stone, Peter Coyote, Henry Thomas] D: [Steven Spielberg]
+Easy Rider (1969) A: [Peter Fonda, Dennis Hopper, Jack Nicholson] D: [Dennis Hopper]
+Five Easy Pieces (1970) A: [Jack Nicholson, Karen Black, Susan Anspach] D: [Bob Rafelson]
+From Here to Eternity (1953) A: [Burt Lancaster, Montgomery Clift] D: [Fred Zinnemann]
+GoodFellas (1990) A: [Robert De Niro, Ray Liotta, Lorraine Bracco] D: [Martin Scorsese]
+Lawrence of Arabia (1962) A: [Peter O'Toole, Alec Guinness, Omar Sharif] D: [David Lean]
+Manhattan (1979) A: [Woody Allen, Diane Keaton, Meryl Streep] D: [Woody Allen]
+Midnight Cowboy (1969) A: [Dustin Hoffman, Jon Voight] D: [John Schlesinger]
+My Fair Lady (1964) A: [Rex Harrison, Audrey Hepburn] D: [George Cukor]
+Network (1976) A: [Faye Dunaway, William Holden, Robert Duvall] D: [Sidney Lumet]
+On The Waterfront (1954) A: [Marlon Brando, Eva Marie Saint] D: [Elia Kazan]
+One Flew Over The Cuckoo's Nest (1975) A: [Jack Nicholson, Louise Fletcher] D: [Milos Forman]
+Platoon (1986) A: [Charlie Sheen, Willem Dafoe, Tom Berenger] D: [Oliver Stone]
+Psycho (1960) A: [Anthony Perkins, Janet Leigh] D: [Alfred Hitchcock]
+Raging Bull (1980) A: [Robert De Niro, Cathy Moriarty, Joe Pesci] D: [Martin Scorsese]
+Raiders of the Lost Ark (1981) A: [Harrison Ford, Karen Allen] D: [Steven Spielberg]
+Rear Window (1954) A: [James Stewart, Grace Kelly, Thelma Ritter] D: [Alfred Hitchcock]
+Rebel Without a Cause (1955) A: [James Dean, Natalie Wood] D: [Nicholas Ray]
+Roman Holiday (1953) A: [Gregory Peck, Audrey Hepburn, Eddie Albert] D: [William Wyler]
+Schindler's List (1993) A: [Liam Neeson, Ben Kingsley, Ralph Fiennes] D: [Steven Spielberg]
+Some Like It Hot (1959) A: [Marilyn Monroe, Tony Curtis, Jack Lemmon] D: [Billy Wilder]
+Star Wars (1977) A: [Harrison Ford, Alec Guinness] D: [George Lucas]
+Strangers on a Train (1951) A: [Farley Granger, Robert Walker] D: [Alfred Hitchcock]
+Taxi Driver (1976) A: [Robert De Niro, Jodie Foster] D: [Martin Scorsese]
+The African Queen (1951) A: [Humphrey Bogart, Katharine Hepburn] D: [John Huston]
+The Apartment (1960) A: [Jack Lemmon, Shirley MacLaine] D: [Billy Wilder]
+The Bridge On The River Kwai (1957) A: [Alec Guinness, William Holden] D: [David Lean]
+The Empire Strikes Back (1980) A: [Harrison Ford, Carrie Fisher] D: [Irvin Kershner]
+The Godfather (1972) A: [Marlon Brando, Al Pacino, Diane Keaton] D: [Francis Ford Coppola]
+The Godfather, Part II (1974) A: [Al Pacino, Diane Keaton, Robert De Niro] D: [Francis Ford Coppola]
+The Graduate (1967) A: [Dustin Hoffman, Anne Bancroft, Katharine Ross] D: [Mike Nichols]
+The Hustler (1961) A: [Paul Newman, Jackie Gleason] D: [Robert Rossen]
+The Searchers (1956) A: [John Wayne, Jeffrey Hunter, Natalie Wood] D: [John Ford]
+The Silence of the Lambs (1991) A: [Anthony Hopkins, Jodie Foster] D: [Jonathan Demme]
+The Sound of Music (1965) A: [Julie Andrews, Christopher Plummer] D: [Robert Wise]
+The Terminator (1984) A: [Arnold Schwarzenegger, Michael Biehn] D: [James Cameron]
+Tootsie (1982) A: [Dustin Hoffman, Jessica Lange] D: [Sydney Pollack]
+Touch Of Evil (1958) A: [Orson Welles, Janet Leigh] D: [Orson Welles]
+Unforgiven (1992) A: [Clint Eastwood, Gene Hackman] D: [Clint Eastwood]
+Vertigo (1958) A: [James Stewart, Kim Novak, Barbara Bel Geddes] D: [Alfred Hitchcock]
+West Side Story (1961) A: [Natalie Wood, Richard Beymer, Rita Moreno] D: [Robert Wise, Jerome Robbins]
+Who's Afraid of Virginia Woolf? (1966) A: [Elizabeth Taylor, Richard Burton] D: [Mike Nichols]
+
+Compared By Director Name
+West Side Story (1961) A: [Natalie Wood, Richard Beymer, Rita Moreno] D: [Robert Wise, Jerome Robbins]
+Annie Hall (1977) A: [Woody Allen, Diane Keaton, Tony Roberts] D: [Woody Allen]
+Manhattan (1979) A: [Woody Allen, Diane Keaton, Meryl Streep] D: [Woody Allen]
+The Terminator (1984) A: [Arnold Schwarzenegger, Michael Biehn] D: [James Cameron]
+My Fair Lady (1964) A: [Rex Harrison, Audrey Hepburn] D: [George Cukor]
+The Silence of the Lambs (1991) A: [Anthony Hopkins, Jodie Foster] D: [Jonathan Demme]
+Unforgiven (1992) A: [Clint Eastwood, Gene Hackman] D: [Clint Eastwood]
+The Searchers (1956) A: [John Wayne, Jeffrey Hunter, Natalie Wood] D: [John Ford]
+Apocalypse Now (1979) A: [Martin Sheen, Marlon Brando, Robert Duvall] D: [Francis Ford Coppola]
+The Godfather (1972) A: [Marlon Brando, Al Pacino, Diane Keaton] D: [Francis Ford Coppola]
+The Godfather, Part II (1974) A: [Al Pacino, Diane Keaton, Robert De Niro] D: [Francis Ford Coppola]
+One Flew Over The Cuckoo's Nest (1975) A: [Jack Nicholson, Louise Fletcher] D: [Milos Forman]
+Cabaret (1972) A: [Liza Minnelli, Joel Grey, Michael York] D: [Bob Fosse]
+Psycho (1960) A: [Anthony Perkins, Janet Leigh] D: [Alfred Hitchcock]
+Rear Window (1954) A: [James Stewart, Grace Kelly, Thelma Ritter] D: [Alfred Hitchcock]
+Strangers on a Train (1951) A: [Farley Granger, Robert Walker] D: [Alfred Hitchcock]
+Vertigo (1958) A: [James Stewart, Kim Novak, Barbara Bel Geddes] D: [Alfred Hitchcock]
+Easy Rider (1969) A: [Peter Fonda, Dennis Hopper, Jack Nicholson] D: [Dennis Hopper]
+The African Queen (1951) A: [Humphrey Bogart, Katharine Hepburn] D: [John Huston]
+A Streetcar Named Desire (1951) A: [Marlon Brando, Vivien Leigh] D: [Elia Kazan]
+On The Waterfront (1954) A: [Marlon Brando, Eva Marie Saint] D: [Elia Kazan]
+The Empire Strikes Back (1980) A: [Harrison Ford, Carrie Fisher] D: [Irvin Kershner]
+Lawrence of Arabia (1962) A: [Peter O'Toole, Alec Guinness, Omar Sharif] D: [David Lean]
+The Bridge On The River Kwai (1957) A: [Alec Guinness, William Holden] D: [David Lean]
+American Graffiti (1973) A: [Richard Dreyfuss, Ron Howard, Harrison Ford] D: [George Lucas]
+Star Wars (1977) A: [Harrison Ford, Alec Guinness] D: [George Lucas]
+Network (1976) A: [Faye Dunaway, William Holden, Robert Duvall] D: [Sidney Lumet]
+The Graduate (1967) A: [Dustin Hoffman, Anne Bancroft, Katharine Ross] D: [Mike Nichols]
+Who's Afraid of Virginia Woolf? (1966) A: [Elizabeth Taylor, Richard Burton] D: [Mike Nichols]
+Bonnie And Clyde (1967) A: [Warren Beatty, Faye Dunaway, Gene Hackman] D: [Arthur Penn]
+Chinatown (1974) A: [Jack Nicholson, Faye Dunaway, John Huston] D: [Roman Polanski]
+Tootsie (1982) A: [Dustin Hoffman, Jessica Lange] D: [Sydney Pollack]
+Five Easy Pieces (1970) A: [Jack Nicholson, Karen Black, Susan Anspach] D: [Bob Rafelson]
+Rebel Without a Cause (1955) A: [James Dean, Natalie Wood] D: [Nicholas Ray]
+The Hustler (1961) A: [Paul Newman, Jackie Gleason] D: [Robert Rossen]
+Midnight Cowboy (1969) A: [Dustin Hoffman, Jon Voight] D: [John Schlesinger]
+GoodFellas (1990) A: [Robert De Niro, Ray Liotta, Lorraine Bracco] D: [Martin Scorsese]
+Raging Bull (1980) A: [Robert De Niro, Cathy Moriarty, Joe Pesci] D: [Martin Scorsese]
+Taxi Driver (1976) A: [Robert De Niro, Jodie Foster] D: [Martin Scorsese]
+E.T. - The Extra-Terrestrial (1983) A: [Dee Wallace Stone, Peter Coyote, Henry Thomas] D: [Steven Spielberg]
+Raiders of the Lost Ark (1981) A: [Harrison Ford, Karen Allen] D: [Steven Spielberg]
+Schindler's List (1993) A: [Liam Neeson, Ben Kingsley, Ralph Fiennes] D: [Steven Spielberg]
+Platoon (1986) A: [Charlie Sheen, Willem Dafoe, Tom Berenger] D: [Oliver Stone]
+Touch Of Evil (1958) A: [Orson Welles, Janet Leigh] D: [Orson Welles]
+Some Like It Hot (1959) A: [Marilyn Monroe, Tony Curtis, Jack Lemmon] D: [Billy Wilder]
+The Apartment (1960) A: [Jack Lemmon, Shirley MacLaine] D: [Billy Wilder]
+The Sound of Music (1965) A: [Julie Andrews, Christopher Plummer] D: [Robert Wise]
+Roman Holiday (1953) A: [Gregory Peck, Audrey Hepburn, Eddie Albert] D: [William Wyler]
+From Here to Eternity (1953) A: [Burt Lancaster, Montgomery Clift] D: [Fred Zinnemann]
+Actor List
+Eddie Albert
+Karen Allen
+Woody Allen
+Julie Andrews
+Susan Anspach
+Anne Bancroft
+Warren Beatty
+Barbara Bel Geddes
+Tom Berenger
+Richard Beymer
+Michael Biehn
+Karen Black
+Humphrey Bogart
+Lorraine Bracco
+Marlon Brando
+Richard Burton
+James Cameron
+Montgomery Clift
+Peter Coyote
+George Cukor
+Tony Curtis
+Willem Dafoe
+Robert De Niro
+James Dean
+Jonathan Demme
+Richard Dreyfuss
+Faye Dunaway
+Robert Duvall
+Clint Eastwood
+Ralph Fiennes
+Carrie Fisher
+Louise Fletcher
+Peter Fonda
+Harrison Ford
+John Ford
+Francis Ford Coppola
+Milos Forman
+Bob Fosse
+Jodie Foster
+Jackie Gleason
+Farley Granger
+Joel Grey
+Alec Guinness
+Gene Hackman
+Rex Harrison
+Audrey Hepburn
+Katharine Hepburn
+Alfred Hitchcock
+Dustin Hoffman
+William Holden
+Anthony Hopkins
+Dennis Hopper
+Ron Howard
+Jeffrey Hunter
+John Huston
+Elia Kazan
+Diane Keaton
+Grace Kelly
+Irvin Kershner
+Ben Kingsley
+Burt Lancaster
+Jessica Lange
+David Lean
+Janet Leigh
+Vivien Leigh
+Jack Lemmon
+Ray Liotta
+George Lucas
+Sidney Lumet
+Shirley MacLaine
+Eva Marie Saint
+Liza Minnelli
+Marilyn Monroe
+Rita Moreno
+Cathy Moriarty
+Liam Neeson
+Paul Newman
+Mike Nichols
+Jack Nicholson
+Kim Novak
+Peter O'Toole
+Al Pacino
+Gregory Peck
+Arthur Penn
+Anthony Perkins
+Joe Pesci
+Christopher Plummer
+Roman Polanski
+Sydney Pollack
+Bob Rafelson
+Nicholas Ray
+Thelma Ritter
+Jerome Robbins
+Tony Roberts
+Katharine Ross
+Robert Rossen
+John Schlesinger
+Arnold Schwarzenegger
+Martin Scorsese
+Omar Sharif
+Charlie Sheen
+Martin Sheen
+Steven Spielberg
+James Stewart
+Oliver Stone
+Meryl Streep
+Elizabeth Taylor
+Henry Thomas
+Jon Voight
+Robert Walker
+Dee Wallace Stone
+John Wayne
+Orson Welles
+Billy Wilder
+Robert Wise
+Natalie Wood
+William Wyler
+Michael York
+Fred Zinnemann
